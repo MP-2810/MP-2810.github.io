@@ -10,7 +10,9 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="## 开始
+<meta name="description" content="**本博客内容主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程**
+
+## 开始
 进入Live环境后先连接网络，连无线网则使用iwd提供的命令行工具，输入
 ```bash
 iwctl
@@ -33,14 +35,14 @@ exit  #退出iwctl
 **处理硬盘分区**
 存在`lsblk`、`fdisk`、`cfdisk`工具用来管理磁盘
 若第一次使用该硬盘（或其中某个分区）则选用gpt模式
-准备至少100MB作为ESP，将剩余空间处理为Linux filesystem类型
+准备至少100MB（空间充裕的话可以准备多点）作为ESP，将剩余空间处理为Linux filesystem类型
 - **双系统需要注意：**
 未避免Windows弄坏Linux的引导文件，建议为两者准备各自独立的EFI分区
 - **单硬盘双系统需要注意：**
-如nvme0n1号硬盘，应当直接将目标free space分别划分成px和py号分区分别供给EFI和Linux文件系统，而不应该将其划成px号后又进一步细分为pxp1、pxp2号分区，因为无法识别到二级结构
+如nvme0n1号硬盘同时装载了Windows，应当直接将目标free space分别划分成nvme0n1px和nvme0n1py号分区分别供给EFI和Linux文件系统，而不应该将其全部划成nvme0n1px号后又进一步细分为nvme0n1pxp1、nvme0n1pxp2号分区，因为二级结构是无法被识别到的
 
 ## 挂载ESP（EFI System Partition)**
-通常挂载到/boot,但/boot已经存放体积较大的内核文件，因此不建议再挂载到/boot,可以挂载到/boot/efi或者/efi,本人推荐/efi，可以使布局简洁
+通常挂载到/boot,但/boot已经存放体积较大的内核文件，因此不建议再挂载到/boot,可以挂载到/boot/efi或者/efi，ArchWiki推荐/efi
 并且为了实现Arch的快照功能，根分区需要处理成BTRFS文件系统，ESP必须是FAT类，而BTRFS不能快照作为FAT文件系统的ESP
 输入以下命令将两个分区分别格式化为FAT32和BTRFS
 ```
@@ -70,7 +72,7 @@ mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
 ### 安装系统文件
 使用如下命令安装系统
 `pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs`
-也可以安装linux-zen性能特调内核
+也可以安装linux-zen性能特调内核（本人使用该内核进入系统会出现死机现象，原因不明，目前猜测可能是未安装显卡驱动引起的驱动冲突导致的）
 `pacstrap -K /mnt base base-devel linux-zen linux-firmware btrfs-progs`
 如果是marvell网卡则需要额外安装marvell固件包
 `pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs linux-firmware-marvell`
@@ -79,17 +81,16 @@ mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
 `pacstrap /mnt networkmanager vim sudo intel-ucode`
 amd用户就用`amd-ucode`，想用终端联网就装`iwd`(**iwd可能需要配dhcpcd使用**）
 ### 自动挂载文件系统
-输入以下命令生成fstab文件以使系统自动完成挂载
+输入以下命令生成fstab文件以使系统自动完成系统文件挂载
 `genfstab -U /mnt > /mnt/etc/fstab`
 
 ## chrange root
 ###进入arch-chroot
 `arch-chroot /mnt`
-- 建议重新安装yazi以查看文件
 ### 设置时区
 ```
 timedatectl set-timezone Asia/Shanghai
---systohc  #在/etc下生成adjtime文件用来调整时间误差
+--systohc  #在/etc下生成了adjtime文件用来调整时间误差
 ```
 ### 设置本地化
 `vim /etc/locale.gen`
@@ -99,7 +100,7 @@ timedatectl set-timezone Asia/Shanghai
 设置本地化：
 `vim /etc/locale.conf`
 `vim .config/locale.conf`
-都写入`LANG=en_US.UTF-8`，用来设置全局本地使用英文，避免在使用root登陆tty时终端文字变成豆腐块以致无法识别
+都写入`LANG=en_US.UTF-8`，用来设置全局本地使用英文，避免在使用root登陆tty时终端文字变成方块以致无法识别
 设置所有新建用户使用语言
 ```
 mkdir /etc/skel/.config
@@ -125,8 +126,8 @@ os-prober用来搜索其他系统，exfat-utils能找到Windows的EFI分区
 `vim /etc/default/grub`
 取消`GRUB_DISABLE_OS_PROBER=false`的注释以允许grub生成配置文件时使用os-prober搜索其他系统
 取消`GRUB_SAVEDEFAULT=true`的注释以允许grub获得启动项记忆功能
-去到文件开头，将`GRUB_DEFAULT=0`修改为`GRUB_DEFAULT=saved`
-下面几行中，`GRUB_CMDLINE_LINUX_DEFAULT='loglevel=3 quiet'`，把`loglevel`改成5,并删除`quiet`
+将`GRUB_DEFAULT=0`修改为`GRUB_DEFAULT=saved`
+`GRUB_CMDLINE_LINUX_DEFAULT='loglevel=3 quiet'`中，把`loglevel`改成5,并删除`quiet`
 - Zram内存压缩和交换空间
 可以提升系统运行速度，增加可用内存
 ```
@@ -153,7 +154,7 @@ nmtui
 ```
 pacman -S fastfetch cmatrix
 fastfetch  #不fetch的Arch是没有灵魂的
-cmatrix  #欣赏代码雨享受一下吧
+cmatrix  #可以欣赏代码雨享受一下
 ```
 ### 一些基本设置
 ```
@@ -202,7 +203,9 @@ pacman -S linux-lts  #lts内核不会频繁更新，系统出现异常时在快�
 grub-mkconfig -o /boot/grub/grub.cfg
 ```。">
 <meta property="og:title" content="Arch的安装及配置">
-<meta property="og:description" content="## 开始
+<meta property="og:description" content="**本博客内容主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程**
+
+## 开始
 进入Live环境后先连接网络，连无线网则使用iwd提供的命令行工具，输入
 ```bash
 iwctl
@@ -225,14 +228,14 @@ exit  #退出iwctl
 **处理硬盘分区**
 存在`lsblk`、`fdisk`、`cfdisk`工具用来管理磁盘
 若第一次使用该硬盘（或其中某个分区）则选用gpt模式
-准备至少100MB作为ESP，将剩余空间处理为Linux filesystem类型
+准备至少100MB（空间充裕的话可以准备多点）作为ESP，将剩余空间处理为Linux filesystem类型
 - **双系统需要注意：**
 未避免Windows弄坏Linux的引导文件，建议为两者准备各自独立的EFI分区
 - **单硬盘双系统需要注意：**
-如nvme0n1号硬盘，应当直接将目标free space分别划分成px和py号分区分别供给EFI和Linux文件系统，而不应该将其划成px号后又进一步细分为pxp1、pxp2号分区，因为无法识别到二级结构
+如nvme0n1号硬盘同时装载了Windows，应当直接将目标free space分别划分成nvme0n1px和nvme0n1py号分区分别供给EFI和Linux文件系统，而不应该将其全部划成nvme0n1px号后又进一步细分为nvme0n1pxp1、nvme0n1pxp2号分区，因为二级结构是无法被识别到的
 
 ## 挂载ESP（EFI System Partition)**
-通常挂载到/boot,但/boot已经存放体积较大的内核文件，因此不建议再挂载到/boot,可以挂载到/boot/efi或者/efi,本人推荐/efi，可以使布局简洁
+通常挂载到/boot,但/boot已经存放体积较大的内核文件，因此不建议再挂载到/boot,可以挂载到/boot/efi或者/efi，ArchWiki推荐/efi
 并且为了实现Arch的快照功能，根分区需要处理成BTRFS文件系统，ESP必须是FAT类，而BTRFS不能快照作为FAT文件系统的ESP
 输入以下命令将两个分区分别格式化为FAT32和BTRFS
 ```
@@ -262,7 +265,7 @@ mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
 ### 安装系统文件
 使用如下命令安装系统
 `pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs`
-也可以安装linux-zen性能特调内核
+也可以安装linux-zen性能特调内核（本人使用该内核进入系统会出现死机现象，原因不明，目前猜测可能是未安装显卡驱动引起的驱动冲突导致的）
 `pacstrap -K /mnt base base-devel linux-zen linux-firmware btrfs-progs`
 如果是marvell网卡则需要额外安装marvell固件包
 `pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs linux-firmware-marvell`
@@ -271,17 +274,16 @@ mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
 `pacstrap /mnt networkmanager vim sudo intel-ucode`
 amd用户就用`amd-ucode`，想用终端联网就装`iwd`(**iwd可能需要配dhcpcd使用**）
 ### 自动挂载文件系统
-输入以下命令生成fstab文件以使系统自动完成挂载
+输入以下命令生成fstab文件以使系统自动完成系统文件挂载
 `genfstab -U /mnt > /mnt/etc/fstab`
 
 ## chrange root
 ###进入arch-chroot
 `arch-chroot /mnt`
-- 建议重新安装yazi以查看文件
 ### 设置时区
 ```
 timedatectl set-timezone Asia/Shanghai
---systohc  #在/etc下生成adjtime文件用来调整时间误差
+--systohc  #在/etc下生成了adjtime文件用来调整时间误差
 ```
 ### 设置本地化
 `vim /etc/locale.gen`
@@ -291,7 +293,7 @@ timedatectl set-timezone Asia/Shanghai
 设置本地化：
 `vim /etc/locale.conf`
 `vim .config/locale.conf`
-都写入`LANG=en_US.UTF-8`，用来设置全局本地使用英文，避免在使用root登陆tty时终端文字变成豆腐块以致无法识别
+都写入`LANG=en_US.UTF-8`，用来设置全局本地使用英文，避免在使用root登陆tty时终端文字变成方块以致无法识别
 设置所有新建用户使用语言
 ```
 mkdir /etc/skel/.config
@@ -317,8 +319,8 @@ os-prober用来搜索其他系统，exfat-utils能找到Windows的EFI分区
 `vim /etc/default/grub`
 取消`GRUB_DISABLE_OS_PROBER=false`的注释以允许grub生成配置文件时使用os-prober搜索其他系统
 取消`GRUB_SAVEDEFAULT=true`的注释以允许grub获得启动项记忆功能
-去到文件开头，将`GRUB_DEFAULT=0`修改为`GRUB_DEFAULT=saved`
-下面几行中，`GRUB_CMDLINE_LINUX_DEFAULT='loglevel=3 quiet'`，把`loglevel`改成5,并删除`quiet`
+将`GRUB_DEFAULT=0`修改为`GRUB_DEFAULT=saved`
+`GRUB_CMDLINE_LINUX_DEFAULT='loglevel=3 quiet'`中，把`loglevel`改成5,并删除`quiet`
 - Zram内存压缩和交换空间
 可以提升系统运行速度，增加可用内存
 ```
@@ -345,7 +347,7 @@ nmtui
 ```
 pacman -S fastfetch cmatrix
 fastfetch  #不fetch的Arch是没有灵魂的
-cmatrix  #欣赏代码雨享受一下吧
+cmatrix  #可以欣赏代码雨享受一下
 ```
 ### 一些基本设置
 ```
@@ -463,7 +465,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h2>开始</h2>
+<div class="markdown-body" id="postBody"><p><strong>本博客内容主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程</strong></p>
+<h2>开始</h2>
 <p>进入Live环境后先连接网络，连无线网则使用iwd提供的命令行工具，输入</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">iwctl
 device list  <span class="pl-c"><span class="pl-c">#</span>列出设备</span>
@@ -483,15 +486,15 @@ station 设备名 connect 无线网名  <span class="pl-c"><span class="pl-c">#<
 <p><strong>处理硬盘分区</strong><br>
 存在<code class="notranslate">lsblk</code>、<code class="notranslate">fdisk</code>、<code class="notranslate">cfdisk</code>工具用来管理磁盘<br>
 若第一次使用该硬盘（或其中某个分区）则选用gpt模式<br>
-准备至少100MB作为ESP，将剩余空间处理为Linux filesystem类型</p>
+准备至少100MB（空间充裕的话可以准备多点）作为ESP，将剩余空间处理为Linux filesystem类型</p>
 <ul>
 <li><strong>双系统需要注意：</strong><br>
 未避免Windows弄坏Linux的引导文件，建议为两者准备各自独立的EFI分区</li>
 <li><strong>单硬盘双系统需要注意：</strong><br>
-如nvme0n1号硬盘，应当直接将目标free space分别划分成px和py号分区分别供给EFI和Linux文件系统，而不应该将其划成px号后又进一步细分为pxp1、pxp2号分区，因为无法识别到二级结构</li>
+如nvme0n1号硬盘同时装载了Windows，应当直接将目标free space分别划分成nvme0n1px和nvme0n1py号分区分别供给EFI和Linux文件系统，而不应该将其全部划成nvme0n1px号后又进一步细分为nvme0n1pxp1、nvme0n1pxp2号分区，因为二级结构是无法被识别到的</li>
 </ul>
 <h2>挂载ESP（EFI System Partition)**</h2>
-<p>通常挂载到/boot,但/boot已经存放体积较大的内核文件，因此不建议再挂载到/boot,可以挂载到/boot/efi或者/efi,本人推荐/efi，可以使布局简洁<br>
+<p>通常挂载到/boot,但/boot已经存放体积较大的内核文件，因此不建议再挂载到/boot,可以挂载到/boot/efi或者/efi，ArchWiki推荐/efi<br>
 并且为了实现Arch的快照功能，根分区需要处理成BTRFS文件系统，ESP必须是FAT类，而BTRFS不能快照作为FAT文件系统的ESP<br>
 输入以下命令将两个分区分别格式化为FAT32和BTRFS</p>
 <pre class="notranslate"><code class="notranslate">mkfs.fat -F 32 /dev/ESP号
@@ -518,7 +521,7 @@ mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
 <h3>安装系统文件</h3>
 <p>使用如下命令安装系统<br>
 <code class="notranslate">pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs</code><br>
-也可以安装linux-zen性能特调内核<br>
+也可以安装linux-zen性能特调内核（本人使用该内核进入系统会出现死机现象，原因不明，目前猜测可能是未安装显卡驱动引起的驱动冲突导致的）<br>
 <code class="notranslate">pacstrap -K /mnt base base-devel linux-zen linux-firmware btrfs-progs</code><br>
 如果是marvell网卡则需要额外安装marvell固件包<br>
 <code class="notranslate">pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs linux-firmware-marvell</code></p>
@@ -527,17 +530,14 @@ mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
 <code class="notranslate">pacstrap /mnt networkmanager vim sudo intel-ucode</code><br>
 amd用户就用<code class="notranslate">amd-ucode</code>，想用终端联网就装<code class="notranslate">iwd</code>(<strong>iwd可能需要配dhcpcd使用</strong>）</p>
 <h3>自动挂载文件系统</h3>
-<p>输入以下命令生成fstab文件以使系统自动完成挂载<br>
+<p>输入以下命令生成fstab文件以使系统自动完成系统文件挂载<br>
 <code class="notranslate">genfstab -U /mnt &gt; /mnt/etc/fstab</code></p>
 <h2>chrange root</h2>
 <p>###进入arch-chroot<br>
 <code class="notranslate">arch-chroot /mnt</code></p>
-<ul>
-<li>建议重新安装yazi以查看文件</li>
-</ul>
 <h3>设置时区</h3>
 <pre class="notranslate"><code class="notranslate">timedatectl set-timezone Asia/Shanghai
---systohc  #在/etc下生成adjtime文件用来调整时间误差
+--systohc  #在/etc下生成了adjtime文件用来调整时间误差
 </code></pre>
 <h3>设置本地化</h3>
 <p><code class="notranslate">vim /etc/locale.gen</code><br>
@@ -547,7 +547,7 @@ amd用户就用<code class="notranslate">amd-ucode</code>，想用终端联网�
 设置本地化：<br>
 <code class="notranslate">vim /etc/locale.conf</code><br>
 <code class="notranslate">vim .config/locale.conf</code><br>
-都写入<code class="notranslate">LANG=en_US.UTF-8</code>，用来设置全局本地使用英文，避免在使用root登陆tty时终端文字变成豆腐块以致无法识别<br>
+都写入<code class="notranslate">LANG=en_US.UTF-8</code>，用来设置全局本地使用英文，避免在使用root登陆tty时终端文字变成方块以致无法识别<br>
 设置所有新建用户使用语言</p>
 <pre class="notranslate"><code class="notranslate">mkdir /etc/skel/.config
 vim /etc/skel/.config/locale.conf
@@ -572,8 +572,8 @@ os-prober用来搜索其他系统，exfat-utils能找到Windows的EFI分区<br>
 <code class="notranslate">vim /etc/default/grub</code><br>
 取消<code class="notranslate">GRUB_DISABLE_OS_PROBER=false</code>的注释以允许grub生成配置文件时使用os-prober搜索其他系统<br>
 取消<code class="notranslate">GRUB_SAVEDEFAULT=true</code>的注释以允许grub获得启动项记忆功能<br>
-去到文件开头，将<code class="notranslate">GRUB_DEFAULT=0</code>修改为<code class="notranslate">GRUB_DEFAULT=saved</code><br>
-下面几行中，<code class="notranslate">GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"</code>，把<code class="notranslate">loglevel</code>改成5,并删除<code class="notranslate">quiet</code></li>
+将<code class="notranslate">GRUB_DEFAULT=0</code>修改为<code class="notranslate">GRUB_DEFAULT=saved</code><br>
+<code class="notranslate">GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"</code>中，把<code class="notranslate">loglevel</code>改成5,并删除<code class="notranslate">quiet</code></li>
 <li>Zram内存压缩和交换空间<br>
 可以提升系统运行速度，增加可用内存</li>
 </ul>
@@ -596,7 +596,7 @@ nmtui
 <p>连接wifi</p>
 <pre class="notranslate"><code class="notranslate">pacman -S fastfetch cmatrix
 fastfetch  #不fetch的Arch是没有灵魂的
-cmatrix  #欣赏代码雨享受一下吧
+cmatrix  #可以欣赏代码雨享受一下
 </code></pre>
 <h3>一些基本设置</h3>
 <pre class="notranslate"><code class="notranslate">pacman -Syu

@@ -1,3 +1,5 @@
+**本博客内容主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程**
+
 ## 开始
 进入Live环境后先连接网络，连无线网则使用iwd提供的命令行工具，输入
 ```bash
@@ -21,14 +23,14 @@ exit  #退出iwctl
 **处理硬盘分区**
 存在`lsblk`、`fdisk`、`cfdisk`工具用来管理磁盘
 若第一次使用该硬盘（或其中某个分区）则选用gpt模式
-准备至少100MB作为ESP，将剩余空间处理为Linux filesystem类型
+准备至少100MB（空间充裕的话可以准备多点）作为ESP，将剩余空间处理为Linux filesystem类型
 - **双系统需要注意：**
 未避免Windows弄坏Linux的引导文件，建议为两者准备各自独立的EFI分区
 - **单硬盘双系统需要注意：**
-如nvme0n1号硬盘，应当直接将目标free space分别划分成px和py号分区分别供给EFI和Linux文件系统，而不应该将其划成px号后又进一步细分为pxp1、pxp2号分区，因为无法识别到二级结构
+如nvme0n1号硬盘同时装载了Windows，应当直接将目标free space分别划分成nvme0n1px和nvme0n1py号分区分别供给EFI和Linux文件系统，而不应该将其全部划成nvme0n1px号后又进一步细分为nvme0n1pxp1、nvme0n1pxp2号分区，因为二级结构是无法被识别到的
 
 ## 挂载ESP（EFI System Partition)**
-通常挂载到/boot,但/boot已经存放体积较大的内核文件，因此不建议再挂载到/boot,可以挂载到/boot/efi或者/efi,本人推荐/efi，可以使布局简洁
+通常挂载到/boot,但/boot已经存放体积较大的内核文件，因此不建议再挂载到/boot,可以挂载到/boot/efi或者/efi，ArchWiki推荐/efi
 并且为了实现Arch的快照功能，根分区需要处理成BTRFS文件系统，ESP必须是FAT类，而BTRFS不能快照作为FAT文件系统的ESP
 输入以下命令将两个分区分别格式化为FAT32和BTRFS
 ```
@@ -58,7 +60,7 @@ mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
 ### 安装系统文件
 使用如下命令安装系统
 `pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs`
-也可以安装linux-zen性能特调内核
+也可以安装linux-zen性能特调内核（本人使用该内核进入系统会出现死机现象，原因不明，目前猜测可能是未安装显卡驱动引起的驱动冲突导致的）
 `pacstrap -K /mnt base base-devel linux-zen linux-firmware btrfs-progs`
 如果是marvell网卡则需要额外安装marvell固件包
 `pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs linux-firmware-marvell`
@@ -67,17 +69,16 @@ mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
 `pacstrap /mnt networkmanager vim sudo intel-ucode`
 amd用户就用`amd-ucode`，想用终端联网就装`iwd`(**iwd可能需要配dhcpcd使用**）
 ### 自动挂载文件系统
-输入以下命令生成fstab文件以使系统自动完成挂载
+输入以下命令生成fstab文件以使系统自动完成系统文件挂载
 `genfstab -U /mnt > /mnt/etc/fstab`
 
 ## chrange root
 ###进入arch-chroot
 `arch-chroot /mnt`
-- 建议重新安装yazi以查看文件
 ### 设置时区
 ```
 timedatectl set-timezone Asia/Shanghai
---systohc  #在/etc下生成adjtime文件用来调整时间误差
+--systohc  #在/etc下生成了adjtime文件用来调整时间误差
 ```
 ### 设置本地化
 `vim /etc/locale.gen`
@@ -87,7 +88,7 @@ timedatectl set-timezone Asia/Shanghai
 设置本地化：
 `vim /etc/locale.conf`
 `vim .config/locale.conf`
-都写入`LANG=en_US.UTF-8`，用来设置全局本地使用英文，避免在使用root登陆tty时终端文字变成豆腐块以致无法识别
+都写入`LANG=en_US.UTF-8`，用来设置全局本地使用英文，避免在使用root登陆tty时终端文字变成方块以致无法识别
 设置所有新建用户使用语言
 ```
 mkdir /etc/skel/.config
@@ -113,8 +114,8 @@ os-prober用来搜索其他系统，exfat-utils能找到Windows的EFI分区
 `vim /etc/default/grub`
 取消`GRUB_DISABLE_OS_PROBER=false`的注释以允许grub生成配置文件时使用os-prober搜索其他系统
 取消`GRUB_SAVEDEFAULT=true`的注释以允许grub获得启动项记忆功能
-去到文件开头，将`GRUB_DEFAULT=0`修改为`GRUB_DEFAULT=saved`
-下面几行中，`GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"`，把`loglevel`改成5,并删除`quiet`
+将`GRUB_DEFAULT=0`修改为`GRUB_DEFAULT=saved`
+`GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"`中，把`loglevel`改成5,并删除`quiet`
 - Zram内存压缩和交换空间
 可以提升系统运行速度，增加可用内存
 ```
@@ -141,7 +142,7 @@ nmtui
 ```
 pacman -S fastfetch cmatrix
 fastfetch  #不fetch的Arch是没有灵魂的
-cmatrix  #欣赏代码雨享受一下吧
+cmatrix  #可以欣赏代码雨享受一下
 ```
 ### 一些基本设置
 ```
