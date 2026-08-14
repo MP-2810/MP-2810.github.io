@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Fri, 14 Aug 2026 22:21:25 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>Arch的安装及配置</title><link>https://MP-2810.github.io/post/Arch-de-an-zhuang-ji-pei-zhi.html</link><description>## 开始
+## 开始
 进入Live环境后先连接网络，连无线网则使用iwd提供的命令行工具，输入
 ```bash
 iwctl
@@ -69,7 +68,7 @@ mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
 amd用户就用`amd-ucode`，想用终端联网就装`iwd`(**iwd可能需要配dhcpcd使用**）
 ### 自动挂载文件系统
 输入以下命令生成fstab文件以使系统自动完成挂载
-`genfstab -U /mnt &gt; /mnt/etc/fstab`
+`genfstab -U /mnt > /mnt/etc/fstab`
 
 ## chrange root
 ###进入arch-chroot
@@ -115,7 +114,7 @@ os-prober用来搜索其他系统，exfat-utils能找到Windows的EFI分区
 取消`GRUB_DISABLE_OS_PROBER=false`的注释以允许grub生成配置文件时使用os-prober搜索其他系统
 取消`GRUB_SAVEDEFAULT=true`的注释以允许grub获得启动项记忆功能
 去到文件开头，将`GRUB_DEFAULT=0`修改为`GRUB_DEFAULT=saved`
-下面几行中，`GRUB_CMDLINE_LINUX_DEFAULT='loglevel=3 quiet'`，把`loglevel`改成5,并删除`quiet`
+下面几行中，`GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"`，把`loglevel`改成5,并删除`quiet`
 - Zram内存压缩和交换空间
 可以提升系统运行速度，增加可用内存
 ```
@@ -186,7 +185,7 @@ systemctl enable --now grub-btrfsd  #开启快照启动项的systemd服务
 ```
 snapper -c root create-config /
 snapper -c home create-config /home
-snapper -c root create --description 'helloworld'  #可以创建名为“helloworld”的root快照
+snapper -c root create --description "helloworld"  #可以创建名为“helloworld”的root快照
 pacman -S linux-lts  #lts内核不会频繁更新，系统出现异常时在快照回档之前可以尝试用LTS内核进入系统排查是否是内核问题引起的系统异常
 grub-mkconfig -o /boot/grub/grub.cfg
-```。</description><guid isPermaLink="true">https://MP-2810.github.io/post/Arch-de-an-zhuang-ji-pei-zhi.html</guid><pubDate>Fri, 14 Aug 2026 22:20:58 +0000</pubDate></item><item><title>FirstTest</title><link>https://MP-2810.github.io/post/FirstTest.html</link><description>Hello World!!。</description><guid isPermaLink="true">https://MP-2810.github.io/post/FirstTest.html</guid><pubDate>Fri, 14 Aug 2026 19:12:00 +0000</pubDate></item></channel></rss>
+```
