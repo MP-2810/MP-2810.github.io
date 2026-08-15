@@ -45,20 +45,20 @@ exit  #退出iwctl
 通常挂载到/boot,但/boot已经存放体积较大的内核文件，因此不建议再挂载到/boot,可以挂载到/boot/efi或者/efi，ArchWiki推荐/efi
 并且为了实现Arch的快照功能，根分区需要处理成BTRFS文件系统，ESP必须是FAT类，而BTRFS不能快照作为FAT文件系统的ESP
 输入以下命令将两个分区分别格式化为FAT32和BTRFS
-```
+```bash
 mkfs.fat -F 32 /dev/ESP号
 mkfs.btrfs /dev/LFP（Linux文件系统分区）号
 ```
 ### 创建子卷
 用于设置快照的范围，将系统数据和用户数据分开快照
 输入以下命令用于创建同级子卷
-```
+```bash
 mount -t btrfs /dev/LFP /mnt
 btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
 ```
 由于输入了`mount -t btrfs /dev/LFP /mnt`使得根分区已经挂载到了/mnt，为了将root子卷挂载到/mnt，需要先取消挂载，然后将root子卷挂载到/mnt：
-```
+```bash
 umount /mnt
 mount -t btrfs -o subvol=/@,compress=zstd /dev/LFP /mnt
 mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
@@ -88,7 +88,7 @@ amd用户就用`amd-ucode`，想用终端联网就装`iwd`(**iwd可能需要配d
 ###进入arch-chroot
 `arch-chroot /mnt`
 ### 设置时区
-```
+```bash
 timedatectl set-timezone Asia/Shanghai
 --systohc  #在/etc下生成了adjtime文件用来调整时间误差
 ```
@@ -102,7 +102,7 @@ timedatectl set-timezone Asia/Shanghai
 `vim .config/locale.conf`
 都写入`LANG=en_US.UTF-8`，用来设置全局本地使用英文，避免在使用root登陆tty时终端文字变成方块以致无法识别
 设置所有新建用户使用语言
-```
+```bash
 mkdir /etc/skel/.config
 vim /etc/skel/.config/locale.conf
 ```
@@ -113,7 +113,7 @@ vim /etc/skel/.config/locale.conf
 `passwd root`
 设置root用户密码
 ### 引导加载程序和双系统
-```
+```bash
 pacman -S grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/efi ==boot-directory=/efi ==bootloader-id=(不填则默认为arch)
 ln -s /efi/grub /boot/grub  #在grub的默认位置创造链接指向/efi/grub，因为多数软件都会默认grub装在了/boot
@@ -130,12 +130,12 @@ os-prober用来搜索其他系统，exfat-utils能找到Windows的EFI分区
 `GRUB_CMDLINE_LINUX_DEFAULT='loglevel=3 quiet'`中，把`loglevel`改成5,并删除`quiet`
 - Zram内存压缩和交换空间
 可以提升系统运行速度，增加可用内存
-```
+```bash
 pacman -S zram-generator
 vim /etc/systemd/zram/zram-generator.conf
 ```
 写入：
-```
+```bash
 [zram0]
 zram-size=ram
 compression-algorithm = zstd
@@ -146,24 +146,24 @@ compression-algorithm = zstd
 ### 进入系统
 `reboot`重启，通过grub进入Arch
 输入`root`进入root用户
-```
+```bash
 systemctl enable --now NetworkManager
 nmtui
 ```
 连接wifi
-```
+```bash
 pacman -S fastfetch cmatrix
 fastfetch  #不fetch的Arch是没有灵魂的
 cmatrix  #可以欣赏代码雨享受一下
 ```
 ### 一些基本设置
-```
+```bash
 pacman -Syu
 vim /etc/environment
 ```
 追加写入`EDITOR=vim`来设置系统默认文本编辑器为vim
 ### 创建用户
-```
+```bash
 useradd -mG wheel 用户名  #-mG分别使创建用户时创建home目录，并将该用户添加进wheel组-拥有管理员权限的组
 passwd 用户名
 visudo
@@ -172,12 +172,12 @@ visudo
 ### 开启32位源
 `vim /etc/pacman.conf`
 取消
-```
+```bash
 [multilib]
 Include = /etc/pacman.d/mirrorlist
 ```
 两行的注释，并在末尾追加一行写入
-```
+```bash
 [archlinuxcn]
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 ```
@@ -188,14 +188,14 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 
 
 ## 快照（snapshot）
-```
+```bash
 pacman -S snapper snap-pac btrfs-assistant grub-btrfs inotify-tools
 systemctl enable --now grub-btrfsd  #开启快照启动项的systemd服务
 ```
 重启一次电脑使snap-pac自动在pacman的时候创建快照
 
 登录root
-```
+```bash
 snapper -c root create-config /
 snapper -c home create-config /home
 snapper -c root create --description 'helloworld'  #可以创建名为“helloworld”的root快照
@@ -206,7 +206,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ## 安装英伟达显卡驱动
 具体流程：去ArchLinux的英伟达驱动官网找到自己显卡型号对应的系，安装需要的、对应的包
 我5060显卡，因此需要安装blackwell系列的nvidia-open-dkms，并安装对应的头文件
-```
+```bash
 pacman -S --need linux-headers linux-lts-headers
 pacman -S nvidia-open-dkms
 pacman -S nvidia-utils lib32-nvidia-utils nvidia-settings  #库、工具集和英伟达服务器设置
@@ -259,20 +259,20 @@ exit  #退出iwctl
 通常挂载到/boot,但/boot已经存放体积较大的内核文件，因此不建议再挂载到/boot,可以挂载到/boot/efi或者/efi，ArchWiki推荐/efi
 并且为了实现Arch的快照功能，根分区需要处理成BTRFS文件系统，ESP必须是FAT类，而BTRFS不能快照作为FAT文件系统的ESP
 输入以下命令将两个分区分别格式化为FAT32和BTRFS
-```
+```bash
 mkfs.fat -F 32 /dev/ESP号
 mkfs.btrfs /dev/LFP（Linux文件系统分区）号
 ```
 ### 创建子卷
 用于设置快照的范围，将系统数据和用户数据分开快照
 输入以下命令用于创建同级子卷
-```
+```bash
 mount -t btrfs /dev/LFP /mnt
 btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
 ```
 由于输入了`mount -t btrfs /dev/LFP /mnt`使得根分区已经挂载到了/mnt，为了将root子卷挂载到/mnt，需要先取消挂载，然后将root子卷挂载到/mnt：
-```
+```bash
 umount /mnt
 mount -t btrfs -o subvol=/@,compress=zstd /dev/LFP /mnt
 mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
@@ -302,7 +302,7 @@ amd用户就用`amd-ucode`，想用终端联网就装`iwd`(**iwd可能需要配d
 ###进入arch-chroot
 `arch-chroot /mnt`
 ### 设置时区
-```
+```bash
 timedatectl set-timezone Asia/Shanghai
 --systohc  #在/etc下生成了adjtime文件用来调整时间误差
 ```
@@ -316,7 +316,7 @@ timedatectl set-timezone Asia/Shanghai
 `vim .config/locale.conf`
 都写入`LANG=en_US.UTF-8`，用来设置全局本地使用英文，避免在使用root登陆tty时终端文字变成方块以致无法识别
 设置所有新建用户使用语言
-```
+```bash
 mkdir /etc/skel/.config
 vim /etc/skel/.config/locale.conf
 ```
@@ -327,7 +327,7 @@ vim /etc/skel/.config/locale.conf
 `passwd root`
 设置root用户密码
 ### 引导加载程序和双系统
-```
+```bash
 pacman -S grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/efi ==boot-directory=/efi ==bootloader-id=(不填则默认为arch)
 ln -s /efi/grub /boot/grub  #在grub的默认位置创造链接指向/efi/grub，因为多数软件都会默认grub装在了/boot
@@ -344,12 +344,12 @@ os-prober用来搜索其他系统，exfat-utils能找到Windows的EFI分区
 `GRUB_CMDLINE_LINUX_DEFAULT='loglevel=3 quiet'`中，把`loglevel`改成5,并删除`quiet`
 - Zram内存压缩和交换空间
 可以提升系统运行速度，增加可用内存
-```
+```bash
 pacman -S zram-generator
 vim /etc/systemd/zram/zram-generator.conf
 ```
 写入：
-```
+```bash
 [zram0]
 zram-size=ram
 compression-algorithm = zstd
@@ -360,24 +360,24 @@ compression-algorithm = zstd
 ### 进入系统
 `reboot`重启，通过grub进入Arch
 输入`root`进入root用户
-```
+```bash
 systemctl enable --now NetworkManager
 nmtui
 ```
 连接wifi
-```
+```bash
 pacman -S fastfetch cmatrix
 fastfetch  #不fetch的Arch是没有灵魂的
 cmatrix  #可以欣赏代码雨享受一下
 ```
 ### 一些基本设置
-```
+```bash
 pacman -Syu
 vim /etc/environment
 ```
 追加写入`EDITOR=vim`来设置系统默认文本编辑器为vim
 ### 创建用户
-```
+```bash
 useradd -mG wheel 用户名  #-mG分别使创建用户时创建home目录，并将该用户添加进wheel组-拥有管理员权限的组
 passwd 用户名
 visudo
@@ -386,12 +386,12 @@ visudo
 ### 开启32位源
 `vim /etc/pacman.conf`
 取消
-```
+```bash
 [multilib]
 Include = /etc/pacman.d/mirrorlist
 ```
 两行的注释，并在末尾追加一行写入
-```
+```bash
 [archlinuxcn]
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 ```
@@ -402,14 +402,14 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 
 
 ## 快照（snapshot）
-```
+```bash
 pacman -S snapper snap-pac btrfs-assistant grub-btrfs inotify-tools
 systemctl enable --now grub-btrfsd  #开启快照启动项的systemd服务
 ```
 重启一次电脑使snap-pac自动在pacman的时候创建快照
 
 登录root
-```
+```bash
 snapper -c root create-config /
 snapper -c home create-config /home
 snapper -c root create --description 'helloworld'  #可以创建名为“helloworld”的root快照
@@ -420,7 +420,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ## 安装英伟达显卡驱动
 具体流程：去ArchLinux的英伟达驱动官网找到自己显卡型号对应的系，安装需要的、对应的包
 我5060显卡，因此需要安装blackwell系列的nvidia-open-dkms，并安装对应的头文件
-```
+```bash
 pacman -S --need linux-headers linux-lts-headers
 pacman -S nvidia-open-dkms
 pacman -S nvidia-utils lib32-nvidia-utils nvidia-settings  #库、工具集和英伟达服务器设置
@@ -539,21 +539,18 @@ station 设备名 connect 无线网名  <span class="pl-c"><span class="pl-c">#<
 <p>通常挂载到/boot,但/boot已经存放体积较大的内核文件，因此不建议再挂载到/boot,可以挂载到/boot/efi或者/efi，ArchWiki推荐/efi<br>
 并且为了实现Arch的快照功能，根分区需要处理成BTRFS文件系统，ESP必须是FAT类，而BTRFS不能快照作为FAT文件系统的ESP<br>
 输入以下命令将两个分区分别格式化为FAT32和BTRFS</p>
-<pre class="notranslate"><code class="notranslate">mkfs.fat -F 32 /dev/ESP号
-mkfs.btrfs /dev/LFP（Linux文件系统分区）号
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">mkfs.fat -F 32 /dev/ESP号
+mkfs.btrfs /dev/LFP（Linux文件系统分区）号</pre></div>
 <h3>创建子卷</h3>
 <p>用于设置快照的范围，将系统数据和用户数据分开快照<br>
 输入以下命令用于创建同级子卷</p>
-<pre class="notranslate"><code class="notranslate">mount -t btrfs /dev/LFP /mnt
+<div class="highlight highlight-source-shell"><pre class="notranslate">mount -t btrfs /dev/LFP /mnt
 btrfs subvolume create /mnt/@
-btrfs subvolume create /mnt/@home
-</code></pre>
+btrfs subvolume create /mnt/@home</pre></div>
 <p>由于输入了<code class="notranslate">mount -t btrfs /dev/LFP /mnt</code>使得根分区已经挂载到了/mnt，为了将root子卷挂载到/mnt，需要先取消挂载，然后将root子卷挂载到/mnt：</p>
-<pre class="notranslate"><code class="notranslate">umount /mnt
+<div class="highlight highlight-source-shell"><pre class="notranslate">umount /mnt
 mount -t btrfs -o subvol=/@,compress=zstd /dev/LFP /mnt
-mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
-</code></pre>
+mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home</pre></div>
 <ul>
 <li>其中使用了compress=zstd来使用zstd压缩算法来进行透明压缩，可以有益于硬盘，等级默认是3,可以使用<code class="notranslate">zstd=数字</code>来指定等级（1-15）</li>
 </ul>
@@ -578,9 +575,8 @@ amd用户就用<code class="notranslate">amd-ucode</code>，想用终端联网�
 <p>###进入arch-chroot<br>
 <code class="notranslate">arch-chroot /mnt</code></p>
 <h3>设置时区</h3>
-<pre class="notranslate"><code class="notranslate">timedatectl set-timezone Asia/Shanghai
---systohc  #在/etc下生成了adjtime文件用来调整时间误差
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">timedatectl set-timezone Asia/Shanghai
+--systohc  <span class="pl-c"><span class="pl-c">#</span>在/etc下生成了adjtime文件用来调整时间误差</span></pre></div>
 <h3>设置本地化</h3>
 <p><code class="notranslate">vim /etc/locale.gen</code><br>
 取消<code class="notranslate">en_US.UTF-8 UTF-8</code>和<code class="notranslate">zh_CN.UTF-8 UTF-8</code>两行的注释<br>
@@ -591,9 +587,8 @@ amd用户就用<code class="notranslate">amd-ucode</code>，想用终端联网�
 <code class="notranslate">vim .config/locale.conf</code><br>
 都写入<code class="notranslate">LANG=en_US.UTF-8</code>，用来设置全局本地使用英文，避免在使用root登陆tty时终端文字变成方块以致无法识别<br>
 设置所有新建用户使用语言</p>
-<pre class="notranslate"><code class="notranslate">mkdir /etc/skel/.config
-vim /etc/skel/.config/locale.conf
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">mkdir /etc/skel/.config
+vim /etc/skel/.config/locale.conf</pre></div>
 <p>写入<code class="notranslate">LANG=zh_CN.UTF-8</code></p>
 <h3>主机</h3>
 <p><code class="notranslate">vim/etc/hostname</code><br>
@@ -601,11 +596,10 @@ vim /etc/skel/.config/locale.conf
 <code class="notranslate">passwd root</code><br>
 设置root用户密码</p>
 <h3>引导加载程序和双系统</h3>
-<pre class="notranslate"><code class="notranslate">pacman -S grub efibootmgr
+<div class="highlight highlight-source-shell"><pre class="notranslate">pacman -S grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/efi ==boot-directory=/efi ==bootloader-id=(不填则默认为arch)
-ln -s /efi/grub /boot/grub  #在grub的默认位置创造链接指向/efi/grub，因为多数软件都会默认grub装在了/boot
-grub-mkconfig -o /boot/grub/grub.cfg  **#生成grub配置文件，每次手动编辑过grub都要手动生成一次以让修改生效**
-</code></pre>
+ln -s /efi/grub /boot/grub  <span class="pl-c"><span class="pl-c">#</span>在grub的默认位置创造链接指向/efi/grub，因为多数软件都会默认grub装在了/boot</span>
+grub-mkconfig -o /boot/grub/grub.cfg  <span class="pl-k">**</span><span class="pl-c"><span class="pl-c">#</span>生成grub配置文件，每次手动编辑过grub都要手动生成一次以让修改生效**</span></pre></div>
 <ul>
 <li>双系统<br>
 <code class="notranslate">pacman -S os-prober exfat-utils</code><br>
@@ -619,70 +613,59 @@ os-prober用来搜索其他系统，exfat-utils能找到Windows的EFI分区<br>
 <li>Zram内存压缩和交换空间<br>
 可以提升系统运行速度，增加可用内存</li>
 </ul>
-<pre class="notranslate"><code class="notranslate">pacman -S zram-generator
-vim /etc/systemd/zram/zram-generator.conf
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">pacman -S zram-generator
+vim /etc/systemd/zram/zram-generator.conf</pre></div>
 <p>写入：</p>
-<pre class="notranslate"><code class="notranslate">[zram0]
+<div class="highlight highlight-source-shell"><pre class="notranslate">[zram0]
 zram-size=ram
-compression-algorithm = zstd
-</code></pre>
+compression-algorithm = zstd</pre></div>
 <p><code class="notranslate">vim /etc/default/grub</code><br>
 在<code class="notranslate">GRUB_CMDLINE_LINUX_DEFAULT</code>参数里加上<code class="notranslate">zswap.enabled=0</code></p>
 <h3>进入系统</h3>
 <p><code class="notranslate">reboot</code>重启，通过grub进入Arch<br>
 输入<code class="notranslate">root</code>进入root用户</p>
-<pre class="notranslate"><code class="notranslate">systemctl enable --now NetworkManager
-nmtui
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">systemctl <span class="pl-c1">enable</span> --now NetworkManager
+nmtui</pre></div>
 <p>连接wifi</p>
-<pre class="notranslate"><code class="notranslate">pacman -S fastfetch cmatrix
-fastfetch  #不fetch的Arch是没有灵魂的
-cmatrix  #可以欣赏代码雨享受一下
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">pacman -S fastfetch cmatrix
+fastfetch  <span class="pl-c"><span class="pl-c">#</span>不fetch的Arch是没有灵魂的</span>
+cmatrix  <span class="pl-c"><span class="pl-c">#</span>可以欣赏代码雨享受一下</span></pre></div>
 <h3>一些基本设置</h3>
-<pre class="notranslate"><code class="notranslate">pacman -Syu
-vim /etc/environment
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">pacman -Syu
+vim /etc/environment</pre></div>
 <p>追加写入<code class="notranslate">EDITOR=vim</code>来设置系统默认文本编辑器为vim</p>
 <h3>创建用户</h3>
-<pre class="notranslate"><code class="notranslate">useradd -mG wheel 用户名  #-mG分别使创建用户时创建home目录，并将该用户添加进wheel组-拥有管理员权限的组
+<div class="highlight highlight-source-shell"><pre class="notranslate">useradd -mG wheel 用户名  <span class="pl-c"><span class="pl-c">#</span>-mG分别使创建用户时创建home目录，并将该用户添加进wheel组-拥有管理员权限的组</span>
 passwd 用户名
-visudo
-</code></pre>
+visudo</pre></div>
 <p>取消<code class="notranslate">%wheel ALL=(ALL:ALL) ALL</code>行的注释</p>
 <h3>开启32位源</h3>
 <p><code class="notranslate">vim /etc/pacman.conf</code><br>
 取消</p>
-<pre class="notranslate"><code class="notranslate">[multilib]
-Include = /etc/pacman.d/mirrorlist
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">[multilib]
+Include = /etc/pacman.d/mirrorlist</pre></div>
 <p>两行的注释，并在末尾追加一行写入</p>
-<pre class="notranslate"><code class="notranslate">[archlinuxcn]
-Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">[archlinuxcn]
+Server = https://mirrors.ustc.edu.cn/archlinuxcn/<span class="pl-smi">$arch</span></pre></div>
 <p>然后运行该命令同步数据并安装Archlinuxcn的密钥<br>
 <code class="notranslate">pacman -Sy archlinuxcn-keyring</code></p>
 <p><strong>此刻完成了Arch的安装和一些基本配置</strong></p>
 <h2>快照（snapshot）</h2>
-<pre class="notranslate"><code class="notranslate">pacman -S snapper snap-pac btrfs-assistant grub-btrfs inotify-tools
-systemctl enable --now grub-btrfsd  #开启快照启动项的systemd服务
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">pacman -S snapper snap-pac btrfs-assistant grub-btrfs inotify-tools
+systemctl <span class="pl-c1">enable</span> --now grub-btrfsd  <span class="pl-c"><span class="pl-c">#</span>开启快照启动项的systemd服务</span></pre></div>
 <p>重启一次电脑使snap-pac自动在pacman的时候创建快照</p>
 <p>登录root</p>
-<pre class="notranslate"><code class="notranslate">snapper -c root create-config /
+<div class="highlight highlight-source-shell"><pre class="notranslate">snapper -c root create-config /
 snapper -c home create-config /home
-snapper -c root create --description "helloworld"  #可以创建名为“helloworld”的root快照
-pacman -S linux-lts  #lts内核不会频繁更新，系统出现异常时在快照回档之前可以尝试用LTS内核进入系统排查是否是内核问题引起的系统异常
-grub-mkconfig -o /boot/grub/grub.cfg
-</code></pre>
+snapper -c root create --description <span class="pl-s"><span class="pl-pds">"</span>helloworld<span class="pl-pds">"</span></span>  <span class="pl-c"><span class="pl-c">#</span>可以创建名为“helloworld”的root快照</span>
+pacman -S linux-lts  <span class="pl-c"><span class="pl-c">#</span>lts内核不会频繁更新，系统出现异常时在快照回档之前可以尝试用LTS内核进入系统排查是否是内核问题引起的系统异常</span>
+grub-mkconfig -o /boot/grub/grub.cfg</pre></div>
 <h2>安装英伟达显卡驱动</h2>
 <p>具体流程：去ArchLinux的英伟达驱动官网找到自己显卡型号对应的系，安装需要的、对应的包<br>
 我5060显卡，因此需要安装blackwell系列的nvidia-open-dkms，并安装对应的头文件</p>
-<pre class="notranslate"><code class="notranslate">pacman -S --need linux-headers linux-lts-headers
+<div class="highlight highlight-source-shell"><pre class="notranslate">pacman -S --need linux-headers linux-lts-headers
 pacman -S nvidia-open-dkms
-pacman -S nvidia-utils lib32-nvidia-utils nvidia-settings  #库、工具集和英伟达服务器设置
-</code></pre>
+pacman -S nvidia-utils lib32-nvidia-utils nvidia-settings  <span class="pl-c"><span class="pl-c">#</span>库、工具集和英伟达服务器设置</span></pre></div>
 <ul>
 <li>安装过程中遭遇了一个叫nouveau的驱动占用了显卡，导致新安装的显卡驱动无法生效，需要将nouveau驱动禁用：<br>
 <code class="notranslate">sudo vim /etc/modprobe.d/blacklist.conf</code><br>

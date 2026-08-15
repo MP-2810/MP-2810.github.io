@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sat, 15 Aug 2026 01:44:12 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>Arch的安装及配置</title><link>https://MP-2810.github.io/post/Arch-de-an-zhuang-ji-pei-zhi.html</link><description>**本博客内容主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程**
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sat, 15 Aug 2026 01:47:29 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>Arch的安装及配置</title><link>https://MP-2810.github.io/post/Arch-de-an-zhuang-ji-pei-zhi.html</link><description>**本博客内容主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程**
 
 ## 开始
 进入Live环境后先连接网络，连无线网则使用iwd提供的命令行工具，输入
@@ -34,20 +34,20 @@ exit  #退出iwctl
 通常挂载到/boot,但/boot已经存放体积较大的内核文件，因此不建议再挂载到/boot,可以挂载到/boot/efi或者/efi，ArchWiki推荐/efi
 并且为了实现Arch的快照功能，根分区需要处理成BTRFS文件系统，ESP必须是FAT类，而BTRFS不能快照作为FAT文件系统的ESP
 输入以下命令将两个分区分别格式化为FAT32和BTRFS
-```
+```bash
 mkfs.fat -F 32 /dev/ESP号
 mkfs.btrfs /dev/LFP（Linux文件系统分区）号
 ```
 ### 创建子卷
 用于设置快照的范围，将系统数据和用户数据分开快照
 输入以下命令用于创建同级子卷
-```
+```bash
 mount -t btrfs /dev/LFP /mnt
 btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
 ```
 由于输入了`mount -t btrfs /dev/LFP /mnt`使得根分区已经挂载到了/mnt，为了将root子卷挂载到/mnt，需要先取消挂载，然后将root子卷挂载到/mnt：
-```
+```bash
 umount /mnt
 mount -t btrfs -o subvol=/@,compress=zstd /dev/LFP /mnt
 mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
@@ -77,7 +77,7 @@ amd用户就用`amd-ucode`，想用终端联网就装`iwd`(**iwd可能需要配d
 ###进入arch-chroot
 `arch-chroot /mnt`
 ### 设置时区
-```
+```bash
 timedatectl set-timezone Asia/Shanghai
 --systohc  #在/etc下生成了adjtime文件用来调整时间误差
 ```
@@ -91,7 +91,7 @@ timedatectl set-timezone Asia/Shanghai
 `vim .config/locale.conf`
 都写入`LANG=en_US.UTF-8`，用来设置全局本地使用英文，避免在使用root登陆tty时终端文字变成方块以致无法识别
 设置所有新建用户使用语言
-```
+```bash
 mkdir /etc/skel/.config
 vim /etc/skel/.config/locale.conf
 ```
@@ -102,7 +102,7 @@ vim /etc/skel/.config/locale.conf
 `passwd root`
 设置root用户密码
 ### 引导加载程序和双系统
-```
+```bash
 pacman -S grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/efi ==boot-directory=/efi ==bootloader-id=(不填则默认为arch)
 ln -s /efi/grub /boot/grub  #在grub的默认位置创造链接指向/efi/grub，因为多数软件都会默认grub装在了/boot
@@ -119,12 +119,12 @@ os-prober用来搜索其他系统，exfat-utils能找到Windows的EFI分区
 `GRUB_CMDLINE_LINUX_DEFAULT='loglevel=3 quiet'`中，把`loglevel`改成5,并删除`quiet`
 - Zram内存压缩和交换空间
 可以提升系统运行速度，增加可用内存
-```
+```bash
 pacman -S zram-generator
 vim /etc/systemd/zram/zram-generator.conf
 ```
 写入：
-```
+```bash
 [zram0]
 zram-size=ram
 compression-algorithm = zstd
@@ -135,24 +135,24 @@ compression-algorithm = zstd
 ### 进入系统
 `reboot`重启，通过grub进入Arch
 输入`root`进入root用户
-```
+```bash
 systemctl enable --now NetworkManager
 nmtui
 ```
 连接wifi
-```
+```bash
 pacman -S fastfetch cmatrix
 fastfetch  #不fetch的Arch是没有灵魂的
 cmatrix  #可以欣赏代码雨享受一下
 ```
 ### 一些基本设置
-```
+```bash
 pacman -Syu
 vim /etc/environment
 ```
 追加写入`EDITOR=vim`来设置系统默认文本编辑器为vim
 ### 创建用户
-```
+```bash
 useradd -mG wheel 用户名  #-mG分别使创建用户时创建home目录，并将该用户添加进wheel组-拥有管理员权限的组
 passwd 用户名
 visudo
@@ -161,12 +161,12 @@ visudo
 ### 开启32位源
 `vim /etc/pacman.conf`
 取消
-```
+```bash
 [multilib]
 Include = /etc/pacman.d/mirrorlist
 ```
 两行的注释，并在末尾追加一行写入
-```
+```bash
 [archlinuxcn]
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 ```
@@ -177,14 +177,14 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 
 
 ## 快照（snapshot）
-```
+```bash
 pacman -S snapper snap-pac btrfs-assistant grub-btrfs inotify-tools
 systemctl enable --now grub-btrfsd  #开启快照启动项的systemd服务
 ```
 重启一次电脑使snap-pac自动在pacman的时候创建快照
 
 登录root
-```
+```bash
 snapper -c root create-config /
 snapper -c home create-config /home
 snapper -c root create --description 'helloworld'  #可以创建名为“helloworld”的root快照
@@ -195,7 +195,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ## 安装英伟达显卡驱动
 具体流程：去ArchLinux的英伟达驱动官网找到自己显卡型号对应的系，安装需要的、对应的包
 我5060显卡，因此需要安装blackwell系列的nvidia-open-dkms，并安装对应的头文件
-```
+```bash
 pacman -S --need linux-headers linux-lts-headers
 pacman -S nvidia-open-dkms
 pacman -S nvidia-utils lib32-nvidia-utils nvidia-settings  #库、工具集和英伟达服务器设置
