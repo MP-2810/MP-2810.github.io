@@ -217,6 +217,7 @@ pacman -S nvidia-utils lib32-nvidia-utils nvidia-settings  #库、工具集和�
 由于已经禁用了Nouveau，安装`nvidia-utils`&`libva-nvidia-dirver`
 重启电脑生效
 **为了让Firefox使用N卡编解码，按照nvidia-vaapi-driver仓库的教程进行设置**
+**未完**
 
 ## 音视频服务和蓝牙
 
