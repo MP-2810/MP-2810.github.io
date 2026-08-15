@@ -53,7 +53,7 @@ mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
 ```
 - 其中使用了compress=zstd来使用zstd压缩算法来进行透明压缩，可以有益于硬盘，等级默认是3,可以使用`zstd=数字`来指定等级（1-15）
 
-###挂载ESP
+### 挂载ESP
 `mount --mkdir /dev/ESP /mnt/efi`
 
 ## 安装系统
@@ -190,3 +190,24 @@ snapper -c root create --description "helloworld"  #可以创建名为“hellowo
 pacman -S linux-lts  #lts内核不会频繁更新，系统出现异常时在快照回档之前可以尝试用LTS内核进入系统排查是否是内核问题引起的系统异常
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
+## 安装英伟达显卡驱动
+具体流程：去ArchLinux的英伟达驱动官网找到自己显卡型号对应的系，安装需要的、对应的包
+我5060显卡，因此需要安装blackwell系列的nvidia-open-dkms，并安装对应的头文件
+```
+pacman -S --need linux-headers linux-lts-headers
+pacman -S nvidia-open-dkms
+pacman -S nvidia-utils lib32-nvidia-utils nvidia-settings  #库、工具集和英伟达服务器设置
+```
+- 安装过程中遭遇了一个叫nouveau的驱动占用了显卡，导致新安装的显卡驱动无法生效，需要将nouveau驱动禁用：
+`sudo vim /etc/modprobe.d/blacklist.conf`
+写入`blacklist nouveau`将nouveau拉入黑名单
+然后输入：
+`sudo mkinitcpio -P`
+重新生成所有已安装内核的初始内存盘
+然后重启系统，输入：
+`lsmod | grep nouveau`
+没有内容输出及代表nouveau已被禁用
+再输入：
+`nvidia-smi`
+输入信息显示显卡正在工作的信息即完成
