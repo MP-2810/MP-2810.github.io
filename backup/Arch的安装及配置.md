@@ -61,7 +61,8 @@ mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
 ### 安装系统文件
 使用如下命令安装系统
 `pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs`
-也可以安装linux-zen性能特调内核（本人使用该内核进入系统会出现死机现象，原因不明，目前猜测可能是未安装显卡驱动引起的驱动冲突导致的）
+- 也可以安装linux-zen性能特调内核（本人使用该内核进入系统会出现死机现象，原因暂未查明，目前猜测可能是未安装显卡驱动引起的驱动冲突导致的）plus:安装显卡驱动后可以通过zen内核进入系统，但无法识别到外接显示器，只能使用笔记本内置屏幕，原因暂未查明
+
 `pacstrap -K /mnt base base-devel linux-zen linux-firmware btrfs-progs`
 如果是marvell网卡则需要额外安装marvell固件包
 `pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs linux-firmware-marvell`
@@ -176,10 +177,10 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 有`yay`和`paru`两种供选择
 `pacman -S yay paru`
 - 某些扩展较多的软件可以用flatpak安装，通常比AUR上的更好用
-- ```
-- sudo pacman -S flatpak
-- sudo flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
-- ```
+```
+sudo pacman -S flatpak
+sudo flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
+```
 
 
 **♥️♥️现在已经完成了Arch的安装和一些基本配置♥️♥️**

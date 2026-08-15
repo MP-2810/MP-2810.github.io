@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sat, 15 Aug 2026 16:11:40 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>桌面环境及WM的配置</title><link>https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</link><description>**配置KDE plasma和Hyprland**。</description><guid isPermaLink="true">https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</guid><pubDate>Sat, 15 Aug 2026 14:15:32 +0000</pubDate></item><item><title>Arch的安装及配置</title><link>https://MP-2810.github.io/post/Arch-de-an-zhuang-ji-pei-zhi.html</link><description>**主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程，主要自用**
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sat, 15 Aug 2026 19:28:23 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>桌面环境及WM的配置</title><link>https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</link><description>**配置KDE plasma和Hyprland**。</description><guid isPermaLink="true">https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</guid><pubDate>Sat, 15 Aug 2026 14:15:32 +0000</pubDate></item><item><title>Arch的安装及配置</title><link>https://MP-2810.github.io/post/Arch-de-an-zhuang-ji-pei-zhi.html</link><description>**主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程，主要自用**
 
 # 安装
 ## 开始
@@ -62,7 +62,8 @@ mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
 ### 安装系统文件
 使用如下命令安装系统
 `pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs`
-也可以安装linux-zen性能特调内核（本人使用该内核进入系统会出现死机现象，原因不明，目前猜测可能是未安装显卡驱动引起的驱动冲突导致的）
+- 也可以安装linux-zen性能特调内核（本人使用该内核进入系统会出现死机现象，原因暂未查明，目前猜测可能是未安装显卡驱动引起的驱动冲突导致的）plus:安装显卡驱动后可以通过zen内核进入系统，但无法识别到外接显示器，只能使用笔记本内置屏幕，原因暂未查明
+
 `pacstrap -K /mnt base base-devel linux-zen linux-firmware btrfs-progs`
 如果是marvell网卡则需要额外安装marvell固件包
 `pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs linux-firmware-marvell`
@@ -177,10 +178,10 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 有`yay`和`paru`两种供选择
 `pacman -S yay paru`
 - 某些扩展较多的软件可以用flatpak安装，通常比AUR上的更好用
-- ```
-- sudo pacman -S flatpak
-- sudo flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
-- ```
+```
+sudo pacman -S flatpak
+sudo flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
+```
 
 
 **♥️♥️现在已经完成了Arch的安装和一些基本配置♥️♥️**
