@@ -1,4 +1,4 @@
-**内容主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程**
+**安装过程主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程**
 
 ## 开始
 进入Live环境后先连接网络，连无线网则使用iwd提供的命令行工具，输入
@@ -144,7 +144,7 @@ pacman -S fastfetch cmatrix
 fastfetch  #不fetch的Arch是没有灵魂的
 cmatrix  #可以欣赏代码雨享受一下
 ```
-### 一些基本设置
+## 一些基本设置
 ```bash
 pacman -Syu
 vim /etc/environment
@@ -171,8 +171,12 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 ```
 然后运行该命令同步数据并安装Archlinuxcn的密钥
 `pacman -Sy archlinuxcn-keyring`
+### 下载AUR助手
+有`yay`和`paru`两种供选择
+`pacman -S yay paru`
 
-**此刻完成了Arch的安装和一些基本配置**
+
+**♥️♥️现在已经完成了Arch的安装和一些基本配置♥️♥️**
 
 
 ## 快照（snapshot）
@@ -190,6 +194,17 @@ snapper -c root create --description "helloworld"  #可以创建名为“hellowo
 pacman -S linux-lts  #lts内核不会频繁更新，系统出现异常时在快照回档之前可以尝试用LTS内核进入系统排查是否是内核问题引起的系统异常
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
+## 代理翻墙
+- 这一步位于安装桌面环境后操作
+使用AUR安装v2rayN的Linux GUI工具：
+`yay -S v2rayn-bin`
+也可以下载zip包自己编译运行：
+`yay -S v2rayn`
+运行需要依赖.NET运行时环境，运行出错请确保安装了`dotnet-runtime`和`dotnet-sdk`
+- 创建链接
+`sudo ln -s /opt/v2rayn-bin/v2rayN /usr/local/bin/v2rayN`
+使得可以在终端直接输入`v2rayN`以启动v2rayN
 
 ## 安装英伟达显卡驱动
 具体流程：去ArchLinux的英伟达驱动官网找到自己显卡型号对应的系，安装需要的、对应的包

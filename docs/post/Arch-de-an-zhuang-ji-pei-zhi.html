@@ -10,7 +10,7 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="**内容主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程**
+<meta name="description" content="**安装过程主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程**
 
 ## 开始
 进入Live环境后先连接网络，连无线网则使用iwd提供的命令行工具，输入
@@ -156,7 +156,7 @@ pacman -S fastfetch cmatrix
 fastfetch  #不fetch的Arch是没有灵魂的
 cmatrix  #可以欣赏代码雨享受一下
 ```
-### 一些基本设置
+## 一些基本设置
 ```bash
 pacman -Syu
 vim /etc/environment
@@ -183,8 +183,12 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 ```
 然后运行该命令同步数据并安装Archlinuxcn的密钥
 `pacman -Sy archlinuxcn-keyring`
+### 下载AUR助手
+有`yay`和`paru`两种供选择
+`pacman -S yay paru`
 
-**此刻完成了Arch的安装和一些基本配置**
+
+**♥️♥️现在已经完成了Arch的安装和一些基本配置♥️♥️**
 
 
 ## 快照（snapshot）
@@ -202,6 +206,17 @@ snapper -c root create --description 'helloworld'  #可以创建名为“hellowo
 pacman -S linux-lts  #lts内核不会频繁更新，系统出现异常时在快照回档之前可以尝试用LTS内核进入系统排查是否是内核问题引起的系统异常
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
+## 代理翻墙
+- 这一步位于安装桌面环境后操作
+使用AUR安装v2rayN的Linux GUI工具：
+`yay -S v2rayn-bin`
+也可以下载zip包自己编译运行：
+`yay -S v2rayn`
+运行需要依赖.NET运行时环境，运行出错请确保安装了`dotnet-runtime`和`dotnet-sdk`
+- 创建链接
+`sudo ln -s /opt/v2rayn-bin/v2rayN /usr/local/bin/v2rayN`
+使得可以在终端直接输入`v2rayN`以启动v2rayN
 
 ## 安装英伟达显卡驱动
 具体流程：去ArchLinux的英伟达驱动官网找到自己显卡型号对应的系，安装需要的、对应的包
@@ -235,7 +250,7 @@ pacman -S nvidia-utils lib32-nvidia-utils nvidia-settings  #库、工具集和�
 
 **未完**。">
 <meta property="og:title" content="Arch的安装及配置">
-<meta property="og:description" content="**内容主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程**
+<meta property="og:description" content="**安装过程主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程**
 
 ## 开始
 进入Live环境后先连接网络，连无线网则使用iwd提供的命令行工具，输入
@@ -381,7 +396,7 @@ pacman -S fastfetch cmatrix
 fastfetch  #不fetch的Arch是没有灵魂的
 cmatrix  #可以欣赏代码雨享受一下
 ```
-### 一些基本设置
+## 一些基本设置
 ```bash
 pacman -Syu
 vim /etc/environment
@@ -408,8 +423,12 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 ```
 然后运行该命令同步数据并安装Archlinuxcn的密钥
 `pacman -Sy archlinuxcn-keyring`
+### 下载AUR助手
+有`yay`和`paru`两种供选择
+`pacman -S yay paru`
 
-**此刻完成了Arch的安装和一些基本配置**
+
+**♥️♥️现在已经完成了Arch的安装和一些基本配置♥️♥️**
 
 
 ## 快照（snapshot）
@@ -427,6 +446,17 @@ snapper -c root create --description 'helloworld'  #可以创建名为“hellowo
 pacman -S linux-lts  #lts内核不会频繁更新，系统出现异常时在快照回档之前可以尝试用LTS内核进入系统排查是否是内核问题引起的系统异常
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
+## 代理翻墙
+- 这一步位于安装桌面环境后操作
+使用AUR安装v2rayN的Linux GUI工具：
+`yay -S v2rayn-bin`
+也可以下载zip包自己编译运行：
+`yay -S v2rayn`
+运行需要依赖.NET运行时环境，运行出错请确保安装了`dotnet-runtime`和`dotnet-sdk`
+- 创建链接
+`sudo ln -s /opt/v2rayn-bin/v2rayN /usr/local/bin/v2rayN`
+使得可以在终端直接输入`v2rayN`以启动v2rayN
 
 ## 安装英伟达显卡驱动
 具体流程：去ArchLinux的英伟达驱动官网找到自己显卡型号对应的系，安装需要的、对应的包
@@ -529,7 +559,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><p><strong>内容主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程</strong></p>
+<div class="markdown-body" id="postBody"><p><strong>安装过程主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程</strong></p>
 <h2>开始</h2>
 <p>进入Live环境后先连接网络，连无线网则使用iwd提供的命令行工具，输入</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">iwctl
@@ -652,7 +682,7 @@ nmtui</pre></div>
 <div class="highlight highlight-source-shell"><pre class="notranslate">pacman -S fastfetch cmatrix
 fastfetch  <span class="pl-c"><span class="pl-c">#</span>不fetch的Arch是没有灵魂的</span>
 cmatrix  <span class="pl-c"><span class="pl-c">#</span>可以欣赏代码雨享受一下</span></pre></div>
-<h3>一些基本设置</h3>
+<h2>一些基本设置</h2>
 <div class="highlight highlight-source-shell"><pre class="notranslate">pacman -Syu
 vim /etc/environment</pre></div>
 <p>追加写入<code class="notranslate">EDITOR=vim</code>来设置系统默认文本编辑器为vim</p>
@@ -671,7 +701,10 @@ Include = /etc/pacman.d/mirrorlist</pre></div>
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/<span class="pl-smi">$arch</span></pre></div>
 <p>然后运行该命令同步数据并安装Archlinuxcn的密钥<br>
 <code class="notranslate">pacman -Sy archlinuxcn-keyring</code></p>
-<p><strong>此刻完成了Arch的安装和一些基本配置</strong></p>
+<h3>下载AUR助手</h3>
+<p>有<code class="notranslate">yay</code>和<code class="notranslate">paru</code>两种供选择<br>
+<code class="notranslate">pacman -S yay paru</code></p>
+<p><strong><g-emoji class="g-emoji" alias="hearts">♥️</g-emoji><g-emoji class="g-emoji" alias="hearts">♥️</g-emoji>现在已经完成了Arch的安装和一些基本配置<g-emoji class="g-emoji" alias="hearts">♥️</g-emoji><g-emoji class="g-emoji" alias="hearts">♥️</g-emoji></strong></p>
 <h2>快照（snapshot）</h2>
 <div class="highlight highlight-source-shell"><pre class="notranslate">pacman -S snapper snap-pac btrfs-assistant grub-btrfs inotify-tools
 systemctl <span class="pl-c1">enable</span> --now grub-btrfsd  <span class="pl-c"><span class="pl-c">#</span>开启快照启动项的systemd服务</span></pre></div>
@@ -682,6 +715,18 @@ snapper -c home create-config /home
 snapper -c root create --description <span class="pl-s"><span class="pl-pds">"</span>helloworld<span class="pl-pds">"</span></span>  <span class="pl-c"><span class="pl-c">#</span>可以创建名为“helloworld”的root快照</span>
 pacman -S linux-lts  <span class="pl-c"><span class="pl-c">#</span>lts内核不会频繁更新，系统出现异常时在快照回档之前可以尝试用LTS内核进入系统排查是否是内核问题引起的系统异常</span>
 grub-mkconfig -o /boot/grub/grub.cfg</pre></div>
+<h2>代理翻墙</h2>
+<ul>
+<li>这一步位于安装桌面环境后操作<br>
+使用AUR安装v2rayN的Linux GUI工具：<br>
+<code class="notranslate">yay -S v2rayn-bin</code><br>
+也可以下载zip包自己编译运行：<br>
+<code class="notranslate">yay -S v2rayn</code><br>
+运行需要依赖.NET运行时环境，运行出错请确保安装了<code class="notranslate">dotnet-runtime</code>和<code class="notranslate">dotnet-sdk</code></li>
+<li>创建链接<br>
+<code class="notranslate">sudo ln -s /opt/v2rayn-bin/v2rayN /usr/local/bin/v2rayN</code><br>
+使得可以在终端直接输入<code class="notranslate">v2rayN</code>以启动v2rayN</li>
+</ul>
 <h2>安装英伟达显卡驱动</h2>
 <p>具体流程：去ArchLinux的英伟达驱动官网找到自己显卡型号对应的系，安装需要的、对应的包<br>
 我5060显卡，因此需要安装blackwell系列的nvidia-open-dkms，并安装对应的头文件</p>
