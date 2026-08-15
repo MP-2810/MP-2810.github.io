@@ -1,5 +1,6 @@
-**安装过程主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程**
+**主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程，主要自用**
 
+# 安装
 ## 开始
 进入Live环境后先连接网络，连无线网则使用iwd提供的命令行工具，输入
 ```bash
@@ -174,11 +175,16 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 ### 下载AUR助手
 有`yay`和`paru`两种供选择
 `pacman -S yay paru`
+- 某些扩展较多的软件可以用flatpak安装，通常比AUR上的更好用
+- ```
+- sudo pacman -S flatpak
+- sudo flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
+- ```
 
 
 **♥️♥️现在已经完成了Arch的安装和一些基本配置♥️♥️**
 
-
+# 进阶配置
 ## 快照（snapshot）
 ```bash
 pacman -S snapper snap-pac btrfs-assistant grub-btrfs inotify-tools
@@ -231,9 +237,19 @@ pacman -S nvidia-utils lib32-nvidia-utils nvidia-settings  #库、工具集和�
 根据官网Hardware video acceleration找到自己需要的包
 由于已经禁用了Nouveau，安装`nvidia-utils`&`libva-nvidia-dirver`
 重启电脑生效
-**为了让Firefox使用N卡编解码，按照nvidia-vaapi-driver仓库的教程进行设置**
-- 这一步未完成
+**为了让Firefox使用N卡编解码，按照`nvidia-vaapi-driver`仓库的教程进行设置**
 
 ## 音视频服务和蓝牙
-
-**未完**
+`sudo pacman -S sof-firmware alsa-ucm-conf alsa-firmware`
+**pipewire和蓝牙**
+`sudo pacman -S pipewire wireplumber pipewire-pulse pipewire-alsa pipewire-jack bluez`
+**启用服务**
+```
+systemctl --user enable pipewire wireplumber pipewire-pulse
+sudo systemctl enable --now bluetooth
+```
+**性能模式切换工具**
+```
+sudo pacman -S power-profiles-daemon
+sudo systemctl enable --now power-profiles-daemon
+```
