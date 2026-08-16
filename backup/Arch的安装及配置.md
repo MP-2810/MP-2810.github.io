@@ -186,6 +186,15 @@ sudo flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
 **♥️♥️现在已经完成了Arch的安装和一些基本配置♥️♥️**
 
 # 进阶配置
+## 更换shell
+普通的bash比较低效，可以更换一个shell来提高效率，但不建议更换root用户的bash，仅让普通用户使用其他shell
+```
+sudo pacman -S fish
+chsh -s /usr/bin/fish
+```
+`fish`和`bash`都存放在`/usr/bin/`目录下
+重启以生效
+
 ## 快照（snapshot）
 ```bash
 pacman -S snapper snap-pac btrfs-assistant grub-btrfs inotify-tools

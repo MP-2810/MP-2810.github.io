@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 16 Aug 2026 18:21:22 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>桌面环境及WM的配置</title><link>https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</link><description>**配置KDE plasma和Hyprland**
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 16 Aug 2026 18:47:21 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>桌面环境及WM的配置</title><link>https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</link><description>**配置KDE plasma和Hyprland**
 
 ## 配置KDE plasma
 ### 安装kde相关软件包、中文字体、输入法及firefox
@@ -229,6 +229,15 @@ sudo flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
 **♥️♥️现在已经完成了Arch的安装和一些基本配置♥️♥️**
 
 # 进阶配置
+## 更换shell
+普通的bash比较低效，可以更换一个shell来提高效率，但不建议更换root用户的bash，仅让普通用户使用其他shell
+```
+sudo pacman -S fish
+chsh -s /usr/bin/fish
+```
+`fish`和`bash`都存放在`/usr/bin/`目录下
+重启以生效
+
 ## 快照（snapshot）
 ```bash
 pacman -S snapper snap-pac btrfs-assistant grub-btrfs inotify-tools
