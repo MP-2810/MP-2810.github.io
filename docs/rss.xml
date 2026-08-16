@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 16 Aug 2026 18:20:28 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>桌面环境及WM的配置</title><link>https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</link><description>**配置KDE plasma和Hyprland**
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 16 Aug 2026 18:21:22 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>桌面环境及WM的配置</title><link>https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</link><description>**配置KDE plasma和Hyprland**
 
 ## 配置KDE plasma
 ### 安装kde相关软件包、中文字体、输入法及firefox
@@ -38,7 +38,10 @@ Current=主题名字
 - 如果没有可以手动安装一下
 6. 进入设置，将虚拟键盘设置成`Fcitx 5 Wayland启动器`
 7. 可以在无障碍服务里的抖动指针选项关闭抖动时放大鼠标指针的功能
-8. 右键右下角的时间组件，选择“配置 数字时钟”可以将中国农历添加进日历界面。</description><guid isPermaLink="true">https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</guid><pubDate>Sat, 15 Aug 2026 14:15:32 +0000</pubDate></item><item><title>Arch的安装及配置</title><link>https://MP-2810.github.io/post/Arch-de-an-zhuang-ji-pei-zhi.html</link><description>**主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程，主要自用**
+8. 右键右下角的时间组件，选择“配置 数字时钟”可以将中国农历添加进日历界面
+
+## 配置Hyprland
+。</description><guid isPermaLink="true">https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</guid><pubDate>Sat, 15 Aug 2026 14:15:32 +0000</pubDate></item><item><title>Arch的安装及配置</title><link>https://MP-2810.github.io/post/Arch-de-an-zhuang-ji-pei-zhi.html</link><description>**主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程，主要自用**
 
 # 安装
 ## 开始
