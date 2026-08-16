@@ -1,11 +1,39 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 16 Aug 2026 17:30:53 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>桌面环境及WM的配置</title><link>https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</link><description>**配置KDE plasma和Hyprland**
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 16 Aug 2026 18:16:11 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>桌面环境及WM的配置</title><link>https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</link><description>**配置KDE plasma和Hyprland**
 
 ## 配置KDE plasma
 ### 安装kde相关软件包、中文字体、输入法及firefox
 `sudo pacman -S plasma-meta kde-utilities-meta kde-system-meta noto-fonts-cjk fcitx5 fcitx5-gtk fcitx5-chinese-addons firefox firefox-i18n-zh-cn libreoffice-still libreoffice-still-zh-cn`
 **安装选择：**
-个人使用`ffmpeg`、`pipewire-jack`(因为已经安装了pipewire相关包(上篇))、`noto-fonts`、`16`（简体中文）、`cronie`。</description><guid isPermaLink="true">https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</guid><pubDate>Sat, 15 Aug 2026 14:15:32 +0000</pubDate></item><item><title>Arch的安装及配置</title><link>https://MP-2810.github.io/post/Arch-de-an-zhuang-ji-pei-zhi.html</link><description>**主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程，主要自用**
+个人使用`ffmpeg`、`pipewire-jack`(因为已经安装了pipewire相关包(上篇))、`noto-fonts`、`16`（简体中文）、`cronie`
+**配置环境文件：**
+sddm不会读取每一个用户自己的locale配置，因为系统全局设置美式英文避免终端中出现豆腐块文字
+`vim /usr/lib/systemd/system/sddm.service`
+在`[Service]`项下面添加`Environment=LANG=zh_CN.UTF-8`以设置sddm本地化为中文
+- 倘若遇到了sddm.service文件不存在的问题，可以重新安装sddm修复：
+- `pacman -S sddm --overwrite='/usr/lib/systemd/system/sddm.service'`
+- - 可以考虑额外安装kdesu来为使用root命令提供便捷的GUI服务
+### 启用sddm服务
+`systemctl enable --now sddm.service`
+进入kde后，可以修改主题，包括进入kde时的用户登录界面主题，但修改后者需要root权限，别忘了给自己的个人用户添加进wheel组提供获取root的权限
+- 可能会遇到设置里没有直接设置sddm界面主题的选项，可以使用命令行手动修改：
+- 先查看有哪些可用主题：
+- `ls /usr/share/sddm/themes`
+- 然后修改sddm配置文件：
+- `sudo vim /etc/sddm.comf`
+- 写入：
+```
+[Theme]
+Current=主题名字
+```
+- 重启sddm生效：
+- `sudo systemctl restart sddm`
+
+### 一些基础设置和软件
+1. 进入设置，将虚拟键盘设置成`Fcitx 5 Wayland启动器`
+2. kate是kde plasma默认的文本编辑器
+3. 可以在无障碍服务里的抖动指针选项关闭抖动时放大鼠标指针的功能
+4. 右键右下角的时间组件，选择“配置 数字时钟”可以将中国农历添加进日历界面。</description><guid isPermaLink="true">https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</guid><pubDate>Sat, 15 Aug 2026 14:15:32 +0000</pubDate></item><item><title>Arch的安装及配置</title><link>https://MP-2810.github.io/post/Arch-de-an-zhuang-ji-pei-zhi.html</link><description>**主要参考了 Arch Wiki 的官方安装指南、借助了B站UP主[uid=9202840] 的思路和视频讲解并结合了自己实际安装操作遇到的问题和解决过程，主要自用**
 
 # 安装
 ## 开始
