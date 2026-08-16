@@ -1,5 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 16 Aug 2026 20:18:10 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>桌面环境及WM的配置</title><link>https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</link><description>**配置KDE plasma和Hyprland**
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 16 Aug 2026 23:13:50 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>Linux命令行禁用Fn媒体键功能的方法</title><link>https://MP-2810.github.io/post/Linux-ming-ling-xing-jin-yong-Fn-mei-ti-jian-gong-neng-de-fang-fa.html</link><description>1. 查看当前模式
+`cat /sys/module/hid_apple/parameters/fnmode`
+    0：禁用媒体功能，F键直接触发标准功能（如F1全屏）
+    1：媒体优先（默认）
+    2：F键优先（标准F功能，Fn+F1~F12触发媒体功能）
+2. 临时检验
+`echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode`
+3. 创建模块配置文件
+`echo 'options hid_apple fnmode=2' | sudo tee /etc/modprobe.d/hid_apple.conf`
+4. 更新 initramfs
+`sudo mkinitcpio -P`
+
+- 如果外接键盘不识别 hid_apple 模块，可以试试另一个内核参数：
+- `echo 2 | sudo tee /sys/module/hid_logitech_hidpp/parameters/disable_raw_mode`。</description><guid isPermaLink="true">https://MP-2810.github.io/post/Linux-ming-ling-xing-jin-yong-Fn-mei-ti-jian-gong-neng-de-fang-fa.html</guid><pubDate>Sun, 16 Aug 2026 23:13:25 +0000</pubDate></item><item><title>桌面环境及WM的配置</title><link>https://MP-2810.github.io/post/zhuo-mian-huan-jing-ji-WM-de-pei-zhi.html</link><description>**配置KDE plasma和Hyprland**
 
 ## 配置KDE plasma
 ### 安装kde相关软件包、中文字体、输入法及firefox
