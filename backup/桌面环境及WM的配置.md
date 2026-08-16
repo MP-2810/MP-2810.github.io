@@ -83,3 +83,13 @@ sudo pacman -S libnotify mako xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 # hyprpolkitagent:提供管理员权限询问功能
 # qt5-wayland qt6-wayland:QT的wayland库 
 ```
+
+7. 设置重要程序的开机自启
+编辑`hyprland.lua`，搜索`AUTOSTART`，在合适位置写入以下内容将需要的程序设置为开机自启
+```bash
+hl.on("hyprland.start", function () 
+  hl.exec_cmd(terminal)
+  hl.exec_cmd("mako")
+  hl.exec_cmd("/usr/lib/hyprpolkitagent/hyprpolkitagent“)  #
+end)
+```

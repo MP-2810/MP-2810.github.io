@@ -308,7 +308,16 @@ Current=主题名字
 <span class="pl-c"><span class="pl-c">#</span> 软件包分别为：libnotify:通知相关的库 | mako:提供通知功能</span>
 <span class="pl-c"><span class="pl-c">#</span> xdg-desktop-portal-hyprland xdg-desktop-portal-gtk:门户</span>
 <span class="pl-c"><span class="pl-c">#</span> hyprpolkitagent:提供管理员权限询问功能</span>
-<span class="pl-c"><span class="pl-c">#</span> qt5-wayland qt6-wayland:QT的wayland库 </span></pre></div></div>
+<span class="pl-c"><span class="pl-c">#</span> qt5-wayland qt6-wayland:QT的wayland库 </span></pre></div>
+<ol start="7">
+<li>设置重要程序的开机自启<br>
+编辑<code class="notranslate">hyprland.lua</code>，搜索<code class="notranslate">AUTOSTART</code>，在合适位置写入以下内容将需要的程序设置为开机自启</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">hl.on(<span class="pl-s"><span class="pl-pds">"</span>hyprland.start<span class="pl-pds">"</span></span>, <span class="pl-k">function</span> <span class="pl-en">()</span> 
+  hl.exec_cmd(terminal)
+  hl.exec_cmd(<span class="pl-s"><span class="pl-pds">"</span>mako<span class="pl-pds">"</span></span>)
+  hl.exec_cmd(<span class="pl-s"><span class="pl-pds">"</span>/usr/lib/hyprpolkitagent/hyprpolkitagent“)  #</span>
+<span class="pl-s">end)</span></pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
