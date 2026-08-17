@@ -28,6 +28,12 @@ Current=主题名字
 - 重启sddm生效：
 - `sudo systemctl restart sddm`
 
+### 方便快捷地在tty手动启用sddm
+为了KDE+Hyprland双持体验，可以考虑取消sddm的自动启用，改为手动启用KDE或Hyprland
+关闭sddm的自动启用：
+`systemctl disable sddm.service`
+
+
 ### 一些基础设置和软件
 1. kate是标配的文本编辑器
 2. konsole是标配的文档管理器
