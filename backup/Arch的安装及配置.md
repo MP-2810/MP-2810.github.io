@@ -252,7 +252,7 @@ pacman -S nvidia-utils lib32-nvidia-utils nvidia-settings  #库、工具集和�
 ## 音视频服务和蓝牙
 `sudo pacman -S sof-firmware alsa-ucm-conf alsa-firmware`
 **pipewire和蓝牙**
-`sudo pacman -S pipewire wireplumber pipewire-pulse pipewire-alsa pipewire-jack bluez`
+`sudo pacman -S pipewire wireplumber pipewire-pulse pipewire-alsa pipewire-jack bluez blueman`
 **启用服务**
 ```
 systemctl --user enable pipewire wireplumber pipewire-pulse
