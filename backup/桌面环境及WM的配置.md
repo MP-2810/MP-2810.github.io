@@ -45,8 +45,8 @@ tty界面输入：
 `vim ~/.config/fish/config.fish`
 写入：
 ```
-alias plasma='sudo systemctl start sddm'
-alias kde='sudo systemctl start sddm'
+alias plasma='sudo systemctl start sddm.service'
+alias kde='sudo systemctl start sddm.service'
 ```
 退出来后执行：
 `source ~/.config/fish/config.fish`
