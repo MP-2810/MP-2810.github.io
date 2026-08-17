@@ -113,11 +113,12 @@ sudo pacman -S libnotify mako xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 ```
 
 7. **设置重要程序的开机自启**
+把自己想要的、必要的程序添加进开机自启项
 编辑`hyprland.lua`，搜索`AUTOSTART`，在合适位置写入以下内容将需要的程序设置为开机自启
 ```bash
 hl.on("hyprland.start", function ()
   hl.exec_cmd(terminal)
-  hl.exec_cmd("mako")  #由于terminal实际上其他配置文件已经定义了terminal=kitty,所以不用加引号，但像mako这种没有被配置文件限定名字的程序就要
+  hl.exec_cmd("mako & v2rayN & fcitx5")  #由于terminal实际上其他配置文件已经定义了terminal=kitty,所以不用加引号，但像mako这种没有被配置文件限定名字的程序就要
   hl.exec_cmd("/usr/lib/hyprpolkitagent/hyprpolkitagent“)  #
 end)
 ```

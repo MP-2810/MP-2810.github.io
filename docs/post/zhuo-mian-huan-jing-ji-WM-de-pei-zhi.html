@@ -390,11 +390,12 @@ alias kde='sudo systemctl start sddm.service'
 <span class="pl-c"><span class="pl-c">#</span> qt5-wayland qt6-wayland:QT的wayland库 </span></pre></div>
 <ol start="7">
 <li><strong>设置重要程序的开机自启</strong><br>
+把自己想要的、必要的程序添加进开机自启项<br>
 编辑<code class="notranslate">hyprland.lua</code>，搜索<code class="notranslate">AUTOSTART</code>，在合适位置写入以下内容将需要的程序设置为开机自启</li>
 </ol>
 <div class="highlight highlight-source-shell"><pre class="notranslate">hl.on(<span class="pl-s"><span class="pl-pds">"</span>hyprland.start<span class="pl-pds">"</span></span>, <span class="pl-k">function</span> <span class="pl-en">()</span>
   hl.exec_cmd(terminal)
-  hl.exec_cmd(<span class="pl-s"><span class="pl-pds">"</span>mako<span class="pl-pds">"</span></span>)  <span class="pl-c"><span class="pl-c">#</span>由于terminal实际上其他配置文件已经定义了terminal=kitty,所以不用加引号，但像mako这种没有被配置文件限定名字的程序就要</span>
+  hl.exec_cmd(<span class="pl-s"><span class="pl-pds">"</span>mako &amp; v2rayN &amp; fcitx5<span class="pl-pds">"</span></span>)  <span class="pl-c"><span class="pl-c">#</span>由于terminal实际上其他配置文件已经定义了terminal=kitty,所以不用加引号，但像mako这种没有被配置文件限定名字的程序就要</span>
   hl.exec_cmd(<span class="pl-s"><span class="pl-pds">"</span>/usr/lib/hyprpolkitagent/hyprpolkitagent“)  #</span>
 <span class="pl-s">end)</span></pre></div>
 <ol start="8">
