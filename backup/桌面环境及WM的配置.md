@@ -135,3 +135,17 @@ border-radius=5
 ```
 重新加载mako的配置文件：
 `makoctl reload`
+
+9. **安装图形化文档管理器**
+`sudo pacman -S thunar tumbler ffmpegthumbnailer poppler-glib gvfs-smb file-roller thunar-archive-plugin gnome-keyring`
+- thunar：安装了gtk桌面门户，因此适合的文档管理器是Thunar
+- tumbler：提供图片缩略图预览功能
+- ffmpegthumbnailer：提供视频的缩略图功能
+- poppler-glib：提供PDF的缩略图预览
+- gvfs-smb：自动检测u盘和其他硬盘
+- file-roller：压缩解压缩软件
+- thunar-archive-plugin：一个扩展，在文档管理器的右键菜单里添加压缩和解压缩相关选项
+- gnome-keyring：提供密码记录功能
+- （去ArchWiki的Thunar页面查找其他想要的功能）
+编辑hyprland配置文件：
+`vim ~/.config/hypr/hyprland.lua`

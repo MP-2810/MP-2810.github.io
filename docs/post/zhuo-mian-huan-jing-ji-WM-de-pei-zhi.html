@@ -409,7 +409,24 @@ vim ~/.config/mako/config
 border-radius=5
 </code></pre>
 <p>重新加载mako的配置文件：<br>
-<code class="notranslate">makoctl reload</code></p></div>
+<code class="notranslate">makoctl reload</code></p>
+<ol start="9">
+<li><strong>安装图形化文档管理器</strong><br>
+<code class="notranslate">sudo pacman -S thunar tumbler ffmpegthumbnailer poppler-glib gvfs-smb file-roller thunar-archive-plugin gnome-keyring</code></li>
+</ol>
+<ul>
+<li>thunar：安装了gtk桌面门户，因此适合的文档管理器是Thunar</li>
+<li>tumbler：提供图片缩略图预览功能</li>
+<li>ffmpegthumbnailer：提供视频的缩略图功能</li>
+<li>poppler-glib：提供PDF的缩略图预览</li>
+<li>gvfs-smb：自动检测u盘和其他硬盘</li>
+<li>file-roller：压缩解压缩软件</li>
+<li>thunar-archive-plugin：一个扩展，在文档管理器的右键菜单里添加压缩和解压缩相关选项</li>
+<li>gnome-keyring：提供密码记录功能</li>
+<li>（去ArchWiki的Thunar页面查找其他想要的功能）<br>
+编辑hyprland配置文件：<br>
+<code class="notranslate">vim ~/.config/hypr/hyprland.lua</code></li>
+</ul></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
