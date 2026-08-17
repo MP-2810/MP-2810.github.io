@@ -63,6 +63,17 @@ alias kde='sudo systemctl start sddm.service'
 7. 可以在无障碍服务里的抖动指针选项关闭抖动时放大鼠标指针的功能
 8. 右键右下角的时间组件，选择“配置 数字时钟”可以将中国农历添加进日历界面
 
+### 删除KDE和sddm
+如果想要使用WM，建议删除干净KDE,否则安装WM时会有很多不需要的来自KDE的软件，并且不建议KDE和WM双持，否则建议创建两个用户，两个用户分别使用KDE和WM
+删除KDE：
+`sudo pacman -Rns plasma-meta kde-utilities-meta kde-system-meta`
+检查剩余KDE包：
+`pacman -Q | grep -E '^(plasma|kde|kwin|kwayland|kglobal|kactivity|kded|baloo|oxygen)'`
+如果没有剩余，则可以进行清理孤立包：
+`pacman -Qtdq`
+删除`sddm`：
+`sudo pacman -Rns sddm`
+
 ## 配置Hyprland
 ### 安装Hyprland
 `sudo pacman -S hyprland kitty fuzzel`
@@ -114,7 +125,7 @@ sudo pacman -S libnotify mako xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 
 7. **设置重要程序的开机自启**
 把自己想要的、必要的程序添加进开机自启项
-编辑`hyprland.lua`，搜索`AUTOSTART`，在合适位置写入以下内容将需要的程序设置为开机自启
+编辑`hyprland.lua`，搜索`AUTOSTART`，在合适位置写入以下内容将需要的程序设置为开机自启，例如：
 ```bash
 hl.on("hyprland.start", function ()
   hl.exec_cmd(terminal)
@@ -171,7 +182,7 @@ xdg-user-dirs-update  #更新用户目录
         `hl.bind(mainMod .. " + F2",hl.dsp.exec_cmd("pkill waybar || true && waybar"))`
 - 安装networkmanager的任务栏组件
 `sudo pacman -S network-manager-applet dnsmasq`
-    一样写进开机自启动里面
+    一样将其任务栏组件`nm-applet`写进开机自启动里面
 - 安装性能模式切换工具
 ```
 sudo pacman -S power-profiles-daemon

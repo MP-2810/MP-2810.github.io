@@ -75,6 +75,17 @@ alias kde='sudo systemctl start sddm.service'
 7. 可以在无障碍服务里的抖动指针选项关闭抖动时放大鼠标指针的功能
 8. 右键右下角的时间组件，选择“配置 数字时钟”可以将中国农历添加进日历界面
 
+### 删除KDE和sddm
+如果想要使用WM，建议删除干净KDE,否则安装WM时会有很多不需要的来自KDE的软件，并且不建议KDE和WM双持，否则建议创建两个用户，两个用户分别使用KDE和WM
+删除KDE：
+`sudo pacman -Rns plasma-meta kde-utilities-meta kde-system-meta`
+检查剩余KDE包：
+`pacman -Q | grep -E '^(plasma|kde|kwin|kwayland|kglobal|kactivity|kded|baloo|oxygen)'`
+如果没有剩余，则可以进行清理孤立包：
+`pacman -Qtdq`
+删除`sddm`：
+`sudo pacman -Rns sddm`
+
 ## 配置Hyprland
 ### 安装Hyprland
 `sudo pacman -S hyprland kitty fuzzel`
@@ -162,6 +173,17 @@ alias kde='sudo systemctl start sddm.service'
 6. 进入设置，将虚拟键盘设置成`Fcitx 5 Wayland启动器`
 7. 可以在无障碍服务里的抖动指针选项关闭抖动时放大鼠标指针的功能
 8. 右键右下角的时间组件，选择“配置 数字时钟”可以将中国农历添加进日历界面
+
+### 删除KDE和sddm
+如果想要使用WM，建议删除干净KDE,否则安装WM时会有很多不需要的来自KDE的软件，并且不建议KDE和WM双持，否则建议创建两个用户，两个用户分别使用KDE和WM
+删除KDE：
+`sudo pacman -Rns plasma-meta kde-utilities-meta kde-system-meta`
+检查剩余KDE包：
+`pacman -Q | grep -E '^(plasma|kde|kwin|kwayland|kglobal|kactivity|kded|baloo|oxygen)'`
+如果没有剩余，则可以进行清理孤立包：
+`pacman -Qtdq`
+删除`sddm`：
+`sudo pacman -Rns sddm`
 
 ## 配置Hyprland
 ### 安装Hyprland
@@ -330,6 +352,16 @@ alias kde='sudo systemctl start sddm.service'
 <li>可以在无障碍服务里的抖动指针选项关闭抖动时放大鼠标指针的功能</li>
 <li>右键右下角的时间组件，选择“配置 数字时钟”可以将中国农历添加进日历界面</li>
 </ol>
+<h3>删除KDE和sddm</h3>
+<p>如果想要使用WM，建议删除干净KDE,否则安装WM时会有很多不需要的来自KDE的软件，并且不建议KDE和WM双持，否则建议创建两个用户，两个用户分别使用KDE和WM<br>
+删除KDE：<br>
+<code class="notranslate">sudo pacman -Rns plasma-meta kde-utilities-meta kde-system-meta</code><br>
+检查剩余KDE包：<br>
+<code class="notranslate">pacman -Q | grep -E '^(plasma|kde|kwin|kwayland|kglobal|kactivity|kded|baloo|oxygen)'</code><br>
+如果没有剩余，则可以进行清理孤立包：<br>
+<code class="notranslate">pacman -Qtdq</code><br>
+删除<code class="notranslate">sddm</code>：<br>
+<code class="notranslate">sudo pacman -Rns sddm</code></p>
 <h2>配置Hyprland</h2>
 <h3>安装Hyprland</h3>
 <p><code class="notranslate">sudo pacman -S hyprland kitty fuzzel</code></p>
@@ -391,7 +423,7 @@ alias kde='sudo systemctl start sddm.service'
 <ol start="7">
 <li><strong>设置重要程序的开机自启</strong><br>
 把自己想要的、必要的程序添加进开机自启项<br>
-编辑<code class="notranslate">hyprland.lua</code>，搜索<code class="notranslate">AUTOSTART</code>，在合适位置写入以下内容将需要的程序设置为开机自启</li>
+编辑<code class="notranslate">hyprland.lua</code>，搜索<code class="notranslate">AUTOSTART</code>，在合适位置写入以下内容将需要的程序设置为开机自启，例如：</li>
 </ol>
 <div class="highlight highlight-source-shell"><pre class="notranslate">hl.on(<span class="pl-s"><span class="pl-pds">"</span>hyprland.start<span class="pl-pds">"</span></span>, <span class="pl-k">function</span> <span class="pl-en">()</span>
   hl.exec_cmd(terminal)
@@ -453,7 +485,7 @@ xdg-user-dirs-update  <span class="pl-c"><span class="pl-c">#</span>更新用户
 <code class="notranslate">hl.bind(mainMod .. " + F2",hl.dsp.exec_cmd("pkill waybar || true &amp;&amp; waybar"))</code></li>
 <li>安装networkmanager的任务栏组件<br>
 <code class="notranslate">sudo pacman -S network-manager-applet dnsmasq</code><br>
-一样写进开机自启动里面</li>
+一样将其任务栏组件<code class="notranslate">nm-applet</code>写进开机自启动里面</li>
 <li>安装性能模式切换工具</li>
 </ul>
 <pre class="notranslate"><code class="notranslate">sudo pacman -S power-profiles-daemon
