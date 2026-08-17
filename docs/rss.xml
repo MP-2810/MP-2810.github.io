@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Mon, 17 Aug 2026 00:10:20 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>Linux命令行禁用Fn媒体键功能的方法</title><link>https://MP-2810.github.io/post/Linux-ming-ling-xing-jin-yong-Fn-mei-ti-jian-gong-neng-de-fang-fa.html</link><description>1. 查看当前模式
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Mon, 17 Aug 2026 00:30:56 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>Linux命令行禁用Fn媒体键功能的方法</title><link>https://MP-2810.github.io/post/Linux-ming-ling-xing-jin-yong-Fn-mei-ti-jian-gong-neng-de-fang-fa.html</link><description>1. 查看当前模式
 `cat /sys/module/hid_apple/parameters/fnmode`
     0：禁用媒体功能，F键直接触发标准功能（如F1全屏）
     1：媒体优先（默认）
@@ -46,7 +46,25 @@ Current=主题名字
 为了KDE+Hyprland双持体验，可以考虑取消sddm的自动启用，改为手动启用KDE或Hyprland
 关闭sddm的自动启用：
 `systemctl disable sddm.service`
-
+tty界面输入：
+`sudo systemctl start sddm`
+即可手动启用sddm进入KDE
+或者可以通过修改shell配置文件来通过简短的别名来启用
+首先编辑：
+`sudo visudo`
+追加写入
+`mparker ALL=(ALL) NOPASSWD: /usr/bin/systemctl start sddm.service`
+为命令提供免密特权（因为tty登录用户时已经输过一边密码了，再sudo输入一遍密码太麻烦了
+编辑`fish`的配置文件
+`vim ~/.config/fish/config.fish`
+写入：
+```
+alias plasma='sudo systemctl start sddm'
+alias kde='sudo systemctl start sddm'
+```
+退出来后执行：
+`source ~/.config/fish/config.fish`
+这样在tty界面登录账户后可以直接通过kde或plasma别名来直接进入kde
 
 ### 一些基础设置和软件
 1. kate是标配的文本编辑器

@@ -44,7 +44,25 @@ Current=主题名字
 为了KDE+Hyprland双持体验，可以考虑取消sddm的自动启用，改为手动启用KDE或Hyprland
 关闭sddm的自动启用：
 `systemctl disable sddm.service`
-
+tty界面输入：
+`sudo systemctl start sddm`
+即可手动启用sddm进入KDE
+或者可以通过修改shell配置文件来通过简短的别名来启用
+首先编辑：
+`sudo visudo`
+追加写入
+`mparker ALL=(ALL) NOPASSWD: /usr/bin/systemctl start sddm.service`
+为命令提供免密特权（因为tty登录用户时已经输过一边密码了，再sudo输入一遍密码太麻烦了
+编辑`fish`的配置文件
+`vim ~/.config/fish/config.fish`
+写入：
+```
+alias plasma='sudo systemctl start sddm'
+alias kde='sudo systemctl start sddm'
+```
+退出来后执行：
+`source ~/.config/fish/config.fish`
+这样在tty界面登录账户后可以直接通过kde或plasma别名来直接进入kde
 
 ### 一些基础设置和软件
 1. kate是标配的文本编辑器
@@ -112,7 +130,25 @@ Current=主题名字
 为了KDE+Hyprland双持体验，可以考虑取消sddm的自动启用，改为手动启用KDE或Hyprland
 关闭sddm的自动启用：
 `systemctl disable sddm.service`
-
+tty界面输入：
+`sudo systemctl start sddm`
+即可手动启用sddm进入KDE
+或者可以通过修改shell配置文件来通过简短的别名来启用
+首先编辑：
+`sudo visudo`
+追加写入
+`mparker ALL=(ALL) NOPASSWD: /usr/bin/systemctl start sddm.service`
+为命令提供免密特权（因为tty登录用户时已经输过一边密码了，再sudo输入一遍密码太麻烦了
+编辑`fish`的配置文件
+`vim ~/.config/fish/config.fish`
+写入：
+```
+alias plasma='sudo systemctl start sddm'
+alias kde='sudo systemctl start sddm'
+```
+退出来后执行：
+`source ~/.config/fish/config.fish`
+这样在tty界面登录账户后可以直接通过kde或plasma别名来直接进入kde
 
 ### 一些基础设置和软件
 1. kate是标配的文本编辑器
@@ -255,7 +291,25 @@ Current=主题名字
 <h3>方便快捷地在tty手动启用sddm</h3>
 <p>为了KDE+Hyprland双持体验，可以考虑取消sddm的自动启用，改为手动启用KDE或Hyprland<br>
 关闭sddm的自动启用：<br>
-<code class="notranslate">systemctl disable sddm.service</code></p>
+<code class="notranslate">systemctl disable sddm.service</code><br>
+tty界面输入：<br>
+<code class="notranslate">sudo systemctl start sddm</code><br>
+即可手动启用sddm进入KDE<br>
+或者可以通过修改shell配置文件来通过简短的别名来启用<br>
+首先编辑：<br>
+<code class="notranslate">sudo visudo</code><br>
+追加写入<br>
+<code class="notranslate">mparker ALL=(ALL) NOPASSWD: /usr/bin/systemctl start sddm.service</code><br>
+为命令提供免密特权（因为tty登录用户时已经输过一边密码了，再sudo输入一遍密码太麻烦了<br>
+编辑<code class="notranslate">fish</code>的配置文件<br>
+<code class="notranslate">vim ~/.config/fish/config.fish</code><br>
+写入：</p>
+<pre class="notranslate"><code class="notranslate">alias plasma='sudo systemctl start sddm'
+alias kde='sudo systemctl start sddm'
+</code></pre>
+<p>退出来后执行：<br>
+<code class="notranslate">source ~/.config/fish/config.fish</code><br>
+这样在tty界面登录账户后可以直接通过kde或plasma别名来直接进入kde</p>
 <h3>一些基础设置和软件</h3>
 <ol>
 <li>kate是标配的文本编辑器</li>

@@ -32,7 +32,25 @@ Current=主题名字
 为了KDE+Hyprland双持体验，可以考虑取消sddm的自动启用，改为手动启用KDE或Hyprland
 关闭sddm的自动启用：
 `systemctl disable sddm.service`
-
+tty界面输入：
+`sudo systemctl start sddm`
+即可手动启用sddm进入KDE
+或者可以通过修改shell配置文件来通过简短的别名来启用
+首先编辑：
+`sudo visudo`
+追加写入
+`mparker ALL=(ALL) NOPASSWD: /usr/bin/systemctl start sddm.service`
+为命令提供免密特权（因为tty登录用户时已经输过一边密码了，再sudo输入一遍密码太麻烦了
+编辑`fish`的配置文件
+`vim ~/.config/fish/config.fish`
+写入：
+```
+alias plasma='sudo systemctl start sddm'
+alias kde='sudo systemctl start sddm'
+```
+退出来后执行：
+`source ~/.config/fish/config.fish`
+这样在tty界面登录账户后可以直接通过kde或plasma别名来直接进入kde
 
 ### 一些基础设置和软件
 1. kate是标配的文本编辑器
