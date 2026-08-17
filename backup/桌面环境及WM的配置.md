@@ -149,3 +149,23 @@ border-radius=5
 - （去ArchWiki的Thunar页面查找其他想要的功能）
 编辑hyprland配置文件：
 `vim ~/.config/hypr/hyprland.lua`
+将`fileManager`修改为使用`thunar`
+- 可以搜索`bind`来修改快捷键
+
+10. 打开`thunar`，将右键打开终端的打开路径修改成`kitty`
+因为`thunar`默认使用的`gnome-terminal`,所以需要将`kitty`伪装成`gnome-terminal`：
+`sudo ln -s /usr/bin/kitty /usr/bin/gnome-terminal`
+
+11. **生成home目录下的常用目录**
+```bash
+sudo pacman -S xdg-user-dirs
+xdg-user-dirs-update  #更新用户目录
+```
+
+12. 安装面板（任务栏）
+`sudo pacman -S waybar ttf-jetbrains-mono-nerd`
+- 这个命令会安装jetbrains字体
+按照`7.`的步骤将waybar设置为开机自启
+- 添加刷新面板快捷键：
+        在bind处添加快捷键方案：
+        `hl.bind(mainMod .. " + F2",hl.dsp.exec_cmd("pkill waybar || true && waybar"))`

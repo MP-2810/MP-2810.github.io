@@ -425,7 +425,32 @@ border-radius=5
 <li>gnome-keyring：提供密码记录功能</li>
 <li>（去ArchWiki的Thunar页面查找其他想要的功能）<br>
 编辑hyprland配置文件：<br>
-<code class="notranslate">vim ~/.config/hypr/hyprland.lua</code></li>
+<code class="notranslate">vim ~/.config/hypr/hyprland.lua</code><br>
+将<code class="notranslate">fileManager</code>修改为使用<code class="notranslate">thunar</code></li>
+<li>可以搜索<code class="notranslate">bind</code>来修改快捷键</li>
+</ul>
+<ol start="10">
+<li>
+<p>打开<code class="notranslate">thunar</code>，将右键打开终端的打开路径修改成<code class="notranslate">kitty</code><br>
+因为<code class="notranslate">thunar</code>默认使用的<code class="notranslate">gnome-terminal</code>,所以需要将<code class="notranslate">kitty</code>伪装成<code class="notranslate">gnome-terminal</code>：<br>
+<code class="notranslate">sudo ln -s /usr/bin/kitty /usr/bin/gnome-terminal</code></p>
+</li>
+<li>
+<p><strong>生成home目录下的常用目录</strong></p>
+</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">sudo pacman -S xdg-user-dirs
+xdg-user-dirs-update  <span class="pl-c"><span class="pl-c">#</span>更新用户目录</span></pre></div>
+<ol start="12">
+<li>安装面板（任务栏）<br>
+<code class="notranslate">sudo pacman -S waybar ttf-jetbrains-mono-nerd</code></li>
+</ol>
+<ul>
+<li>这个命令会安装jetbrains字体<br>
+按照<code class="notranslate">7.</code>的步骤将waybar设置为开机自启</li>
+<li>添加刷新面板快捷键：<br>
+在bind处添加快捷键方案：<br>
+<code class="notranslate">hl.bind(mainMod .. " + F2",hl.dsp.exec_cmd("pkill waybar || true &amp;&amp; waybar"))</code></li>
 </ul></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
