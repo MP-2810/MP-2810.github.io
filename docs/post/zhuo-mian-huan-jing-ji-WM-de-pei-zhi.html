@@ -475,22 +475,26 @@ border-radius=5
 <div class="highlight highlight-source-shell"><pre class="notranslate">sudo pacman -S xdg-user-dirs
 xdg-user-dirs-update  <span class="pl-c"><span class="pl-c">#</span>更新用户目录</span></pre></div>
 <ol start="12">
-<li>安装面板（任务栏）<br>
+<li><strong>安装面板（任务栏）以及一些组件</strong><br>
 <code class="notranslate">sudo pacman -S waybar</code><br>
 按照<code class="notranslate">7.</code>的步骤将waybar设置为开机自启</li>
 </ol>
 <ul>
 <li>添加刷新面板快捷键：<br>
 在bind处添加快捷键方案：<br>
-<code class="notranslate">hl.bind(mainMod .. " + F2",hl.dsp.exec_cmd("pkill waybar || true &amp;&amp; waybar"))</code></li>
-<li>安装networkmanager的任务栏组件<br>
+<code class="notranslate">hl.bind(mainMod .. " + F2",hl.dsp.exec_cmd("pkill waybar || true &amp;&amp; waybar"))</code><br>
+安装networkmanager的任务栏组件<br>
 <code class="notranslate">sudo pacman -S network-manager-applet dnsmasq</code><br>
-一样将其任务栏组件<code class="notranslate">nm-applet</code>写进开机自启动里面</li>
-<li>安装性能模式切换工具</li>
+一样将其任务栏组件<code class="notranslate">nm-applet</code>写进开机自启动里面<br>
+安装性能模式切换工具</li>
 </ul>
 <pre class="notranslate"><code class="notranslate">sudo pacman -S power-profiles-daemon
 systemctl enable --now power-profiles-daemon
-</code></pre></div>
+</code></pre>
+<p>安装</p>
+<ol start="13">
+<li><strong>waybar的一些基本美化</strong></li>
+</ol></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

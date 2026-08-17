@@ -174,17 +174,20 @@ sudo pacman -S xdg-user-dirs
 xdg-user-dirs-update  #更新用户目录
 ```
 
-12. 安装面板（任务栏）
+12. **安装面板（任务栏）以及一些组件**
 `sudo pacman -S waybar`
 按照`7.`的步骤将waybar设置为开机自启
 - 添加刷新面板快捷键：
         在bind处添加快捷键方案：
         `hl.bind(mainMod .. " + F2",hl.dsp.exec_cmd("pkill waybar || true && waybar"))`
-- 安装networkmanager的任务栏组件
+安装networkmanager的任务栏组件
 `sudo pacman -S network-manager-applet dnsmasq`
     一样将其任务栏组件`nm-applet`写进开机自启动里面
-- 安装性能模式切换工具
+安装性能模式切换工具
 ```
 sudo pacman -S power-profiles-daemon
 systemctl enable --now power-profiles-daemon
 ```
+安装
+
+13. **waybar的一些基本美化**
