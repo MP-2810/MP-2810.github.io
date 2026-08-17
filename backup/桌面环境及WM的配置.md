@@ -69,6 +69,8 @@ alias kde='sudo systemctl start sddm.service'
 - wofi是默认的程序启动菜单，这里替换成fuzzel
 
 ### 简单配置
+- 在tty登录后输入`hyprland`或`Hyprland`实际都是通过`hyprland`启动，实际上应该执行`start-hyprland`来启动hyprland
+
 1. 可以检查一下Hyprland是否使用了安装的工具：kitty、fuzzel
 输入命令修改配置文件：
 `vim ~/.config/hypr/hyprland.lua`
@@ -113,9 +115,23 @@ sudo pacman -S libnotify mako xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 7. **设置重要程序的开机自启**
 编辑`hyprland.lua`，搜索`AUTOSTART`，在合适位置写入以下内容将需要的程序设置为开机自启
 ```bash
-hl.on("hyprland.start", function () 
+hl.on("hyprland.start", function ()
   hl.exec_cmd(terminal)
-  hl.exec_cmd(mako)
+  hl.exec_cmd("mako")  #由于terminal实际上其他配置文件已经定义了terminal=kitty,所以不用加引号，但像mako这种没有被配置文件限定名字的程序就要
   hl.exec_cmd("/usr/lib/hyprpolkitagent/hyprpolkitagent“)  #
 end)
 ```
+
+8. **编辑mako的配置文件**
+```
+mkdir ~/.config/mako
+vim ~/.config/mako/config
+
+```
+写入：
+```
+default-timeout=5000
+border-radius=5
+```
+重新加载mako的配置文件：
+`makoctl reload`

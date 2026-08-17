@@ -81,6 +81,8 @@ alias kde='sudo systemctl start sddm.service'
 - wofi是默认的程序启动菜单，这里替换成fuzzel
 
 ### 简单配置
+- 在tty登录后输入`hyprland`或`Hyprland`实际都是通过`hyprland`启动，实际上应该执行`start-hyprland`来启动hyprland
+
 1. 可以检查一下Hyprland是否使用了安装的工具：kitty、fuzzel
 输入命令修改配置文件：
 `vim ~/.config/hypr/hyprland.lua`
@@ -167,6 +169,8 @@ alias kde='sudo systemctl start sddm.service'
 - wofi是默认的程序启动菜单，这里替换成fuzzel
 
 ### 简单配置
+- 在tty登录后输入`hyprland`或`Hyprland`实际都是通过`hyprland`启动，实际上应该执行`start-hyprland`来启动hyprland
+
 1. 可以检查一下Hyprland是否使用了安装的工具：kitty、fuzzel
 输入命令修改配置文件：
 `vim ~/.config/hypr/hyprland.lua`
@@ -333,6 +337,9 @@ alias kde='sudo systemctl start sddm.service'
 <li>wofi是默认的程序启动菜单，这里替换成fuzzel</li>
 </ul>
 <h3>简单配置</h3>
+<ul>
+<li>在tty登录后输入<code class="notranslate">hyprland</code>或<code class="notranslate">Hyprland</code>实际都是通过<code class="notranslate">hyprland</code>启动，实际上应该执行<code class="notranslate">start-hyprland</code>来启动hyprland</li>
+</ul>
 <ol>
 <li>可以检查一下Hyprland是否使用了安装的工具：kitty、fuzzel<br>
 输入命令修改配置文件：<br>
@@ -385,11 +392,24 @@ alias kde='sudo systemctl start sddm.service'
 <li><strong>设置重要程序的开机自启</strong><br>
 编辑<code class="notranslate">hyprland.lua</code>，搜索<code class="notranslate">AUTOSTART</code>，在合适位置写入以下内容将需要的程序设置为开机自启</li>
 </ol>
-<div class="highlight highlight-source-shell"><pre class="notranslate">hl.on(<span class="pl-s"><span class="pl-pds">"</span>hyprland.start<span class="pl-pds">"</span></span>, <span class="pl-k">function</span> <span class="pl-en">()</span> 
+<div class="highlight highlight-source-shell"><pre class="notranslate">hl.on(<span class="pl-s"><span class="pl-pds">"</span>hyprland.start<span class="pl-pds">"</span></span>, <span class="pl-k">function</span> <span class="pl-en">()</span>
   hl.exec_cmd(terminal)
-  hl.exec_cmd(mako)
+  hl.exec_cmd(<span class="pl-s"><span class="pl-pds">"</span>mako<span class="pl-pds">"</span></span>)  <span class="pl-c"><span class="pl-c">#</span>由于terminal实际上其他配置文件已经定义了terminal=kitty,所以不用加引号，但像mako这种没有被配置文件限定名字的程序就要</span>
   hl.exec_cmd(<span class="pl-s"><span class="pl-pds">"</span>/usr/lib/hyprpolkitagent/hyprpolkitagent“)  #</span>
-<span class="pl-s">end)</span></pre></div></div>
+<span class="pl-s">end)</span></pre></div>
+<ol start="8">
+<li><strong>编辑mako的配置文件</strong></li>
+</ol>
+<pre class="notranslate"><code class="notranslate">mkdir ~/.config/mako
+vim ~/.config/mako/config
+
+</code></pre>
+<p>写入：</p>
+<pre class="notranslate"><code class="notranslate">default-timeout=5000
+border-radius=5
+</code></pre>
+<p>重新加载mako的配置文件：<br>
+<code class="notranslate">makoctl reload</code></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
