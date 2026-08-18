@@ -10,39 +10,59 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="1. **shell：**fish
-2. **terminal：**kitty
-3. **显示服务器协议：**wayland + xwayland （考虑wayback中）
-4. **登录守护程序：**greetd
-5. **图形库：**gtk3 gtk4 qt5 qt6（暂定）
-6. **身份验证守护进程：**hyprpolkitagent
-7. **应用程序启动器：**fuzzel
-8. **系统信息获取工具：**fastfetch
-9. **TUI文件资源管理器：**yazi
-10. **GUI文件资源管理器：**Thunar
-11. **壁纸引擎及其GUI：**swww + waypaper
-12. **音乐播放工具：**go-musicfox
-13. **多显示器管理工具：**nwg-displays
-14. **屏幕光标工具：**libxcursor(默认) + hyprcursor
-15. **音量调节GUI：**pavucontrol
-16. **截图、坐标选取及其GUI：**grim + slurp + gradia。">
+<meta name="description" content="1. **shell：** fish
+2. **terminal：** kitty
+3. **显示服务器协议：** wayland + xwayland （考虑wayback中）
+4. **登录守护程序：** greetd
+5. **图形库：** gtk3 gtk4 qt5 qt6（暂定）
+6. **身份验证守护进程：** hyprpolkitagent
+7. **应用程序启动器：** fuzzel
+8. **系统信息获取工具：** fastfetch
+9. **锁屏组件：** hyprlock
+10. **状态栏（面板）：** 未定，暂用waybar
+11. **TUI文件资源管理器：** yazi
+12. **GUI文件资源管理器：** thunar
+13. **图片缩略图功能：** tumbler
+14. **视频缩略图功能：** ffmpegthumbnailer
+15. **PDF缩略图功能：** poppler-glib
+16. **U盘及其他硬盘检测工具：** gvfs-smb
+17. **压缩解压缩软件：** file-roller
+18. **右键菜单解压缩功能：** thunar-archive-plugin
+19. **壁纸引擎及其GUI：** swww + waypaper
+20. **音乐播放工具：** go-musicfox
+21. **多显示器管理工具：** nwg-displays
+22. **屏幕光标工具：** libxcursor(默认) + hyprcursor
+23. **音量调节GUI：** pavucontrol
+24. **截图、坐标选取及其GUI：** grim + slurp + gradia
+25. **剪切板：** copyq
+26. 。">
 <meta property="og:title" content="我的hyprland组件配置清单">
-<meta property="og:description" content="1. **shell：**fish
-2. **terminal：**kitty
-3. **显示服务器协议：**wayland + xwayland （考虑wayback中）
-4. **登录守护程序：**greetd
-5. **图形库：**gtk3 gtk4 qt5 qt6（暂定）
-6. **身份验证守护进程：**hyprpolkitagent
-7. **应用程序启动器：**fuzzel
-8. **系统信息获取工具：**fastfetch
-9. **TUI文件资源管理器：**yazi
-10. **GUI文件资源管理器：**Thunar
-11. **壁纸引擎及其GUI：**swww + waypaper
-12. **音乐播放工具：**go-musicfox
-13. **多显示器管理工具：**nwg-displays
-14. **屏幕光标工具：**libxcursor(默认) + hyprcursor
-15. **音量调节GUI：**pavucontrol
-16. **截图、坐标选取及其GUI：**grim + slurp + gradia。">
+<meta property="og:description" content="1. **shell：** fish
+2. **terminal：** kitty
+3. **显示服务器协议：** wayland + xwayland （考虑wayback中）
+4. **登录守护程序：** greetd
+5. **图形库：** gtk3 gtk4 qt5 qt6（暂定）
+6. **身份验证守护进程：** hyprpolkitagent
+7. **应用程序启动器：** fuzzel
+8. **系统信息获取工具：** fastfetch
+9. **锁屏组件：** hyprlock
+10. **状态栏（面板）：** 未定，暂用waybar
+11. **TUI文件资源管理器：** yazi
+12. **GUI文件资源管理器：** thunar
+13. **图片缩略图功能：** tumbler
+14. **视频缩略图功能：** ffmpegthumbnailer
+15. **PDF缩略图功能：** poppler-glib
+16. **U盘及其他硬盘检测工具：** gvfs-smb
+17. **压缩解压缩软件：** file-roller
+18. **右键菜单解压缩功能：** thunar-archive-plugin
+19. **壁纸引擎及其GUI：** swww + waypaper
+20. **音乐播放工具：** go-musicfox
+21. **多显示器管理工具：** nwg-displays
+22. **屏幕光标工具：** libxcursor(默认) + hyprcursor
+23. **音量调节GUI：** pavucontrol
+24. **截图、坐标选取及其GUI：** grim + slurp + gradia
+25. **剪切板：** copyq
+26. 。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/wo-de-hyprland-zu-jian-pei-zhi-qing-dan.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -104,22 +124,32 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><ol>
-<li>**shell：**fish</li>
-<li>**terminal：**kitty</li>
-<li>**显示服务器协议：**wayland + xwayland （考虑wayback中）</li>
-<li>**登录守护程序：**greetd</li>
-<li>**图形库：**gtk3 gtk4 qt5 qt6（暂定）</li>
-<li>**身份验证守护进程：**hyprpolkitagent</li>
-<li>**应用程序启动器：**fuzzel</li>
-<li>**系统信息获取工具：**fastfetch</li>
-<li>**TUI文件资源管理器：**yazi</li>
-<li>**GUI文件资源管理器：**Thunar</li>
-<li>**壁纸引擎及其GUI：**swww + waypaper</li>
-<li>**音乐播放工具：**go-musicfox</li>
-<li>**多显示器管理工具：**nwg-displays</li>
-<li>**屏幕光标工具：**libxcursor(默认) + hyprcursor</li>
-<li>**音量调节GUI：**pavucontrol</li>
-<li>**截图、坐标选取及其GUI：**grim + slurp + gradia</li>
+<li><strong>shell：</strong> fish</li>
+<li><strong>terminal：</strong> kitty</li>
+<li><strong>显示服务器协议：</strong> wayland + xwayland （考虑wayback中）</li>
+<li><strong>登录守护程序：</strong> greetd</li>
+<li><strong>图形库：</strong> gtk3 gtk4 qt5 qt6（暂定）</li>
+<li><strong>身份验证守护进程：</strong> hyprpolkitagent</li>
+<li><strong>应用程序启动器：</strong> fuzzel</li>
+<li><strong>系统信息获取工具：</strong> fastfetch</li>
+<li><strong>锁屏组件：</strong> hyprlock</li>
+<li><strong>状态栏（面板）：</strong> 未定，暂用waybar</li>
+<li><strong>TUI文件资源管理器：</strong> yazi</li>
+<li><strong>GUI文件资源管理器：</strong> thunar</li>
+<li><strong>图片缩略图功能：</strong> tumbler</li>
+<li><strong>视频缩略图功能：</strong> ffmpegthumbnailer</li>
+<li><strong>PDF缩略图功能：</strong> poppler-glib</li>
+<li><strong>U盘及其他硬盘检测工具：</strong> gvfs-smb</li>
+<li><strong>压缩解压缩软件：</strong> file-roller</li>
+<li><strong>右键菜单解压缩功能：</strong> thunar-archive-plugin</li>
+<li><strong>壁纸引擎及其GUI：</strong> swww + waypaper</li>
+<li><strong>音乐播放工具：</strong> go-musicfox</li>
+<li><strong>多显示器管理工具：</strong> nwg-displays</li>
+<li><strong>屏幕光标工具：</strong> libxcursor(默认) + hyprcursor</li>
+<li><strong>音量调节GUI：</strong> pavucontrol</li>
+<li><strong>截图、坐标选取及其GUI：</strong> grim + slurp + gradia</li>
+<li><strong>剪切板：</strong> copyq</li>
+<li></li>
 </ol></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
