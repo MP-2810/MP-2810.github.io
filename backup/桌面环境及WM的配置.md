@@ -218,4 +218,4 @@ systemctl enable --now power-profiles-daemon
 `yay -S grim slurp gradia` 分别提供截图功能、坐标选取功能、GUI及编辑功能 
 安装完毕之后重启电脑
 然后执行`gradia --screenshot`就可以截图了
-建议设置gradia以浮动窗口打开
+建议设置gradia以浮动窗口打开，并为截图设置快捷键
