@@ -208,3 +208,14 @@ systemctl enable --now power-profiles-daemon
     `hl.window_rule({match = { class ="waypaper的class或title参数名"}, float = true})`
 13.5 **编辑窗口外观**
 编辑`hyprland.lua`，搜索`gaps`，找到窗口相关的各项设置，可以设置窗口边距、透明度等数据
+
+14. **剪切板记录功能**
+安装copyq并设置`copyq toggle`开机自启：
+`sudo pacman -S copyq`
+- 根据需要设置浮动窗口
+
+15. **截图功能**
+`yay -S grim slurp gradia` 分别提供截图功能、坐标选取功能、GUI及编辑功能 
+安装完毕之后重启电脑
+然后执行`gradia --screenshot`就可以截图了
+建议设置gradia以浮动窗口打开
