@@ -1,5 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Mon, 17 Aug 2026 22:07:10 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>Linux命令行禁用Fn媒体键功能的方法</title><link>https://MP-2810.github.io/post/Linux-ming-ling-xing-jin-yong-Fn-mei-ti-jian-gong-neng-de-fang-fa.html</link><description>1. 查看当前模式
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Tue, 18 Aug 2026 22:21:58 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>我的hyprland组件配置清单</title><link>https://MP-2810.github.io/post/wo-de-hyprland-zu-jian-pei-zhi-qing-dan.html</link><description>shell：fish
+terminal：kitty
+显示服务器协议：wayland + xwayland （考虑wayback中）
+登录守护程序：greetd
+图形库：gtk3 gtk4 qt5 qt6
+应用程序启动器：fuzzel
+系统信息获取工具：fastfetch
+TUI文件资源管理器：yazi
+GUI文件资源管理器：Thunar
+壁纸引擎及其GUI：swww + waypaper
+音乐播放工具：go-musicfox
+多显示器管理工具：nwg-displays
+屏幕光标工具：libxcursor(默认) + hyprcursor
+身份验证守护进程：hyprpolkitagent。</description><guid isPermaLink="true">https://MP-2810.github.io/post/wo-de-hyprland-zu-jian-pei-zhi-qing-dan.html</guid><pubDate>Tue, 18 Aug 2026 22:21:31 +0000</pubDate></item><item><title>Linux命令行禁用Fn媒体键功能的方法</title><link>https://MP-2810.github.io/post/Linux-ming-ling-xing-jin-yong-Fn-mei-ti-jian-gong-neng-de-fang-fa.html</link><description>1. 查看当前模式
 `cat /sys/module/hid_apple/parameters/fnmode`
     0：禁用媒体功能，F键直接触发标准功能（如F1全屏）
     1：媒体优先（默认）
