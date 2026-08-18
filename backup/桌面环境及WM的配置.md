@@ -188,6 +188,10 @@ xdg-user-dirs-update  #更新用户目录
 sudo pacman -S power-profiles-daemon
 systemctl enable --now power-profiles-daemon
 ```
-安装
+安装`pavucontrol`并设置开机自启，提供音量键的GUI功能
 
 13. **waybar的一些基本美化**
+13.1. 去到`waybar`的github界面，下载`resource`目录下的`config.jsonc`,`sytle.css`和`custom_modules/power_menu.xml`文件，将其转移至在/.config/下新建的/waybar目录
+编辑`config.jsonc`文件，输入`:%s/sway/hyprland/g`将启动`sway`的设置参数全部替换为`hyprland`
+13.2 可以安装`ttf-jetbrains-mono-nerd`字体，以及`gnome-font-viewer`字体查看器
+编辑`sytle.css`，在`font-family`参数中加入`JetBrainsMono NFP`，通过使用propo字体改善waybar中文字与图表的间距问题

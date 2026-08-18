@@ -491,9 +491,13 @@ xdg-user-dirs-update  <span class="pl-c"><span class="pl-c">#</span>更新用户
 <pre class="notranslate"><code class="notranslate">sudo pacman -S power-profiles-daemon
 systemctl enable --now power-profiles-daemon
 </code></pre>
-<p>安装</p>
+<p>安装<code class="notranslate">pavucontrol</code>并设置开机自启，提供音量键的GUI功能</p>
 <ol start="13">
-<li><strong>waybar的一些基本美化</strong></li>
+<li><strong>waybar的一些基本美化</strong><br>
+13.1. 去到<code class="notranslate">waybar</code>的github界面，下载<code class="notranslate">resource</code>目录下的<code class="notranslate">config.jsonc</code>,<code class="notranslate">sytle.css</code>和<code class="notranslate">custom_modules/power_menu.xml</code>文件，将其转移至在/.config/下新建的/waybar目录<br>
+编辑<code class="notranslate">config.jsonc</code>文件，输入<code class="notranslate">:%s/sway/hyprland/g</code>将启动<code class="notranslate">sway</code>的设置参数全部替换为<code class="notranslate">hyprland</code><br>
+13.2 可以安装<code class="notranslate">ttf-jetbrains-mono-nerd</code>字体，以及<code class="notranslate">gnome-font-viewer</code>字体查看器<br>
+编辑<code class="notranslate">sytle.css</code>，在<code class="notranslate">font-family</code>参数中加入<code class="notranslate">JetBrainsMono NFP</code>，通过使用propo字体改善waybar中文字与图表的间距问题</li>
 </ol></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
