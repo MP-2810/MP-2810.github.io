@@ -206,3 +206,5 @@ systemctl enable --now power-profiles-daemon
 - **设置`waypaper`以浮动窗口打开**
     打开waypaper然后在终端运行hyprctl clients，找到waypaper窗口的`class`或`title`，在`hyprland.lua`最底部写入设置waypaper以浮动窗口打开的规则，具体详情请看wiki,这里展示基本的匿名规则：
     `hl.window_rule({match = { class ="waypaper的class或title参数名"}, float = true})`
+13.5 **编辑窗口外观**
+编辑`hyprland.lua`，搜索`gaps`，找到窗口相关的各项设置，可以设置窗口边距、透明度等数据
