@@ -195,3 +195,8 @@ systemctl enable --now power-profiles-daemon
 编辑`config.jsonc`文件，输入`:%s/sway/hyprland/g`将启动`sway`的设置参数全部替换为`hyprland`
 13.2 可以安装`ttf-jetbrains-mono-nerd`字体，以及`gnome-font-viewer`字体查看器
 编辑`sytle.css`，在`font-family`参数中加入`JetBrainsMono NFP`，通过使用propo字体改善waybar中文字与图表的间距问题
+- 可以修改config文件中`modules-right`的参数来增删面板模块
+13.3 **安装锁屏组件**
+`sudo pacman -S hyprlock`
+搜索`hyprlock`的wiki页面下载默认配置，将其粘贴到.config目录下的hypr目录，重命名为`hyprlock.conf`
+然后编辑`hyprland.lua`添加一个锁屏快捷键
