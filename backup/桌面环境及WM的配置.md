@@ -203,3 +203,6 @@ systemctl enable --now power-profiles-daemon
 13.4 **壁纸、截图剪切板**
 通过AUR安装壁纸切换组件及其GUI并设置`swww-daemon`开机自启
 `yay -S swww waypaper`
+- **设置`waypaper`以浮动窗口打开**
+    打开waypaper然后在终端运行hyprctl clients，找到waypaper窗口的`class`或`title`，在`hyprland.lua`最底部写入设置waypaper以浮动窗口打开的规则，具体详情请看wiki,这里展示基本的匿名规则：
+    `hl.window_rule({match = { class ="waypaper的class或title参数名"}, float = true})`
