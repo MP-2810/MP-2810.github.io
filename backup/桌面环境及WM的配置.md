@@ -200,3 +200,6 @@ systemctl enable --now power-profiles-daemon
 `sudo pacman -S hyprlock`
 搜索`hyprlock`的wiki页面下载默认配置，将其粘贴到.config目录下的hypr目录，重命名为`hyprlock.conf`
 然后编辑`hyprland.lua`添加一个锁屏快捷键
+13.4 **壁纸、截图剪切板**
+通过AUR安装壁纸切换组件及其GUI并设置`swww-daemon`开机自启
+`yay -S swww waypaper`
