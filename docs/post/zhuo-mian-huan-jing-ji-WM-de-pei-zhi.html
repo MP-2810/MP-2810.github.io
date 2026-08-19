@@ -483,11 +483,17 @@ xdg-user-dirs-update  <span class="pl-c"><span class="pl-c">#</span>更新用户
 <li>添加刷新面板快捷键：<br>
 在bind处添加快捷键方案：<br>
 <code class="notranslate">hl.bind(mainMod .. " + F2",hl.dsp.exec_cmd("pkill waybar || true &amp;&amp; waybar"))</code><br>
-安装networkmanager的任务栏组件<br>
+- 简单额外贴一下设置全屏快捷键的写法：</li>
+</ul>
+<div class="highlight highlight-source-lua"><pre class="notranslate"><span class="pl-smi">hl</span>.<span class="pl-c1">bind</span>(<span class="pl-smi">mainMod</span> <span class="pl-k">..</span> <span class="pl-s"><span class="pl-pds">"</span>F<span class="pl-pds">"</span></span>, <span class="pl-smi">hl</span>.<span class="pl-e">dsp</span>.<span class="pl-e">window</span>.<span class="pl-c1">fullscreen_state</span>({
+    <span class="pl-smi">internal</span> <span class="pl-k">=</span> <span class="pl-c1">2</span>,   <span class="pl-c"><span class="pl-c">--</span> 1=最大化，2=全屏</span>
+    <span class="pl-smi">client</span> <span class="pl-k">=</span> <span class="pl-c1">1</span>,     <span class="pl-c"><span class="pl-c">--</span> 1=当前窗口，2=所有窗口</span>
+    <span class="pl-smi">action</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>toggle<span class="pl-pds">" </span></span><span class="pl-c"><span class="pl-c">--</span> "toggle" 切换全屏状态，"on" 强制全屏，"off" 强制退出全屏</span>
+}))</pre></div>
+<p>安装networkmanager的任务栏组件<br>
 <code class="notranslate">sudo pacman -S network-manager-applet dnsmasq</code><br>
 一样将其任务栏组件<code class="notranslate">nm-applet</code>写进开机自启动里面<br>
-安装性能模式切换工具</li>
-</ul>
+安装性能模式切换工具</p>
 <pre class="notranslate"><code class="notranslate">sudo pacman -S power-profiles-daemon
 systemctl enable --now power-profiles-daemon
 </code></pre>

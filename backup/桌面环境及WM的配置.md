@@ -180,6 +180,14 @@ xdg-user-dirs-update  #更新用户目录
 - 添加刷新面板快捷键：
         在bind处添加快捷键方案：
         `hl.bind(mainMod .. " + F2",hl.dsp.exec_cmd("pkill waybar || true && waybar"))`
+        - 简单额外贴一下设置全屏快捷键的写法：
+```lua
+hl.bind(mainMod .. "F", hl.dsp.window.fullscreen_state({
+    internal = 2,   -- 1=最大化，2=全屏
+    client = 1,     -- 1=当前窗口，2=所有窗口
+    action = "toggle" -- "toggle" 切换全屏状态，"on" 强制全屏，"off" 强制退出全屏
+}))
+```
 安装networkmanager的任务栏组件
 `sudo pacman -S network-manager-applet dnsmasq`
     一样将其任务栏组件`nm-applet`写进开机自启动里面
