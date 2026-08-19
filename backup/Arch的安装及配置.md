@@ -170,6 +170,9 @@ Include = /etc/pacman.d/mirrorlist
 ```bash
 [archlinuxcn]
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+Server = https://mirrors.hit.edu.cn/archlinuxcn/$arch
+Server = https://repo.huaweicloud.com/archlinuxcn/$arch
 ```
 然后运行该命令同步数据并安装Archlinuxcn的密钥
 `pacman -Sy archlinuxcn-keyring`

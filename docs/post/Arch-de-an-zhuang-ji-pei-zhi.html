@@ -182,6 +182,9 @@ Include = /etc/pacman.d/mirrorlist
 ```bash
 [archlinuxcn]
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+Server = https://mirrors.hit.edu.cn/archlinuxcn/$arch
+Server = https://repo.huaweicloud.com/archlinuxcn/$arch
 ```
 然后运行该命令同步数据并安装Archlinuxcn的密钥
 `pacman -Sy archlinuxcn-keyring`
@@ -448,6 +451,9 @@ Include = /etc/pacman.d/mirrorlist
 ```bash
 [archlinuxcn]
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+Server = https://mirrors.hit.edu.cn/archlinuxcn/$arch
+Server = https://repo.huaweicloud.com/archlinuxcn/$arch
 ```
 然后运行该命令同步数据并安装Archlinuxcn的密钥
 `pacman -Sy archlinuxcn-keyring`
@@ -753,7 +759,10 @@ visudo</pre></div>
 Include = /etc/pacman.d/mirrorlist</pre></div>
 <p>两行的注释，并在末尾追加一行写入</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">[archlinuxcn]
-Server = https://mirrors.ustc.edu.cn/archlinuxcn/<span class="pl-smi">$arch</span></pre></div>
+Server = https://mirrors.ustc.edu.cn/archlinuxcn/<span class="pl-smi">$arch</span>
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/<span class="pl-smi">$arch</span>
+Server = https://mirrors.hit.edu.cn/archlinuxcn/<span class="pl-smi">$arch</span>
+Server = https://repo.huaweicloud.com/archlinuxcn/<span class="pl-smi">$arch</span></pre></div>
 <p>然后运行该命令同步数据并安装Archlinuxcn的密钥<br>
 <code class="notranslate">pacman -Sy archlinuxcn-keyring</code></p>
 <h3>下载AUR助手</h3>
