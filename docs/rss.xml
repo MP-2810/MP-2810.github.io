@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Wed, 19 Aug 2026 01:35:54 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>hyprland的一些基本配置方法</title><link>https://MP-2810.github.io/post/hyprland-de-yi-xie-ji-ben-pei-zhi-fang-fa.html</link><description>## 窗口透明度
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Wed, 19 Aug 2026 01:48:56 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>hyprland的一些基本配置方法</title><link>https://MP-2810.github.io/post/hyprland-de-yi-xie-ji-ben-pei-zhi-fang-fa.html</link><description>## 窗口透明度
 `hyprland.lua`中搜索`gaps_in`找到对应的配置模块，其中参数可以调节窗口圆角、透明度和模糊指数等参数
 不建议设置全局透明度，因为会导致正常画面也会被透明化例如浏览器放视频时的视频画面
 搜索`window_rule`来到文件最底层，可以新添窗口规则设置指定窗口透明化
@@ -29,27 +29,28 @@ hl.bind(mainMod .. 'F', hl.dsp.window.fullscreen_state({
 6. **身份验证守护进程：** hyprpolkitagent
 7. **应用程序启动器：** fuzzel
 8. **系统信息获取工具：** fastfetch
-9. **锁屏组件：** hyprlock
-10. **状态栏（面板）：** 未定，暂用waybar
-11. **输入法：** fcitx5
-12. **TUI文件资源管理器：** yazi
-13. **GUI文件资源管理器：** thunar
-14. **图片查看工具GUI：** gradia
-15. **视频查看工具：** VLC
-16. **图片缩略图功能：** tumbler
-17. **视频缩略图功能：** ffmpegthumbnailer
-18. **PDF缩略图功能：** poppler-glib
-19. **U盘及其他硬盘检测工具：** gvfs-smb
-20. **压缩解压缩软件：** file-roller
-21. **右键菜单解压缩功能：** thunar-archive-plugin
-22. **壁纸引擎及其GUI：** swww + waypaper
-23. **音乐播放工具：** go-musicfox
-24. **多显示器管理工具：** nwg-displays
-25. **屏幕光标工具：** libxcursor(默认) + hyprcursor
-26. **音量调节GUI：** pavucontrol
-27. **截图、坐标选取工具：** grim + slurp
-28. **剪切板：** copyq
-29. 。</description><guid isPermaLink="true">https://MP-2810.github.io/post/wo-de-hyprland-zu-jian-pei-zhi-qing-dan.html</guid><pubDate>Tue, 18 Aug 2026 22:21:31 +0000</pubDate></item><item><title>Linux命令行禁用Fn媒体键功能的方法</title><link>https://MP-2810.github.io/post/Linux-ming-ling-xing-jin-yong-Fn-mei-ti-jian-gong-neng-de-fang-fa.html</link><description>1. 查看当前模式
+9. **文本编辑器：** vim（后续应该会换成nvim）
+10. **锁屏组件：** hyprlock
+11. **状态栏（面板）：** 未定，暂用waybar
+12. **输入法：** fcitx5
+13. **TUI文件资源管理器：** yazi
+14. **GUI文件资源管理器：** thunar
+15. **图片查看工具GUI：** gradia
+16. **视频查看工具：** VLC
+17. **图片缩略图功能：** tumbler
+18. **视频缩略图功能：** ffmpegthumbnailer
+19. **PDF缩略图功能：** poppler-glib
+20. **U盘及其他硬盘检测工具：** gvfs-smb
+21. **压缩解压缩软件：** file-roller
+22. **右键菜单解压缩功能：** thunar-archive-plugin
+23. **壁纸引擎及其GUI：** swww + waypaper
+24. **音乐播放工具：** go-musicfox
+25. **多显示器管理工具：** nwg-displays
+26. **屏幕光标工具：** libxcursor(默认) + hyprcursor
+27. **音量调节GUI：** pavucontrol
+28. **截图、坐标选取工具：** grim + slurp
+29. **剪切板：** copyq
+30. 。</description><guid isPermaLink="true">https://MP-2810.github.io/post/wo-de-hyprland-zu-jian-pei-zhi-qing-dan.html</guid><pubDate>Tue, 18 Aug 2026 22:21:31 +0000</pubDate></item><item><title>Linux命令行禁用Fn媒体键功能的方法</title><link>https://MP-2810.github.io/post/Linux-ming-ling-xing-jin-yong-Fn-mei-ti-jian-gong-neng-de-fang-fa.html</link><description>1. 查看当前模式
 `cat /sys/module/hid_apple/parameters/fnmode`
     0：禁用媒体功能，F键直接触发标准功能（如F1全屏）
     1：媒体优先（默认）
