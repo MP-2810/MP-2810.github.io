@@ -27,5 +27,6 @@ hl.bind(mainMod .. "F", hl.dsp.window.fullscreen_state({
 `sudo pacman -S greetd`
 编辑配置文件：
 `sudo vim /etc/greetd/config/config.toml`
+将`user`中的参数改为自己的用户名
 将`command`参数中`agreety --cmd /bin/sh`的`sh`换成`start-hyprland`即可实现进入账户时hyprland的自动启动
 - 更高级的登录美化功能暂待发掘
