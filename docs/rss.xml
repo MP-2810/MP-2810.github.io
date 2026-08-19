@@ -1,5 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Wed, 19 Aug 2026 02:00:01 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>hyprland的一些基本配置</title><link>https://MP-2810.github.io/post/hyprland-de-yi-xie-ji-ben-pei-zhi.html</link><description>## **窗口透明度**
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Wed, 19 Aug 2026 03:25:21 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>qq无法正常使用fcitx5中文输入法</title><link>https://MP-2810.github.io/post/qq-wu-fa-zheng-chang-shi-yong-fcitx5-zhong-wen-shu-ru-fa.html</link><description>## linuxqq无法正常使用中文输入法的问题
+正常安装了fcitx5，并且在其他地方如终端、浏览器等地方都可以正常使用，但qq却出现了无法切换输入法、设置为中文输入法也无法输出中文拼音拼写的情况
+- 此前先安装过KDE,在KDE中qq可以正常使用中文输入法
+
+可能是会话环境或 XWayland 输入桥接有问题，如果没特殊情况的话，输入命令`hyprctl clients`，应该能查看到qq是依赖xwayland运行的
+通过编辑`hyprland.lua`配置文件可以解决：
+添加环境设置：
+```
+hl.env('GTK_IM_MODULE', 'fcitx')
+hl.env('QT_IM_MODULE', 'fcitx')
+hl.env('XMODIFIERS', '@im=fcitx')
+```。</description><guid isPermaLink="true">https://MP-2810.github.io/post/qq-wu-fa-zheng-chang-shi-yong-fcitx5-zhong-wen-shu-ru-fa.html</guid><pubDate>Wed, 19 Aug 2026 03:24:57 +0000</pubDate></item><item><title>hyprland的一些基本配置</title><link>https://MP-2810.github.io/post/hyprland-de-yi-xie-ji-ben-pei-zhi.html</link><description>## **窗口透明度**
 `hyprland.lua`中搜索`gaps_in`找到对应的配置模块，其中参数可以调节窗口圆角、透明度和模糊指数等参数
 不建议设置全局透明度，因为会导致正常画面也会被透明化例如浏览器放视频时的视频画面
 搜索`window_rule`来到文件最底层，可以新添窗口规则设置指定窗口透明化
