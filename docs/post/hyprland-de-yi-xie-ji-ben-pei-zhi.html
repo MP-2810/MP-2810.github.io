@@ -10,7 +10,7 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="## 窗口透明度
+<meta name="description" content="## **窗口透明度**
 `hyprland.lua`中搜索`gaps_in`找到对应的配置模块，其中参数可以调节窗口圆角、透明度和模糊指数等参数
 不建议设置全局透明度，因为会导致正常画面也会被透明化例如浏览器放视频时的视频画面
 搜索`window_rule`来到文件最底层，可以新添窗口规则设置指定窗口透明化
@@ -24,7 +24,7 @@ hl.window_rule({
 }) 
 ```
 
-## 全屏快捷键
+## **全屏快捷键**
 hyprland没有默认的全屏快捷键设置方案，可以手动添加，但是全屏调度器使用稍微有点复杂：
 ```lua
 hl.bind(mainMod .. 'F', hl.dsp.window.fullscreen_state({
@@ -32,9 +32,17 @@ hl.bind(mainMod .. 'F', hl.dsp.window.fullscreen_state({
     client = 1,     -- 1=当前窗口，2=所有窗口
     action = 'toggle' -- 'toggle' 切换全屏状态，'on' 强制全屏，'off' 强制退出全屏
 }))
-```。">
+```
+
+## **greetd**
+安装greetd:
+`sudo pacman -S greetd`
+编辑配置文件：
+`sudo vim /etc/greetd/config/config.toml`
+将`command`参数中`agreety --cmd /bin/sh`的`sh`换成`start-hyprland`即可实现进入账户时hyprland的自动启动
+- 更高级的登录美化功能暂待发掘。">
 <meta property="og:title" content="hyprland的一些基本配置">
-<meta property="og:description" content="## 窗口透明度
+<meta property="og:description" content="## **窗口透明度**
 `hyprland.lua`中搜索`gaps_in`找到对应的配置模块，其中参数可以调节窗口圆角、透明度和模糊指数等参数
 不建议设置全局透明度，因为会导致正常画面也会被透明化例如浏览器放视频时的视频画面
 搜索`window_rule`来到文件最底层，可以新添窗口规则设置指定窗口透明化
@@ -48,7 +56,7 @@ hl.window_rule({
 }) 
 ```
 
-## 全屏快捷键
+## **全屏快捷键**
 hyprland没有默认的全屏快捷键设置方案，可以手动添加，但是全屏调度器使用稍微有点复杂：
 ```lua
 hl.bind(mainMod .. 'F', hl.dsp.window.fullscreen_state({
@@ -56,7 +64,15 @@ hl.bind(mainMod .. 'F', hl.dsp.window.fullscreen_state({
     client = 1,     -- 1=当前窗口，2=所有窗口
     action = 'toggle' -- 'toggle' 切换全屏状态，'on' 强制全屏，'off' 强制退出全屏
 }))
-```。">
+```
+
+## **greetd**
+安装greetd:
+`sudo pacman -S greetd`
+编辑配置文件：
+`sudo vim /etc/greetd/config/config.toml`
+将`command`参数中`agreety --cmd /bin/sh`的`sh`换成`start-hyprland`即可实现进入账户时hyprland的自动启动
+- 更高级的登录美化功能暂待发掘。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/hyprland-de-yi-xie-ji-ben-pei-zhi.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -127,7 +143,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><h2>窗口透明度</h2>
+<div class="markdown-body" id="postBody"><h2><strong>窗口透明度</strong></h2>
 <p><code class="notranslate">hyprland.lua</code>中搜索<code class="notranslate">gaps_in</code>找到对应的配置模块，其中参数可以调节窗口圆角、透明度和模糊指数等参数<br>
 不建议设置全局透明度，因为会导致正常画面也会被透明化例如浏览器放视频时的视频画面<br>
 搜索<code class="notranslate">window_rule</code>来到文件最底层，可以新添窗口规则设置指定窗口透明化<br>
@@ -138,13 +154,22 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-smi">opacity</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>0.8 override 0.82 override 0.8<span class="pl-pds">"</span></span>, <span class="pl-c"><span class="pl-c">--</span> 意思是聚焦窗口透明度0.8、非聚焦窗口透明度0.82和全屏时透明度0.8</span>
 <span class="pl-c"><span class="pl-c">--</span> 也可以直接简写成"0.8 0.82 0.8"</span>
 }) </pre></div>
-<h2>全屏快捷键</h2>
+<h2><strong>全屏快捷键</strong></h2>
 <p>hyprland没有默认的全屏快捷键设置方案，可以手动添加，但是全屏调度器使用稍微有点复杂：</p>
 <div class="highlight highlight-source-lua"><pre class="notranslate"><span class="pl-smi">hl</span>.<span class="pl-c1">bind</span>(<span class="pl-smi">mainMod</span> <span class="pl-k">..</span> <span class="pl-s"><span class="pl-pds">"</span>F<span class="pl-pds">"</span></span>, <span class="pl-smi">hl</span>.<span class="pl-e">dsp</span>.<span class="pl-e">window</span>.<span class="pl-c1">fullscreen_state</span>({
     <span class="pl-smi">internal</span> <span class="pl-k">=</span> <span class="pl-c1">2</span>,   <span class="pl-c"><span class="pl-c">--</span> 1=最大化，2=全屏</span>
     <span class="pl-smi">client</span> <span class="pl-k">=</span> <span class="pl-c1">1</span>,     <span class="pl-c"><span class="pl-c">--</span> 1=当前窗口，2=所有窗口</span>
     <span class="pl-smi">action</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>toggle<span class="pl-pds">" </span></span><span class="pl-c"><span class="pl-c">--</span> "toggle" 切换全屏状态，"on" 强制全屏，"off" 强制退出全屏</span>
-}))</pre></div></div>
+}))</pre></div>
+<h2><strong>greetd</strong></h2>
+<p>安装greetd:<br>
+<code class="notranslate">sudo pacman -S greetd</code><br>
+编辑配置文件：<br>
+<code class="notranslate">sudo vim /etc/greetd/config/config.toml</code><br>
+将<code class="notranslate">command</code>参数中<code class="notranslate">agreety --cmd /bin/sh</code>的<code class="notranslate">sh</code>换成<code class="notranslate">start-hyprland</code>即可实现进入账户时hyprland的自动启动</p>
+<ul>
+<li>更高级的登录美化功能暂待发掘</li>
+</ul></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Wed, 19 Aug 2026 01:53:42 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>hyprland的一些基本配置</title><link>https://MP-2810.github.io/post/hyprland-de-yi-xie-ji-ben-pei-zhi.html</link><description>## 窗口透明度
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Wed, 19 Aug 2026 01:58:08 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>hyprland的一些基本配置</title><link>https://MP-2810.github.io/post/hyprland-de-yi-xie-ji-ben-pei-zhi.html</link><description>## **窗口透明度**
 `hyprland.lua`中搜索`gaps_in`找到对应的配置模块，其中参数可以调节窗口圆角、透明度和模糊指数等参数
 不建议设置全局透明度，因为会导致正常画面也会被透明化例如浏览器放视频时的视频画面
 搜索`window_rule`来到文件最底层，可以新添窗口规则设置指定窗口透明化
@@ -13,7 +13,7 @@ hl.window_rule({
 }) 
 ```
 
-## 全屏快捷键
+## **全屏快捷键**
 hyprland没有默认的全屏快捷键设置方案，可以手动添加，但是全屏调度器使用稍微有点复杂：
 ```lua
 hl.bind(mainMod .. 'F', hl.dsp.window.fullscreen_state({
@@ -21,7 +21,15 @@ hl.bind(mainMod .. 'F', hl.dsp.window.fullscreen_state({
     client = 1,     -- 1=当前窗口，2=所有窗口
     action = 'toggle' -- 'toggle' 切换全屏状态，'on' 强制全屏，'off' 强制退出全屏
 }))
-```。</description><guid isPermaLink="true">https://MP-2810.github.io/post/hyprland-de-yi-xie-ji-ben-pei-zhi.html</guid><pubDate>Wed, 19 Aug 2026 01:35:22 +0000</pubDate></item><item><title>我的hyprland组件配置清单</title><link>https://MP-2810.github.io/post/wo-de-hyprland-zu-jian-pei-zhi-qing-dan.html</link><description>1. **shell：** fish
+```
+
+## **greetd**
+安装greetd:
+`sudo pacman -S greetd`
+编辑配置文件：
+`sudo vim /etc/greetd/config/config.toml`
+将`command`参数中`agreety --cmd /bin/sh`的`sh`换成`start-hyprland`即可实现进入账户时hyprland的自动启动
+- 更高级的登录美化功能暂待发掘。</description><guid isPermaLink="true">https://MP-2810.github.io/post/hyprland-de-yi-xie-ji-ben-pei-zhi.html</guid><pubDate>Wed, 19 Aug 2026 01:35:22 +0000</pubDate></item><item><title>我的hyprland组件配置清单</title><link>https://MP-2810.github.io/post/wo-de-hyprland-zu-jian-pei-zhi-qing-dan.html</link><description>1. **shell：** fish
 2. **terminal：** kitty
 3. **显示服务器协议：** wayland + xwayland （考虑wayback中）
 4. **登录守护程序：** greetd
