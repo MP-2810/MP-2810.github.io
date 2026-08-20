@@ -1,5 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Thu, 20 Aug 2026 05:55:18 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>qq无法正常使用fcitx5中文输入法</title><link>https://MP-2810.github.io/post/qq-wu-fa-zheng-chang-shi-yong-fcitx5-zhong-wen-shu-ru-fa.html</link><description>## linuxqq无法正常使用中文输入法的问题
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Thu, 20 Aug 2026 06:11:34 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>我的vim配置</title><link>https://MP-2810.github.io/post/wo-de-vim-pei-zhi.html</link><description>### 1. 行数
+```
+set number
+set relativenumber
+```
+### 2. 缩进
+```
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set smartindent
+```。</description><guid isPermaLink="true">https://MP-2810.github.io/post/wo-de-vim-pei-zhi.html</guid><pubDate>Thu, 20 Aug 2026 06:11:04 +0000</pubDate></item><item><title>qq无法正常使用fcitx5中文输入法</title><link>https://MP-2810.github.io/post/qq-wu-fa-zheng-chang-shi-yong-fcitx5-zhong-wen-shu-ru-fa.html</link><description>## linuxqq无法正常使用中文输入法的问题
 正常安装了fcitx5，并且在其他地方如终端、浏览器等地方都可以正常使用，但qq却出现了无法切换输入法、设置为中文输入法也无法输出中文拼音拼写的情况
 - 此前先安装过KDE,在KDE中qq可以正常使用中文输入法
 
