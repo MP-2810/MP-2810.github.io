@@ -1,5 +1,28 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Thu, 20 Aug 2026 06:11:34 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>我的vim配置</title><link>https://MP-2810.github.io/post/wo-de-vim-pei-zhi.html</link><description>### 1. 行数
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Thu, 20 Aug 2026 06:26:32 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>我的waybar美化</title><link>https://MP-2810.github.io/post/wo-de-waybar-mei-hua.html</link><description>style.css
+```
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: JetBrainsMono NFP;
+    font-size: 18px;
+}
+
+window#waybar {
+    background-color: rgba(43, 48, 59, 0.35);
+    /* border-bottom: 3px solid rgba(100, 114, 125, 0.2); */
+    color: #ffffff;
+    /* transition-property: background-color; */
+    /* transition-duration: .5s; */
+}
+
+#workspaces button{
+    padding: 1px; /* 宽度 */
+    margin:  7px 0px 7px 7px; /* 上右下左边距 */
+    background: transparent; /* 背景透明 */
+    border-radius: 2px; /* 圆角 */
+    color: white;
+}
+```。</description><guid isPermaLink="true">https://MP-2810.github.io/post/wo-de-waybar-mei-hua.html</guid><pubDate>Thu, 20 Aug 2026 06:25:55 +0000</pubDate></item><item><title>我的vim配置</title><link>https://MP-2810.github.io/post/wo-de-vim-pei-zhi.html</link><description>### 1. 行数
 ```
 set number
 set relativenumber
