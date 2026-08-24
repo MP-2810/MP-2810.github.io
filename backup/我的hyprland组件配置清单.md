@@ -25,6 +25,7 @@
 25. **多显示器管理工具：** nwg-displays
 26. **屏幕光标工具：** libxcursor(默认) + hyprcursor
 27. **音量调节GUI：** pavucontrol
-28. **截图、坐标选取工具：** grim + slurp
-29. **剪切板：** copyq
-30. 
+28. **亮度调节工具：** brightnessctl
+29. **截图、坐标选取工具：** grim + slurp
+30. **剪切板：** copyq
+31. 
