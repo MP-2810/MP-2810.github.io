@@ -6,7 +6,7 @@
 6. **身份验证守护进程：** hyprpolkitagent
 7. **应用程序启动器：** fuzzel
 8. **系统信息获取工具：** fastfetch
-9. **文本编辑器：** vim（后续应该会换成nvim）
+9. **文本编辑器：** vim（后续会换成neovim）
 10. **锁屏组件：** hyprlock
 11. **状态栏（面板）：** 未定，暂用waybar
 12. **输入法：** fcitx5
