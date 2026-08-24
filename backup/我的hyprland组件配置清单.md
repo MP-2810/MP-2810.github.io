@@ -28,4 +28,4 @@
 28. **亮度调节工具：** brightnessctl
 29. **截图、坐标选取工具：** grim + slurp
 30. **剪切板：** copyq
-31. 
+31. **磁盘管理TUI工具：** btop
