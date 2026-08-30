@@ -36,7 +36,21 @@ touch init.lua
 使用`require("core.module")`引入core/module.lua
 
 ## 2. 一些基础配置
-```bash
-vim.opt.number = true
-vim.opt.relativenumber = true  #分别设置行号和绝对行号
+### 行号和相对行号
 ```
+vim.opt.number = true
+vim.opt.relativenumber = true
+```
+### 行列高亮显示
+```
+vim.opt.cursorline = true
+vim.opt.colorcolumn = "100"
+```
+### 缩进
+```bash
+vim.opt.expandtab = true  -- 按下tab自动转换为空格
+vim.opt.tabstop = 4 -- 一个制表符对应的空格数
+vim.opt.shiftwidth = 0 -- 新建行时按tab会读取shiftwidth并写入对应的空格数
+```
+### 自动加载外部修改
+`vim.opt.autoread = true`
