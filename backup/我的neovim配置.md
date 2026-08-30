@@ -29,6 +29,8 @@ touch init.lua
 -- 📄 init.lua
 -- 📁 lua
 ---- 📄 module.lua
+---- 📁 core
+------ 📄 module.lua
 ```
 然后就可以在`init.lua`中使用`require("module")`引入`module.lua`
-
+使用`require("core.module")`引入core/module.lua
