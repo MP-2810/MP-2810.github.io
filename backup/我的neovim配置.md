@@ -30,3 +30,5 @@ touch init.lua
 -- 📁 lua
 ---- 📄 module.lua
 ```
+然后就可以在`init.lua`中使用`require("module")`引入`module.lua`
+
