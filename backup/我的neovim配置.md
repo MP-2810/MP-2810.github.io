@@ -13,4 +13,9 @@ set autoindent
 set smartindent
 ```
 ## NeoVim的配置
-### 1. 
+### 1. 创建nvim的配置文件
+```
+mkdir -p ~/.config/nvim
+cd ~/.config/nvim
+touch init.lua
+```
