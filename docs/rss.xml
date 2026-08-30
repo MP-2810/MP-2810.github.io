@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 30 Aug 2026 12:27:14 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>如何在Arch上开启热点给其他设备用</title><link>https://MP-2810.github.io/post/ru-he-zai-Arch-shang-kai-qi-re-dian-gei-qi-ta-she-bei-yong.html</link><description>## 1. 先确认安装了NetWorkManager
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 30 Aug 2026 12:27:56 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>如何在Arch上开启热点给其他设备用</title><link>https://MP-2810.github.io/post/ru-he-zai-Arch-shang-kai-qi-re-dian-gei-qi-ta-she-bei-yong.html</link><description>## 1. 先确认安装了NetWorkManager
 ## 2. 再确认网卡名
 `nmcli device status`
 找到当前电脑使用的网络类型（WLAN或者网线）使用的网卡名字
@@ -93,9 +93,9 @@ vim.opt.colorcolumn = '100'
 ```
 ### 缩进
 ```bash
-vim.opt.expandtab = true  -- 按下tab自动转换为空格
-vim.opt.tabstop = 4 -- 一个制表符对应的空格数
-vim.opt.shiftwidth = 0 -- 新建行时按tab会读取shiftwidth并写入对应的空格数
+vim.opt.expandtab = true  #按下tab自动转换为空格
+vim.opt.tabstop = 4  #一个制表符对应的空格数
+vim.opt.shiftwidth = 0  #新建行时按tab会读取shiftwidth并写入对应的空格数
 ```
 ### 自动加载外部修改
 `vim.opt.autoread = true`。</description><guid isPermaLink="true">https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html</guid><pubDate>Thu, 20 Aug 2026 06:11:04 +0000</pubDate></item><item><title>qq无法正常使用fcitx5中文输入法</title><link>https://MP-2810.github.io/post/qq-wu-fa-zheng-chang-shi-yong-fcitx5-zhong-wen-shu-ru-fa.html</link><description>## linuxqq无法正常使用中文输入法的问题
