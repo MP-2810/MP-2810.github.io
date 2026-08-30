@@ -30,6 +30,17 @@ set smartindent
 mkdir -p ~/.config/nvim
 cd ~/.config/nvim
 touch init.lua
+```
+
+#### 拆分neovim配置
+因为当配置文件庞大到一定程度之后不利于维护和阅读，因此可以拆分neovim配置来简化维护
+通常的做法是在配置文件夹下创建一个lua文件夹，然后在其中添加各个模块：
+例如有如下结构：
+```
+📁 nvim
+-- 📄 init.lua
+-- 📁 lua
+---- 📄 module.lua
 ```。">
 <meta property="og:title" content="我的neovim配置">
 <meta property="og:description" content="## Vim的一些基础配置
@@ -52,6 +63,17 @@ set smartindent
 mkdir -p ~/.config/nvim
 cd ~/.config/nvim
 touch init.lua
+```
+
+#### 拆分neovim配置
+因为当配置文件庞大到一定程度之后不利于维护和阅读，因此可以拆分neovim配置来简化维护
+通常的做法是在配置文件夹下创建一个lua文件夹，然后在其中添加各个模块：
+例如有如下结构：
+```
+📁 nvim
+-- 📄 init.lua
+-- 📁 lua
+---- 📄 module.lua
 ```。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html">
@@ -140,6 +162,15 @@ set smartindent
 <pre class="notranslate"><code class="notranslate">mkdir -p ~/.config/nvim
 cd ~/.config/nvim
 touch init.lua
+</code></pre>
+<h4>拆分neovim配置</h4>
+<p>因为当配置文件庞大到一定程度之后不利于维护和阅读，因此可以拆分neovim配置来简化维护<br>
+通常的做法是在配置文件夹下创建一个lua文件夹，然后在其中添加各个模块：<br>
+例如有如下结构：</p>
+<pre class="notranslate"><code class="notranslate">📁 nvim
+-- 📄 init.lua
+-- 📁 lua
+---- 📄 module.lua
 </code></pre></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 

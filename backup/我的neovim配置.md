@@ -19,3 +19,14 @@ mkdir -p ~/.config/nvim
 cd ~/.config/nvim
 touch init.lua
 ```
+
+#### 拆分neovim配置
+因为当配置文件庞大到一定程度之后不利于维护和阅读，因此可以拆分neovim配置来简化维护
+通常的做法是在配置文件夹下创建一个lua文件夹，然后在其中添加各个模块：
+例如有如下结构：
+```
+📁 nvim
+-- 📄 init.lua
+-- 📁 lua
+---- 📄 module.lua
+```

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 30 Aug 2026 11:42:00 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>如何在Arch上开启热点给其他设备用</title><link>https://MP-2810.github.io/post/ru-he-zai-Arch-shang-kai-qi-re-dian-gei-qi-ta-she-bei-yong.html</link><description>## 1. 先确认安装了NetWorkManager
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 30 Aug 2026 11:49:44 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>如何在Arch上开启热点给其他设备用</title><link>https://MP-2810.github.io/post/ru-he-zai-Arch-shang-kai-qi-re-dian-gei-qi-ta-she-bei-yong.html</link><description>## 1. 先确认安装了NetWorkManager
 ## 2. 再确认网卡名
 `nmcli device status`
 找到当前电脑使用的网络类型（WLAN或者网线）使用的网卡名字
@@ -63,6 +63,17 @@ set smartindent
 mkdir -p ~/.config/nvim
 cd ~/.config/nvim
 touch init.lua
+```
+
+#### 拆分neovim配置
+因为当配置文件庞大到一定程度之后不利于维护和阅读，因此可以拆分neovim配置来简化维护
+通常的做法是在配置文件夹下创建一个lua文件夹，然后在其中添加各个模块：
+例如有如下结构：
+```
+📁 nvim
+-- 📄 init.lua
+-- 📁 lua
+---- 📄 module.lua
 ```。</description><guid isPermaLink="true">https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html</guid><pubDate>Thu, 20 Aug 2026 06:11:04 +0000</pubDate></item><item><title>qq无法正常使用fcitx5中文输入法</title><link>https://MP-2810.github.io/post/qq-wu-fa-zheng-chang-shi-yong-fcitx5-zhong-wen-shu-ru-fa.html</link><description>## linuxqq无法正常使用中文输入法的问题
 正常安装了fcitx5，并且在其他地方如终端、浏览器等地方都可以正常使用，但qq却出现了无法切换输入法、设置为中文输入法也无法输出中文拼音拼写的情况
 - 此前先安装过KDE,在KDE中qq可以正常使用中文输入法
