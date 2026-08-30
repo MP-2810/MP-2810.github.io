@@ -1,3 +1,4 @@
+## Vim的一些基础配置
 ### 1. 行数
 ```
 set number
@@ -11,3 +12,5 @@ set expandtab
 set autoindent
 set smartindent
 ```
+## NeoVim的配置
+### 1. 
