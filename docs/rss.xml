@@ -1,5 +1,26 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 30 Aug 2026 11:17:21 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>Hyprland下无法正常显示各种小图标的问题</title><link>https://MP-2810.github.io/post/Hyprland-xia-wu-fa-zheng-chang-xian-shi-ge-zhong-xiao-tu-biao-de-wen-ti.html</link><description>### 在使用过程中发现，有出现终端显示正常，但输入法、浏览器各种无法正常显示各种小图标的问题，如输入法不能显示，但是浏览器却能显示。</description><guid isPermaLink="true">https://MP-2810.github.io/post/Hyprland-xia-wu-fa-zheng-chang-xian-shi-ge-zhong-xiao-tu-biao-de-wen-ti.html</guid><pubDate>Mon, 24 Aug 2026 05:45:46 +0000</pubDate></item><item><title>我的waybar美化</title><link>https://MP-2810.github.io/post/wo-de-waybar-mei-hua.html</link><description>style.css
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 30 Aug 2026 11:37:30 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>如何在Arch上开启热点给其他设备用</title><link>https://MP-2810.github.io/post/ru-he-zai-Arch-shang-kai-qi-re-dian-gei-qi-ta-she-bei-yong.html</link><description>## 1. 先确认安装了NetWorkManager
+## 2. 再确认网卡名
+`nmcli device status`
+找到当前电脑使用的网络类型（WLAN或者网线）使用的网卡名字
+例如如下输出：
+```
+DEVICE           TYPE      STATE         CONNECTION         
+enp8s0           ethernet  已连接        Wired connection 1 
+lo               loopback  连接（外部）  lo                 
+wlp14s0          wifi      已断开        --                 
+p2p-dev-wlp14s0  wifi-p2p  已断开        --  
+```
+当前使用有线网络，对应的网卡名字是`enp8s0`
+而开启热点需要使用无线网卡来提供热点服务
+可得无线网卡名字为`wlp14s0`
+使用命令：
+`nmcli device wifi hotspot ifname wlp14s0 ssid ArchHotspot password '12345678'`
+开启热点服务
+其中ssid是热点名字，password是密码（最少八位）
+也可以使用GUi工具nm-connection-editor来配置修改
+选择想要分享的网络
+然后添加新链接，选择Wi-Fi即可添加修改热点。</description><guid isPermaLink="true">https://MP-2810.github.io/post/ru-he-zai-Arch-shang-kai-qi-re-dian-gei-qi-ta-she-bei-yong.html</guid><pubDate>Sun, 30 Aug 2026 11:37:02 +0000</pubDate></item><item><title>Hyprland下无法正常显示各种小图标的问题</title><link>https://MP-2810.github.io/post/Hyprland-xia-wu-fa-zheng-chang-xian-shi-ge-zhong-xiao-tu-biao-de-wen-ti.html</link><description>### 在使用过程中发现，有出现终端显示正常，但输入法、浏览器各种无法正常显示各种小图标的问题，如输入法不能显示，但是浏览器却能显示。</description><guid isPermaLink="true">https://MP-2810.github.io/post/Hyprland-xia-wu-fa-zheng-chang-xian-shi-ge-zhong-xiao-tu-biao-de-wen-ti.html</guid><pubDate>Mon, 24 Aug 2026 05:45:46 +0000</pubDate></item><item><title>我的waybar美化</title><link>https://MP-2810.github.io/post/wo-de-waybar-mei-hua.html</link><description>style.css
 ```
 * {
     /* `otf-font-awesome` is required to be installed for icons */
