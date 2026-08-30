@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Mon, 24 Aug 2026 07:42:33 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>Hyprland下无法正常显示各种小图标的问题</title><link>https://MP-2810.github.io/post/Hyprland-xia-wu-fa-zheng-chang-xian-shi-ge-zhong-xiao-tu-biao-de-wen-ti.html</link><description>### 在使用过程中发现，有出现终端显示正常，但输入法、浏览器各种无法正常显示各种小图标的问题，如输入法不能显示，但是浏览器却能显示。</description><guid isPermaLink="true">https://MP-2810.github.io/post/Hyprland-xia-wu-fa-zheng-chang-xian-shi-ge-zhong-xiao-tu-biao-de-wen-ti.html</guid><pubDate>Mon, 24 Aug 2026 05:45:46 +0000</pubDate></item><item><title>我的waybar美化</title><link>https://MP-2810.github.io/post/wo-de-waybar-mei-hua.html</link><description>style.css
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 30 Aug 2026 08:24:39 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>Hyprland下无法正常显示各种小图标的问题</title><link>https://MP-2810.github.io/post/Hyprland-xia-wu-fa-zheng-chang-xian-shi-ge-zhong-xiao-tu-biao-de-wen-ti.html</link><description>### 在使用过程中发现，有出现终端显示正常，但输入法、浏览器各种无法正常显示各种小图标的问题，如输入法不能显示，但是浏览器却能显示。</description><guid isPermaLink="true">https://MP-2810.github.io/post/Hyprland-xia-wu-fa-zheng-chang-xian-shi-ge-zhong-xiao-tu-biao-de-wen-ti.html</guid><pubDate>Mon, 24 Aug 2026 05:45:46 +0000</pubDate></item><item><title>我的waybar美化</title><link>https://MP-2810.github.io/post/wo-de-waybar-mei-hua.html</link><description>style.css
 ```
 * {
     /* `otf-font-awesome` is required to be installed for icons */
@@ -22,7 +22,7 @@ window#waybar {
     border-radius: 2px; /* 圆角 */
     color: white;
 }
-```。</description><guid isPermaLink="true">https://MP-2810.github.io/post/wo-de-waybar-mei-hua.html</guid><pubDate>Thu, 20 Aug 2026 06:25:55 +0000</pubDate></item><item><title>我的vim配置</title><link>https://MP-2810.github.io/post/wo-de-vim-pei-zhi.html</link><description>### 1. 行数
+```。</description><guid isPermaLink="true">https://MP-2810.github.io/post/wo-de-waybar-mei-hua.html</guid><pubDate>Thu, 20 Aug 2026 06:25:55 +0000</pubDate></item><item><title>我的neovim配置</title><link>https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html</link><description>### 1. 行数
 ```
 set number
 set relativenumber
@@ -34,7 +34,7 @@ set shiftwidth=4
 set expandtab
 set autoindent
 set smartindent
-```。</description><guid isPermaLink="true">https://MP-2810.github.io/post/wo-de-vim-pei-zhi.html</guid><pubDate>Thu, 20 Aug 2026 06:11:04 +0000</pubDate></item><item><title>qq无法正常使用fcitx5中文输入法</title><link>https://MP-2810.github.io/post/qq-wu-fa-zheng-chang-shi-yong-fcitx5-zhong-wen-shu-ru-fa.html</link><description>## linuxqq无法正常使用中文输入法的问题
+```。</description><guid isPermaLink="true">https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html</guid><pubDate>Thu, 20 Aug 2026 06:11:04 +0000</pubDate></item><item><title>qq无法正常使用fcitx5中文输入法</title><link>https://MP-2810.github.io/post/qq-wu-fa-zheng-chang-shi-yong-fcitx5-zhong-wen-shu-ru-fa.html</link><description>## linuxqq无法正常使用中文输入法的问题
 正常安装了fcitx5，并且在其他地方如终端、浏览器等地方都可以正常使用，但qq却出现了无法切换输入法、设置为中文输入法也无法输出中文拼音拼写的情况
 - 此前先安装过KDE,在KDE中qq可以正常使用中文输入法
 
