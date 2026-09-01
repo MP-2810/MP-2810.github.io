@@ -65,7 +65,20 @@ vim.opt.tabstop = 4  #一个制表符对应的空格数
 vim.opt.shiftwidth = 0  #新建行时按tab会读取shiftwidth并写入对应的空格数
 ```
 ### 自动加载外部修改
-`vim.opt.autoread = true`。">
+`vim.opt.autoread = true`
+
+## 3. 快捷键
+撤销ctrl+z和取消撤销的快捷键
+```
+vim.keymap.set({ 'n', 'i' }, '<C-z>', '<Cmd>undo<CR>', { silent = true })
+vim.keymap.set( 'i', '<C-r>', '<Cmd>redo<CR>', {silent = true })
+```
+
+## 4. 插件
+### 安装lazy插件管理器
+#### 先安装git
+`sudo pacman -S git`
+。">
 <meta property="og:title" content="我的neovim配置">
 <meta property="og:description" content="## Vim的一些基础配置
 ### 1. 行数
@@ -122,7 +135,20 @@ vim.opt.tabstop = 4  #一个制表符对应的空格数
 vim.opt.shiftwidth = 0  #新建行时按tab会读取shiftwidth并写入对应的空格数
 ```
 ### 自动加载外部修改
-`vim.opt.autoread = true`。">
+`vim.opt.autoread = true`
+
+## 3. 快捷键
+撤销ctrl+z和取消撤销的快捷键
+```
+vim.keymap.set({ 'n', 'i' }, '<C-z>', '<Cmd>undo<CR>', { silent = true })
+vim.keymap.set( 'i', '<C-r>', '<Cmd>redo<CR>', {silent = true })
+```
+
+## 4. 插件
+### 安装lazy插件管理器
+#### 先安装git
+`sudo pacman -S git`
+。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -238,7 +264,16 @@ vim.opt.colorcolumn = "100"
 vim.opt.tabstop = 4  <span class="pl-c"><span class="pl-c">#</span>一个制表符对应的空格数</span>
 vim.opt.shiftwidth = 0  <span class="pl-c"><span class="pl-c">#</span>新建行时按tab会读取shiftwidth并写入对应的空格数</span></pre></div>
 <h3>自动加载外部修改</h3>
-<p><code class="notranslate">vim.opt.autoread = true</code></p></div>
+<p><code class="notranslate">vim.opt.autoread = true</code></p>
+<h2>3. 快捷键</h2>
+<p>撤销ctrl+z和取消撤销的快捷键</p>
+<pre class="notranslate"><code class="notranslate">vim.keymap.set({ "n", "i" }, "&lt;C-z&gt;", "&lt;Cmd&gt;undo&lt;CR&gt;", { silent = true })
+vim.keymap.set( "i", "&lt;C-r&gt;", "&lt;Cmd&gt;redo&lt;CR&gt;", {silent = true })
+</code></pre>
+<h2>4. 插件</h2>
+<h3>安装lazy插件管理器</h3>
+<h4>先安装git</h4>
+<p><code class="notranslate">sudo pacman -S git</code></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

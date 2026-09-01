@@ -54,3 +54,15 @@ vim.opt.shiftwidth = 0  #新建行时按tab会读取shiftwidth并写入对应的
 ```
 ### 自动加载外部修改
 `vim.opt.autoread = true`
+
+## 3. 快捷键
+撤销ctrl+z和取消撤销的快捷键
+```
+vim.keymap.set({ "n", "i" }, "<C-z>", "<Cmd>undo<CR>", { silent = true })
+vim.keymap.set( "i", "<C-r>", "<Cmd>redo<CR>", {silent = true })
+```
+
+## 4. 插件
+### 安装lazy插件管理器
+#### 先安装git
+`sudo pacman -S git`
