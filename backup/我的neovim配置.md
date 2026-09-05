@@ -371,3 +371,11 @@ vim.opt.smartcase = true
 -- 不要在查找之后继续高亮匹配结果
 vim.opt.hlsearch = false
 ```
+### （选做）配置capabilities
+在mason.lua中require("mason-lspconfig").setup前加入
+`config.server_capabilities=require("blink.cmp").get_lsp_capabilities()`
+### 使用 Snippets
+我们可以不只是使用插件提供的 snippet，也可以自己定义一些 snippet ，对我们的开发、写作等工作都可以提供很大的帮助
+blink 默认支持 VsCode 格式的 snippet，可以参照其官方文档https://code.visualstudio.com/docs/editor/userdefinedsnippets
+默认情况下，blink 会在 neovim 的配置路径下的 snippets/ 文件夹下寻找 snippet，如果要给 markdown 写 snippet 就把文件放在 markdown.json 文件中，以此类推
+`mkdir ~/.config/nvim/snippets`
