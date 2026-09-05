@@ -197,3 +197,5 @@ return {
 ✔ft：当前buffer为特定文件类型的时候加载插件
 ✔keys：当触发快捷键时加载插件，如果快捷键不存在则创建快捷键
 因此bufferline.lua中有一行`lazy = false`用于禁用懒加载，使其可以在nvim启动时就启用bufferline插件
+
+## 7. LSP
