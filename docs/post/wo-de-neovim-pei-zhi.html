@@ -78,7 +78,30 @@ vim.keymap.set( 'i', '<C-r>', '<Cmd>redo<CR>', {silent = true })
 ### 安装lazy插件管理器
 #### 先安装git
 `sudo pacman -S git`
-。">
+#### 然后编写配置文件
+例如在lua/core里添加lazy.lua文件
+写入
+```
+local lazypath = vim.fn.stdpath('data') .. 'lazy/lazy.nvim'
+
+if not vim.uv.fs_stat(lazypath) then
+    vim.fn.system({
+        'git',
+        'clone',
+        '--filter=blob:none',
+        'https://github.com/folke/lazy.nvim.git',
+        '--branch=stable',
+        lazypath
+    })
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+require('lazy').setup({})
+```
+以设置lazy的自动安装及其检测
+然后重启nvim,等待安装完毕
+输入`:Lazy`看是否能打开lazy面板检验安装。">
 <meta property="og:title" content="我的neovim配置">
 <meta property="og:description" content="## Vim的一些基础配置
 ### 1. 行数
@@ -148,7 +171,30 @@ vim.keymap.set( 'i', '<C-r>', '<Cmd>redo<CR>', {silent = true })
 ### 安装lazy插件管理器
 #### 先安装git
 `sudo pacman -S git`
-。">
+#### 然后编写配置文件
+例如在lua/core里添加lazy.lua文件
+写入
+```
+local lazypath = vim.fn.stdpath('data') .. 'lazy/lazy.nvim'
+
+if not vim.uv.fs_stat(lazypath) then
+    vim.fn.system({
+        'git',
+        'clone',
+        '--filter=blob:none',
+        'https://github.com/folke/lazy.nvim.git',
+        '--branch=stable',
+        lazypath
+    })
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+require('lazy').setup({})
+```
+以设置lazy的自动安装及其检测
+然后重启nvim,等待安装完毕
+输入`:Lazy`看是否能打开lazy面板检验安装。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -273,7 +319,30 @@ vim.keymap.set( "i", "&lt;C-r&gt;", "&lt;Cmd&gt;redo&lt;CR&gt;", {silent = true 
 <h2>4. 插件</h2>
 <h3>安装lazy插件管理器</h3>
 <h4>先安装git</h4>
-<p><code class="notranslate">sudo pacman -S git</code></p></div>
+<p><code class="notranslate">sudo pacman -S git</code></p>
+<h4>然后编写配置文件</h4>
+<p>例如在lua/core里添加lazy.lua文件<br>
+写入</p>
+<pre class="notranslate"><code class="notranslate">local lazypath = vim.fn.stdpath("data") .. "lazy/lazy.nvim"
+
+if not vim.uv.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath
+    })
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({})
+</code></pre>
+<p>以设置lazy的自动安装及其检测<br>
+然后重启nvim,等待安装完毕<br>
+输入<code class="notranslate">:Lazy</code>看是否能打开lazy面板检验安装</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

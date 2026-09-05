@@ -66,3 +66,27 @@ vim.keymap.set( "i", "<C-r>", "<Cmd>redo<CR>", {silent = true })
 ### 安装lazy插件管理器
 #### 先安装git
 `sudo pacman -S git`
+#### 然后编写配置文件
+例如在lua/core里添加lazy.lua文件
+写入
+```
+local lazypath = vim.fn.stdpath("data") .. "lazy/lazy.nvim"
+
+if not vim.uv.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath
+    })
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({})
+```
+以设置lazy的自动安装及其检测
+然后重启nvim,等待安装完毕
+输入`:Lazy`看是否能打开lazy面板检验安装
