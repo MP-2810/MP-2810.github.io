@@ -445,3 +445,24 @@ return {
     }
 }
 ```
+
+## 8. 实用插件
+### nvim-treesitter
+什么是treesiter
+✔把代码内容解析为抽象语法树（abstract syntax tree, AST）
+新建nvim-treesitter.lua，写入
+```
+return {
+    "nvim-treesitter/nvim-treesitter",
+    main = "nvim-treesitter.configs",
+    branch = "master",
+    event = "VeryLazy",
+    opts = {
+        ensure_installed = { "c", "lua", "cpp", "haskell", "bash", "python", "rust", "css",
+          "cmake", "json", "markdown", "markdown_inline", "html", "perl", "hyprlang",
+          "vim", "vimdoc", "diff", "regex", "toml", "verilog", "scala" },
+          -- do not use `zig`, which heavily slows down nvim
+        highlight = { enable = true }
+    },
+}
+```

@@ -456,6 +456,27 @@ return {
         { '<leader>lp', ':Lspsaga diagnostic_jump_prev<CR>' },
     }
 }
+```
+
+## 8. 实用插件
+### nvim-treesitter
+什么是treesiter
+✔把代码内容解析为抽象语法树（abstract syntax tree, AST）
+新建nvim-treesitter.lua，写入
+```
+return {
+    'nvim-treesitter/nvim-treesitter',
+    main = 'nvim-treesitter.configs',
+    branch = 'master',
+    event = 'VeryLazy',
+    opts = {
+        ensure_installed = { 'c', 'lua', 'cpp', 'haskell', 'bash', 'python', 'rust', 'css',
+          'cmake', 'json', 'markdown', 'markdown_inline', 'html', 'perl', 'hyprlang',
+          'vim', 'vimdoc', 'diff', 'regex', 'toml', 'verilog', 'scala' },
+          -- do not use `zig`, which heavily slows down nvim
+        highlight = { enable = true }
+    },
+}
 ```。">
 <meta property="og:title" content="我的neovim配置">
 <meta property="og:description" content="## Vim的一些基础配置
@@ -903,6 +924,27 @@ return {
         { '<leader>ln', ':Lspsaga diagnostic_jump_next<CR>' },
         { '<leader>lp', ':Lspsaga diagnostic_jump_prev<CR>' },
     }
+}
+```
+
+## 8. 实用插件
+### nvim-treesitter
+什么是treesiter
+✔把代码内容解析为抽象语法树（abstract syntax tree, AST）
+新建nvim-treesitter.lua，写入
+```
+return {
+    'nvim-treesitter/nvim-treesitter',
+    main = 'nvim-treesitter.configs',
+    branch = 'master',
+    event = 'VeryLazy',
+    opts = {
+        ensure_installed = { 'c', 'lua', 'cpp', 'haskell', 'bash', 'python', 'rust', 'css',
+          'cmake', 'json', 'markdown', 'markdown_inline', 'html', 'perl', 'hyprlang',
+          'vim', 'vimdoc', 'diff', 'regex', 'toml', 'verilog', 'scala' },
+          -- do not use `zig`, which heavily slows down nvim
+        highlight = { enable = true }
+    },
 }
 ```。">
 <meta property="og:type" content="article">
@@ -1384,6 +1426,25 @@ blink 默认支持 VsCode 格式的 snippet，可以参照其官方文档<a href
         { "&lt;leader&gt;ln", ":Lspsaga diagnostic_jump_next&lt;CR&gt;" },
         { "&lt;leader&gt;lp", ":Lspsaga diagnostic_jump_prev&lt;CR&gt;" },
     }
+}
+</code></pre>
+<h2>8. 实用插件</h2>
+<h3>nvim-treesitter</h3>
+<p>什么是treesiter<br>
+✔把代码内容解析为抽象语法树（abstract syntax tree, AST）<br>
+新建nvim-treesitter.lua，写入</p>
+<pre class="notranslate"><code class="notranslate">return {
+    "nvim-treesitter/nvim-treesitter",
+    main = "nvim-treesitter.configs",
+    branch = "master",
+    event = "VeryLazy",
+    opts = {
+        ensure_installed = { "c", "lua", "cpp", "haskell", "bash", "python", "rust", "css",
+          "cmake", "json", "markdown", "markdown_inline", "html", "perl", "hyprlang",
+          "vim", "vimdoc", "diff", "regex", "toml", "verilog", "scala" },
+          -- do not use `zig`, which heavily slows down nvim
+        highlight = { enable = true }
+    },
 }
 </code></pre></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
