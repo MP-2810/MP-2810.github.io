@@ -27,3 +27,8 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 直接输入`yes`回车即可
 应该可以看到
 `Hi [你的用户名]! You've successfully authenticated, but GitHub does not provide shell access.`
+
+### 全局配置 Git 使用 SSH
+让 Git 自动将所有 GitHub 的 HTTPS 链接转为 SSH：
+`git config --global url."git@github.com:".insteadOf "https://github.com/"`
+这样所有 https://github.com/xxx/xxx.git 都会自动变成 git@github.com:xxx/xxx.git。

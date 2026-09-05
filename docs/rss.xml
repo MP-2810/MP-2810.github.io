@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sat, 05 Sep 2026 07:15:10 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>配置SSH使用</title><link>https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</link><description>### 没有配置SSH的情况下，git克隆时可能会出现失败的情况
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sat, 05 Sep 2026 07:19:21 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>配置SSH使用</title><link>https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</link><description>### 没有配置SSH的情况下，git克隆时可能会出现失败的情况
 ### 1. 检查是否有 SSH 密钥
 `ls ~/.ssh/id_*`
 
@@ -27,7 +27,12 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
 直接输入`yes`回车即可
 应该可以看到
-`Hi [你的用户名]! You've successfully authenticated, but GitHub does not provide shell access.`。</description><guid isPermaLink="true">https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</guid><pubDate>Sat, 05 Sep 2026 03:57:34 +0000</pubDate></item><item><title>在Arch上开启热点给其他设备用</title><link>https://MP-2810.github.io/post/zai-Arch-shang-kai-qi-re-dian-gei-qi-ta-she-bei-yong.html</link><description>## 1. 先确认安装了NetWorkManager
+`Hi [你的用户名]! You've successfully authenticated, but GitHub does not provide shell access.`
+
+### 全局配置 Git 使用 SSH
+让 Git 自动将所有 GitHub 的 HTTPS 链接转为 SSH：
+`git config --global url.'git@github.com:'.insteadOf 'https://github.com/'`
+这样所有 https://github.com/xxx/xxx.git 都会自动变成 git@github.com:xxx/xxx.git。</description><guid isPermaLink="true">https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</guid><pubDate>Sat, 05 Sep 2026 03:57:34 +0000</pubDate></item><item><title>在Arch上开启热点给其他设备用</title><link>https://MP-2810.github.io/post/zai-Arch-shang-kai-qi-re-dian-gei-qi-ta-she-bei-yong.html</link><description>## 1. 先确认安装了NetWorkManager
 ## 2. 再确认网卡名
 `nmcli device status`
 找到当前电脑使用的网络类型（WLAN或者网线）使用的网卡名字

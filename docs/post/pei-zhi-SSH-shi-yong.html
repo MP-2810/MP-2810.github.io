@@ -38,7 +38,12 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
 直接输入`yes`回车即可
 应该可以看到
-`Hi [你的用户名]! You've successfully authenticated, but GitHub does not provide shell access.`。">
+`Hi [你的用户名]! You've successfully authenticated, but GitHub does not provide shell access.`
+
+### 全局配置 Git 使用 SSH
+让 Git 自动将所有 GitHub 的 HTTPS 链接转为 SSH：
+`git config --global url.'git@github.com:'.insteadOf 'https://github.com/'`
+这样所有 https://github.com/xxx/xxx.git 都会自动变成 git@github.com:xxx/xxx.git。">
 <meta property="og:title" content="配置SSH使用">
 <meta property="og:description" content="### 没有配置SSH的情况下，git克隆时可能会出现失败的情况
 ### 1. 检查是否有 SSH 密钥
@@ -68,7 +73,12 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
 直接输入`yes`回车即可
 应该可以看到
-`Hi [你的用户名]! You've successfully authenticated, but GitHub does not provide shell access.`。">
+`Hi [你的用户名]! You've successfully authenticated, but GitHub does not provide shell access.`
+
+### 全局配置 Git 使用 SSH
+让 Git 自动将所有 GitHub 的 HTTPS 链接转为 SSH：
+`git config --global url.'git@github.com:'.insteadOf 'https://github.com/'`
+这样所有 https://github.com/xxx/xxx.git 都会自动变成 git@github.com:xxx/xxx.git。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -163,7 +173,11 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 </code></pre>
 <p>直接输入<code class="notranslate">yes</code>回车即可<br>
 应该可以看到<br>
-<code class="notranslate">Hi [你的用户名]! You've successfully authenticated, but GitHub does not provide shell access.</code></p></div>
+<code class="notranslate">Hi [你的用户名]! You've successfully authenticated, but GitHub does not provide shell access.</code></p>
+<h3>全局配置 Git 使用 SSH</h3>
+<p>让 Git 自动将所有 GitHub 的 HTTPS 链接转为 SSH：<br>
+<code class="notranslate">git config --global url."git@github.com:".insteadOf "https://github.com/"</code><br>
+这样所有 <a href="https://github.com/xxx/xxx.git">https://github.com/xxx/xxx.git</a> 都会自动变成 <a href="mailto:git@github.com">git@github.com</a>:xxx/xxx.git。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
