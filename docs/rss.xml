@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sat, 05 Sep 2026 16:03:52 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>配置SSH使用</title><link>https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</link><description>### 没有配置SSH的情况下，git克隆时可能会出现失败的情况
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sat, 05 Sep 2026 16:42:14 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>配置SSH使用</title><link>https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</link><description>### 没有配置SSH的情况下，git克隆时可能会出现失败的情况
 ### 1. 检查是否有 SSH 密钥
 `ls ~/.ssh/id_*`
 
@@ -28,6 +28,16 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 直接输入`yes`回车即可
 应该可以看到
 `Hi [你的用户名]! You've successfully authenticated, but GitHub does not provide shell access.`
+
+### 配置git使用代理
+`vim ~/.gitconfig`
+然后写入
+```bash
+[http]
+     proxy = 127.0.0.1:10808 #这里填自己代理的端口号
+ [https]
+     proxy = 127.0.0.1:10808
+```
 
 ### 全局配置 Git 使用 SSH
 让 Git 自动将所有 GitHub 的 HTTPS 链接转为 SSH：

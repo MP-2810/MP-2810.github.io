@@ -28,6 +28,16 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 应该可以看到
 `Hi [你的用户名]! You've successfully authenticated, but GitHub does not provide shell access.`
 
+### 配置git使用代理
+`vim ~/.gitconfig`
+然后写入
+```bash
+[http]
+     proxy = 127.0.0.1:10808 #这里填自己代理的端口号
+ [https]
+     proxy = 127.0.0.1:10808
+```
+
 ### 全局配置 Git 使用 SSH
 让 Git 自动将所有 GitHub 的 HTTPS 链接转为 SSH：
 `git config --global url."git@github.com:".insteadOf "https://github.com/"`
