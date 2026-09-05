@@ -466,3 +466,8 @@ return {
     },
 }
 ```
+### nvim-tree
+### lualine
+### indent-blankline
+### telescope
+### grug-far
