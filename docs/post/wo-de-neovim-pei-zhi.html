@@ -152,7 +152,7 @@ return {
 ```
 
 ### 添加括号/引号/标签
-在plugins下新建nvim-surround.lua.lua，写入
+在plugins下新建nvim-surround.lua，写入
 ```
 return {
     'kylechui/nvim-surround',
@@ -160,8 +160,25 @@ return {
     opts = {}
 }
 ```
-比如`ysiw 引号`可以将目标单词用引号包裹
-`ys2w 引号`可以将光标移动范围（2w）内用引号包裹
+比如`ysiw '`可以将目标单词用引号包裹
+`ys2w '`可以将光标移动范围（2w）内用引号包裹
+也可以按`v`进入可视模式来选中范围，按`S 引号`来包裹
+`ds '`可以删除光标内容外的一对引号
+`cs ' '`可以把双引号改成单引号
+
+### 快速跳转
+在plugins下新建hop.lua，写入
+```
+return {
+    'smoka7/hop.nvim',
+    opts = {
+        hint_position = 3,
+    },
+    keys = {
+        { '<leader>hp', ':HopWord<CR>', silent = true }
+    }
+}
+```
 
 ## 6. Buffer/Window/Tab
 ✔buffer：文件在内存当中的表示
@@ -336,7 +353,7 @@ return {
 ```
 
 ### 添加括号/引号/标签
-在plugins下新建nvim-surround.lua.lua，写入
+在plugins下新建nvim-surround.lua，写入
 ```
 return {
     'kylechui/nvim-surround',
@@ -344,8 +361,25 @@ return {
     opts = {}
 }
 ```
-比如`ysiw 引号`可以将目标单词用引号包裹
-`ys2w 引号`可以将光标移动范围（2w）内用引号包裹
+比如`ysiw '`可以将目标单词用引号包裹
+`ys2w '`可以将光标移动范围（2w）内用引号包裹
+也可以按`v`进入可视模式来选中范围，按`S 引号`来包裹
+`ds '`可以删除光标内容外的一对引号
+`cs ' '`可以把双引号改成单引号
+
+### 快速跳转
+在plugins下新建hop.lua，写入
+```
+return {
+    'smoka7/hop.nvim',
+    opts = {
+        hint_position = 3,
+    },
+    keys = {
+        { '<leader>hp', ':HopWord<CR>', silent = true }
+    }
+}
+```
 
 ## 6. Buffer/Window/Tab
 ✔buffer：文件在内存当中的表示
@@ -568,15 +602,30 @@ require("lazy").setup({})
 }
 </code></pre>
 <h3>添加括号/引号/标签</h3>
-<p>在plugins下新建nvim-surround.lua.lua，写入</p>
+<p>在plugins下新建nvim-surround.lua，写入</p>
 <pre class="notranslate"><code class="notranslate">return {
     "kylechui/nvim-surround",
     event = "VeryLazy",
     opts = {}
 }
 </code></pre>
-<p>比如<code class="notranslate">ysiw 引号</code>可以将目标单词用引号包裹<br>
-<code class="notranslate">ys2w 引号</code>可以将光标移动范围（2w）内用引号包裹</p>
+<p>比如<code class="notranslate">ysiw "</code>可以将目标单词用引号包裹<br>
+<code class="notranslate">ys2w "</code>可以将光标移动范围（2w）内用引号包裹<br>
+也可以按<code class="notranslate">v</code>进入可视模式来选中范围，按<code class="notranslate">S 引号</code>来包裹<br>
+<code class="notranslate">ds "</code>可以删除光标内容外的一对引号<br>
+<code class="notranslate">cs " '</code>可以把双引号改成单引号</p>
+<h3>快速跳转</h3>
+<p>在plugins下新建hop.lua，写入</p>
+<pre class="notranslate"><code class="notranslate">return {
+    "smoka7/hop.nvim",
+    opts = {
+        hint_position = 3,
+    },
+    keys = {
+        { "&lt;leader&gt;hp", ":HopWord&lt;CR&gt;", silent = true }
+    }
+}
+</code></pre>
 <h2>6. Buffer/Window/Tab</h2>
 <p>✔buffer：文件在内存当中的表示<br>
 ✔window：显示buffer的视窗，一个窗口同一时间存在一个buffer<br>

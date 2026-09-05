@@ -140,7 +140,7 @@ return {
 ```
 
 ### 添加括号/引号/标签
-在plugins下新建nvim-surround.lua.lua，写入
+在plugins下新建nvim-surround.lua，写入
 ```
 return {
     "kylechui/nvim-surround",
@@ -148,8 +148,25 @@ return {
     opts = {}
 }
 ```
-比如`ysiw 引号`可以将目标单词用引号包裹
-`ys2w 引号`可以将光标移动范围（2w）内用引号包裹
+比如`ysiw "`可以将目标单词用引号包裹
+`ys2w "`可以将光标移动范围（2w）内用引号包裹
+也可以按`v`进入可视模式来选中范围，按`S 引号`来包裹
+`ds "`可以删除光标内容外的一对引号
+`cs " '`可以把双引号改成单引号
+
+### 快速跳转
+在plugins下新建hop.lua，写入
+```
+return {
+    "smoka7/hop.nvim",
+    opts = {
+        hint_position = 3,
+    },
+    keys = {
+        { "<leader>hp", ":HopWord<CR>", silent = true }
+    }
+}
+```
 
 ## 6. Buffer/Window/Tab
 ✔buffer：文件在内存当中的表示
