@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sat, 05 Sep 2026 14:23:33 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>配置SSH使用</title><link>https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</link><description>### 没有配置SSH的情况下，git克隆时可能会出现失败的情况
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sat, 05 Sep 2026 16:03:52 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>配置SSH使用</title><link>https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</link><description>### 没有配置SSH的情况下，git克隆时可能会出现失败的情况
 ### 1. 检查是否有 SSH 密钥
 `ls ~/.ssh/id_*`
 
@@ -459,7 +459,70 @@ blink 默认支持 VsCode 格式的 snippet，可以参照其官方文档https:/
 `mkdir ~/.config/nvim/snippets`
 
 ### 格式化工具
-。</description><guid isPermaLink="true">https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html</guid><pubDate>Thu, 20 Aug 2026 06:11:04 +0000</pubDate></item><item><title>qq无法正常使用fcitx5中文输入法</title><link>https://MP-2810.github.io/post/qq-wu-fa-zheng-chang-shi-yong-fcitx5-zhong-wen-shu-ru-fa.html</link><description>## linuxqq无法正常使用中文输入法的问题
+使用none-ls
+新建`none-ls.lua`
+写入
+```
+return {
+	'nvimtools/none-ls.nvim',
+	dependencies = { 'nvim-lua/plenary.nvim' },
+	event = 'VeryLazy',
+	config = function()
+		local registry = require('mason-registry')
+
+		local function install(name)
+			local success, package = pcall(registry.get_package, name)
+			if success and not package:is_installed() then
+				package:install()
+			end
+		end
+
+		install('stylua')
+
+		local null_ls = require('null-ls')
+		null_ls.setup({
+			sources = {
+				null_ls.builtins.formatting.stylua,
+			},
+		})
+	end,
+	keys = {
+		{
+			'&lt;leader&gt;lf',
+			function()
+				vim.lsp.buf.format()
+			end,
+		},
+	},
+}
+```
+顺便设置了快捷键`&lt;leader&gt;lf`一键格式化
+
+### 使用lspsaga增强lsp体验
+新建lspsaga.lua
+```
+return {
+    'nvimdev/lspsaga.nvim',
+    event = 'LspAttach',
+    cmd = 'Lspsaga',
+    opts = {
+        finder = {
+            keys = {
+                toggle_or_open = '&lt;CR&gt;',
+            },
+        },
+    },
+    keys = {
+        { '&lt;leader&gt;lr', ':Lspsaga rename&lt;CR&gt;' },
+        { '&lt;leader&gt;lc', ':Lspsaga code_action&lt;CR&gt;' },
+        { '&lt;leader&gt;ld', ':Lspsaga goto_definition&lt;CR&gt;' },
+        { '&lt;leader&gt;lh', ':Lspsaga hover_doc&lt;CR&gt;' },
+        { '&lt;leader&gt;lf', ':Lspsaga finder&lt;CR&gt;' },
+        { '&lt;leader&gt;ln', ':Lspsaga diagnostic_jump_next&lt;CR&gt;' },
+        { '&lt;leader&gt;lp', ':Lspsaga diagnostic_jump_prev&lt;CR&gt;' },
+    }
+}
+```。</description><guid isPermaLink="true">https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html</guid><pubDate>Thu, 20 Aug 2026 06:11:04 +0000</pubDate></item><item><title>qq无法正常使用fcitx5中文输入法</title><link>https://MP-2810.github.io/post/qq-wu-fa-zheng-chang-shi-yong-fcitx5-zhong-wen-shu-ru-fa.html</link><description>## linuxqq无法正常使用中文输入法的问题
 正常安装了fcitx5，并且在其他地方如终端、浏览器等地方都可以正常使用，但qq却出现了无法切换输入法、设置为中文输入法也无法输出中文拼音拼写的情况
 - 此前先安装过KDE,在KDE中qq可以正常使用中文输入法
 

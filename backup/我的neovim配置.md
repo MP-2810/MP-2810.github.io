@@ -381,3 +381,67 @@ blink 默认支持 VsCode 格式的 snippet，可以参照其官方文档https:/
 `mkdir ~/.config/nvim/snippets`
 
 ### 格式化工具
+使用none-ls
+新建`none-ls.lua`
+写入
+```
+return {
+	"nvimtools/none-ls.nvim",
+	dependencies = { "nvim-lua/plenary.nvim" },
+	event = "VeryLazy",
+	config = function()
+		local registry = require("mason-registry")
+
+		local function install(name)
+			local success, package = pcall(registry.get_package, name)
+			if success and not package:is_installed() then
+				package:install()
+			end
+		end
+
+		install("stylua")
+
+		local null_ls = require("null-ls")
+		null_ls.setup({
+			sources = {
+				null_ls.builtins.formatting.stylua,
+			},
+		})
+	end,
+	keys = {
+		{
+			"<leader>lf",
+			function()
+				vim.lsp.buf.format()
+			end,
+		},
+	},
+}
+```
+顺便设置了快捷键`<leader>lf`一键格式化
+
+### 使用lspsaga增强lsp体验
+新建lspsaga.lua
+```
+return {
+    "nvimdev/lspsaga.nvim",
+    event = 'LspAttach',
+    cmd = "Lspsaga",
+    opts = {
+        finder = {
+            keys = {
+                toggle_or_open = "<CR>",
+            },
+        },
+    },
+    keys = {
+        { "<leader>lr", ":Lspsaga rename<CR>" },
+        { "<leader>lc", ":Lspsaga code_action<CR>" },
+        { "<leader>ld", ":Lspsaga goto_definition<CR>" },
+        { "<leader>lh", ":Lspsaga hover_doc<CR>" },
+        { "<leader>lf", ":Lspsaga finder<CR>" },
+        { "<leader>ln", ":Lspsaga diagnostic_jump_next<CR>" },
+        { "<leader>lp", ":Lspsaga diagnostic_jump_prev<CR>" },
+    }
+}
+```

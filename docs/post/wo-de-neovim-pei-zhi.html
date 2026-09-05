@@ -393,7 +393,70 @@ blink 默认支持 VsCode 格式的 snippet，可以参照其官方文档https:/
 `mkdir ~/.config/nvim/snippets`
 
 ### 格式化工具
-。">
+使用none-ls
+新建`none-ls.lua`
+写入
+```
+return {
+	'nvimtools/none-ls.nvim',
+	dependencies = { 'nvim-lua/plenary.nvim' },
+	event = 'VeryLazy',
+	config = function()
+		local registry = require('mason-registry')
+
+		local function install(name)
+			local success, package = pcall(registry.get_package, name)
+			if success and not package:is_installed() then
+				package:install()
+			end
+		end
+
+		install('stylua')
+
+		local null_ls = require('null-ls')
+		null_ls.setup({
+			sources = {
+				null_ls.builtins.formatting.stylua,
+			},
+		})
+	end,
+	keys = {
+		{
+			'<leader>lf',
+			function()
+				vim.lsp.buf.format()
+			end,
+		},
+	},
+}
+```
+顺便设置了快捷键`<leader>lf`一键格式化
+
+### 使用lspsaga增强lsp体验
+新建lspsaga.lua
+```
+return {
+    'nvimdev/lspsaga.nvim',
+    event = 'LspAttach',
+    cmd = 'Lspsaga',
+    opts = {
+        finder = {
+            keys = {
+                toggle_or_open = '<CR>',
+            },
+        },
+    },
+    keys = {
+        { '<leader>lr', ':Lspsaga rename<CR>' },
+        { '<leader>lc', ':Lspsaga code_action<CR>' },
+        { '<leader>ld', ':Lspsaga goto_definition<CR>' },
+        { '<leader>lh', ':Lspsaga hover_doc<CR>' },
+        { '<leader>lf', ':Lspsaga finder<CR>' },
+        { '<leader>ln', ':Lspsaga diagnostic_jump_next<CR>' },
+        { '<leader>lp', ':Lspsaga diagnostic_jump_prev<CR>' },
+    }
+}
+```。">
 <meta property="og:title" content="我的neovim配置">
 <meta property="og:description" content="## Vim的一些基础配置
 ### 1. 行数
@@ -778,7 +841,70 @@ blink 默认支持 VsCode 格式的 snippet，可以参照其官方文档https:/
 `mkdir ~/.config/nvim/snippets`
 
 ### 格式化工具
-。">
+使用none-ls
+新建`none-ls.lua`
+写入
+```
+return {
+	'nvimtools/none-ls.nvim',
+	dependencies = { 'nvim-lua/plenary.nvim' },
+	event = 'VeryLazy',
+	config = function()
+		local registry = require('mason-registry')
+
+		local function install(name)
+			local success, package = pcall(registry.get_package, name)
+			if success and not package:is_installed() then
+				package:install()
+			end
+		end
+
+		install('stylua')
+
+		local null_ls = require('null-ls')
+		null_ls.setup({
+			sources = {
+				null_ls.builtins.formatting.stylua,
+			},
+		})
+	end,
+	keys = {
+		{
+			'<leader>lf',
+			function()
+				vim.lsp.buf.format()
+			end,
+		},
+	},
+}
+```
+顺便设置了快捷键`<leader>lf`一键格式化
+
+### 使用lspsaga增强lsp体验
+新建lspsaga.lua
+```
+return {
+    'nvimdev/lspsaga.nvim',
+    event = 'LspAttach',
+    cmd = 'Lspsaga',
+    opts = {
+        finder = {
+            keys = {
+                toggle_or_open = '<CR>',
+            },
+        },
+    },
+    keys = {
+        { '<leader>lr', ':Lspsaga rename<CR>' },
+        { '<leader>lc', ':Lspsaga code_action<CR>' },
+        { '<leader>ld', ':Lspsaga goto_definition<CR>' },
+        { '<leader>lh', ':Lspsaga hover_doc<CR>' },
+        { '<leader>lf', ':Lspsaga finder<CR>' },
+        { '<leader>ln', ':Lspsaga diagnostic_jump_next<CR>' },
+        { '<leader>lp', ':Lspsaga diagnostic_jump_prev<CR>' },
+    }
+}
+```。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -1198,7 +1324,68 @@ vim.opt.hlsearch = false
 blink 默认支持 VsCode 格式的 snippet，可以参照其官方文档<a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets" rel="nofollow">https://code.visualstudio.com/docs/editor/userdefinedsnippets</a><br>
 默认情况下，blink 会在 neovim 的配置路径下的 snippets/ 文件夹下寻找 snippet，如果要给 markdown 写 snippet 就把文件放在 markdown.json 文件中，以此类推<br>
 <code class="notranslate">mkdir ~/.config/nvim/snippets</code></p>
-<h3>格式化工具</h3></div>
+<h3>格式化工具</h3>
+<p>使用none-ls<br>
+新建<code class="notranslate">none-ls.lua</code><br>
+写入</p>
+<pre class="notranslate"><code class="notranslate">return {
+	"nvimtools/none-ls.nvim",
+	dependencies = { "nvim-lua/plenary.nvim" },
+	event = "VeryLazy",
+	config = function()
+		local registry = require("mason-registry")
+
+		local function install(name)
+			local success, package = pcall(registry.get_package, name)
+			if success and not package:is_installed() then
+				package:install()
+			end
+		end
+
+		install("stylua")
+
+		local null_ls = require("null-ls")
+		null_ls.setup({
+			sources = {
+				null_ls.builtins.formatting.stylua,
+			},
+		})
+	end,
+	keys = {
+		{
+			"&lt;leader&gt;lf",
+			function()
+				vim.lsp.buf.format()
+			end,
+		},
+	},
+}
+</code></pre>
+<p>顺便设置了快捷键<code class="notranslate">&lt;leader&gt;lf</code>一键格式化</p>
+<h3>使用lspsaga增强lsp体验</h3>
+<p>新建lspsaga.lua</p>
+<pre class="notranslate"><code class="notranslate">return {
+    "nvimdev/lspsaga.nvim",
+    event = 'LspAttach',
+    cmd = "Lspsaga",
+    opts = {
+        finder = {
+            keys = {
+                toggle_or_open = "&lt;CR&gt;",
+            },
+        },
+    },
+    keys = {
+        { "&lt;leader&gt;lr", ":Lspsaga rename&lt;CR&gt;" },
+        { "&lt;leader&gt;lc", ":Lspsaga code_action&lt;CR&gt;" },
+        { "&lt;leader&gt;ld", ":Lspsaga goto_definition&lt;CR&gt;" },
+        { "&lt;leader&gt;lh", ":Lspsaga hover_doc&lt;CR&gt;" },
+        { "&lt;leader&gt;lf", ":Lspsaga finder&lt;CR&gt;" },
+        { "&lt;leader&gt;ln", ":Lspsaga diagnostic_jump_next&lt;CR&gt;" },
+        { "&lt;leader&gt;lp", ":Lspsaga diagnostic_jump_prev&lt;CR&gt;" },
+    }
+}
+</code></pre></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
