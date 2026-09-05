@@ -206,6 +206,7 @@ return {
 ✔unzip
 ✔tar
 ✔gzip
+### 基本配置（以lua为例）
 在plugins下新建mason.lua，写入
 ```
 return {
