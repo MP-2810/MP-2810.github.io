@@ -90,3 +90,24 @@ require("lazy").setup({})
 以设置lazy的自动安装及其检测
 然后重启nvim,等待安装完毕
 输入`:Lazy`看是否能打开lazy面板检验安装
+
+#### 先安装个主题看看
+在lazy.lua中改写如下内容
+```
+require("lazy").setup({
+    spec = {
+        { import = "plugins" }
+    }
+})
+```
+然后创建与core同级的目录`plugins`
+创建tokyonight.lua
+写入
+```
+return {
+    "folke/tokyonight.nvim"
+}
+```
+然后重启nvim,等待lazy自动clone
+如果出现无法克隆的情况，查看我的博客`配置SSH使用`配置SSH
+完成后输入`:colorscheme tokyonight`即可启用主题

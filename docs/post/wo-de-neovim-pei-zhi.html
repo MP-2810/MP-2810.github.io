@@ -101,7 +101,28 @@ require('lazy').setup({})
 ```
 以设置lazy的自动安装及其检测
 然后重启nvim,等待安装完毕
-输入`:Lazy`看是否能打开lazy面板检验安装。">
+输入`:Lazy`看是否能打开lazy面板检验安装
+
+#### 先安装个主题看看
+在lazy.lua中改写如下内容
+```
+require('lazy').setup({
+    spec = {
+        { import = 'plugins' }
+    }
+})
+```
+然后创建与core同级的目录`plugins`
+创建tokyonight.lua
+写入
+```
+return {
+    'folke/tokyonight.nvim'
+}
+```
+然后重启nvim,等待lazy自动clone
+如果出现无法克隆的情况，查看我的博客`配置SSH使用`配置SSH
+完成后输入`:colorscheme tokyonight`即可启用主题。">
 <meta property="og:title" content="我的neovim配置">
 <meta property="og:description" content="## Vim的一些基础配置
 ### 1. 行数
@@ -194,7 +215,28 @@ require('lazy').setup({})
 ```
 以设置lazy的自动安装及其检测
 然后重启nvim,等待安装完毕
-输入`:Lazy`看是否能打开lazy面板检验安装。">
+输入`:Lazy`看是否能打开lazy面板检验安装
+
+#### 先安装个主题看看
+在lazy.lua中改写如下内容
+```
+require('lazy').setup({
+    spec = {
+        { import = 'plugins' }
+    }
+})
+```
+然后创建与core同级的目录`plugins`
+创建tokyonight.lua
+写入
+```
+return {
+    'folke/tokyonight.nvim'
+}
+```
+然后重启nvim,等待lazy自动clone
+如果出现无法克隆的情况，查看我的博客`配置SSH使用`配置SSH
+完成后输入`:colorscheme tokyonight`即可启用主题。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -342,7 +384,25 @@ require("lazy").setup({})
 </code></pre>
 <p>以设置lazy的自动安装及其检测<br>
 然后重启nvim,等待安装完毕<br>
-输入<code class="notranslate">:Lazy</code>看是否能打开lazy面板检验安装</p></div>
+输入<code class="notranslate">:Lazy</code>看是否能打开lazy面板检验安装</p>
+<h4>先安装个主题看看</h4>
+<p>在lazy.lua中改写如下内容</p>
+<pre class="notranslate"><code class="notranslate">require("lazy").setup({
+    spec = {
+        { import = "plugins" }
+    }
+})
+</code></pre>
+<p>然后创建与core同级的目录<code class="notranslate">plugins</code><br>
+创建tokyonight.lua<br>
+写入</p>
+<pre class="notranslate"><code class="notranslate">return {
+    "folke/tokyonight.nvim"
+}
+</code></pre>
+<p>然后重启nvim,等待lazy自动clone<br>
+如果出现无法克隆的情况，查看我的博客<code class="notranslate">配置SSH使用</code>配置SSH<br>
+完成后输入<code class="notranslate">:colorscheme tokyonight</code>即可启用主题</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
