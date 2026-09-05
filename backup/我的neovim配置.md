@@ -125,3 +125,8 @@ return {
     end
 }
 ```
+
+## 5. Buffer/Window/Tab
+buffer：文件在内存当中的表示
+window：显示buffer的视窗，一个窗口同一时间存在一个buffer
+tab page：window的集合，一个neovim session可以有多个window
