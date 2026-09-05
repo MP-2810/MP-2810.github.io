@@ -242,18 +242,89 @@ return {
     event = 'VeryLazy',
     dependencies = {
         'neovim/nvim-lspconfig',
-        'williamboman/mason-lspconfig.nvim',
+        'mason-org/mason-lspconfig.nvim',
     },
     opts = {},
     config = function (_, opts)
         require('mason').setup(opts)
+
+        vim.lsp.config('lua_ls', {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = {
+                            'vim',
+                        },
+                    },
+                },
+            },
+        })
 
         require('mason-lspconfig').setup({
             ensure_installed = {
                 'lua_ls',
             }
         })
+
+        vim.lsp.enable('lua_ls')
+        vim.diagnostic.config({
+            virtual_text = true,
+            -- virtual_lines = true,
+            update_in_insert = true,
+        })
+
+        vim.api.nvim_create_autocmd('LspAttach', {
+            callback = function(args)
+                local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+                if client and client.server_capabilities.diagnosticProvider then
+                    vim.schedule(function()
+                        vim.diagnostic.enable(true, {
+                            bufnr = args.buf,
+                        })
+                    end)
+                end
+            end,
+        })
     end,
+}
+```
+接着修改bufferline.lua使bufferline也具备显示LSP的报错功能
+```
+return {
+    'akinsho/bufferline.nvim',
+    dependencies = {
+        'nvim-tree/nvim-web-devicons'
+    },
+    opts = {
+        options = {
+            diagnostics = 'nvim_lsp',
+            diagnostics_indicator = function (_, _, diagnostics_dict, _)
+                local indicator = ' '
+                for level, number in pairs(diagnostics_dict) do
+                    local symbol
+                    if level == 'error' then
+                        symbol = ' '
+                    elseif level == 'warning' then
+                        symbol = ' '
+                    else
+                        symbol = ' '
+                    end
+                    indicator = indicator .. number .. symbol
+                end
+                return indicator
+            end
+        }
+    },
+
+    keys = {
+        { '<leader>bb', ':BufferLineCyclePrev<CR>', silent = true },
+        { '<leader>bn', ':BufferLineCycleNext<CR>', silent = true },
+        { '<leader>bp', ':BufferLinePick<CR>', silent = true },
+        { '<leader>bd', ':bdelete<CR>', silent = true},
+    },
+
+    lazy = false
 }
 ```。">
 <meta property="og:title" content="我的neovim配置">
@@ -489,18 +560,89 @@ return {
     event = 'VeryLazy',
     dependencies = {
         'neovim/nvim-lspconfig',
-        'williamboman/mason-lspconfig.nvim',
+        'mason-org/mason-lspconfig.nvim',
     },
     opts = {},
     config = function (_, opts)
         require('mason').setup(opts)
+
+        vim.lsp.config('lua_ls', {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = {
+                            'vim',
+                        },
+                    },
+                },
+            },
+        })
 
         require('mason-lspconfig').setup({
             ensure_installed = {
                 'lua_ls',
             }
         })
+
+        vim.lsp.enable('lua_ls')
+        vim.diagnostic.config({
+            virtual_text = true,
+            -- virtual_lines = true,
+            update_in_insert = true,
+        })
+
+        vim.api.nvim_create_autocmd('LspAttach', {
+            callback = function(args)
+                local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+                if client and client.server_capabilities.diagnosticProvider then
+                    vim.schedule(function()
+                        vim.diagnostic.enable(true, {
+                            bufnr = args.buf,
+                        })
+                    end)
+                end
+            end,
+        })
     end,
+}
+```
+接着修改bufferline.lua使bufferline也具备显示LSP的报错功能
+```
+return {
+    'akinsho/bufferline.nvim',
+    dependencies = {
+        'nvim-tree/nvim-web-devicons'
+    },
+    opts = {
+        options = {
+            diagnostics = 'nvim_lsp',
+            diagnostics_indicator = function (_, _, diagnostics_dict, _)
+                local indicator = ' '
+                for level, number in pairs(diagnostics_dict) do
+                    local symbol
+                    if level == 'error' then
+                        symbol = ' '
+                    elseif level == 'warning' then
+                        symbol = ' '
+                    else
+                        symbol = ' '
+                    end
+                    indicator = indicator .. number .. symbol
+                end
+                return indicator
+            end
+        }
+    },
+
+    keys = {
+        { '<leader>bb', ':BufferLineCyclePrev<CR>', silent = true },
+        { '<leader>bn', ':BufferLineCycleNext<CR>', silent = true },
+        { '<leader>bp', ':BufferLinePick<CR>', silent = true },
+        { '<leader>bd', ':bdelete<CR>', silent = true},
+    },
+
+    lazy = false
 }
 ```。">
 <meta property="og:type" content="article">
@@ -776,18 +918,88 @@ require("lazy").setup({})
     event = "VeryLazy",
     dependencies = {
         "neovim/nvim-lspconfig",
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
     },
     opts = {},
     config = function (_, opts)
         require("mason").setup(opts)
+
+        vim.lsp.config("lua_ls", {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = {
+                            "vim",
+                        },
+                    },
+                },
+            },
+        })
 
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
             }
         })
+
+        vim.lsp.enable("lua_ls")
+        vim.diagnostic.config({
+            virtual_text = true,
+            -- virtual_lines = true,
+            update_in_insert = true,
+        })
+
+        vim.api.nvim_create_autocmd("LspAttach", {
+            callback = function(args)
+                local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+                if client and client.server_capabilities.diagnosticProvider then
+                    vim.schedule(function()
+                        vim.diagnostic.enable(true, {
+                            bufnr = args.buf,
+                        })
+                    end)
+                end
+            end,
+        })
     end,
+}
+</code></pre>
+<p>接着修改bufferline.lua使bufferline也具备显示LSP的报错功能</p>
+<pre class="notranslate"><code class="notranslate">return {
+    "akinsho/bufferline.nvim",
+    dependencies = {
+        "nvim-tree/nvim-web-devicons"
+    },
+    opts = {
+        options = {
+            diagnostics = "nvim_lsp",
+            diagnostics_indicator = function (_, _, diagnostics_dict, _)
+                local indicator = " "
+                for level, number in pairs(diagnostics_dict) do
+                    local symbol
+                    if level == "error" then
+                        symbol = " "
+                    elseif level == "warning" then
+                        symbol = " "
+                    else
+                        symbol = " "
+                    end
+                    indicator = indicator .. number .. symbol
+                end
+                return indicator
+            end
+        }
+    },
+
+    keys = {
+        { "&lt;leader&gt;bb", ":BufferLineCyclePrev&lt;CR&gt;", silent = true },
+        { "&lt;leader&gt;bn", ":BufferLineCycleNext&lt;CR&gt;", silent = true },
+        { "&lt;leader&gt;bp", ":BufferLinePick&lt;CR&gt;", silent = true },
+        { "&lt;leader&gt;bd", ":bdelete&lt;CR&gt;", silent = true},
+    },
+
+    lazy = false
 }
 </code></pre></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
