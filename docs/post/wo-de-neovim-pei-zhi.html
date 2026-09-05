@@ -146,11 +146,10 @@ return {
 ```
 return {
     'windwp/nvim-autopairs',
+    event = 'InsertEnter',
     opts = {}
 }
 ```
-
-
 
 ## 6. Buffer/Window/Tab
 ✔buffer：文件在内存当中的表示
@@ -319,11 +318,10 @@ return {
 ```
 return {
     'windwp/nvim-autopairs',
+    event = 'InsertEnter',
     opts = {}
 }
 ```
-
-
 
 ## 6. Buffer/Window/Tab
 ✔buffer：文件在内存当中的表示
@@ -541,6 +539,7 @@ require("lazy").setup({})
 <p>在plugins下新建nvim-autopairs.lua，写入</p>
 <pre class="notranslate"><code class="notranslate">return {
     "windwp/nvim-autopairs",
+    event = "InsertEnter",
     opts = {}
 }
 </code></pre>

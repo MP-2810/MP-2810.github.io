@@ -134,11 +134,10 @@ return {
 ```
 return {
     "windwp/nvim-autopairs",
+    event = "InsertEnter",
     opts = {}
 }
 ```
-
-
 
 ## 6. Buffer/Window/Tab
 ✔buffer：文件在内存当中的表示
