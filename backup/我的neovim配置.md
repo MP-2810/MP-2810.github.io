@@ -139,6 +139,18 @@ return {
 }
 ```
 
+### 添加括号/引号/标签
+在plugins下新建nvim-surround.lua.lua，写入
+```
+return {
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+    opts = {}
+}
+```
+比如`ysiw 引号`可以将目标单词用引号包裹
+`ys2w 引号`可以将光标移动范围（2w）内用引号包裹
+
 ## 6. Buffer/Window/Tab
 ✔buffer：文件在内存当中的表示
 ✔window：显示buffer的视窗，一个窗口同一时间存在一个buffer

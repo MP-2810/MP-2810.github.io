@@ -151,6 +151,18 @@ return {
 }
 ```
 
+### 添加括号/引号/标签
+在plugins下新建nvim-surround.lua.lua，写入
+```
+return {
+    'kylechui/nvim-surround',
+    event = 'VeryLazy',
+    opts = {}
+}
+```
+比如`ysiw 引号`可以将目标单词用引号包裹
+`ys2w 引号`可以将光标移动范围（2w）内用引号包裹
+
 ## 6. Buffer/Window/Tab
 ✔buffer：文件在内存当中的表示
 ✔window：显示buffer的视窗，一个窗口同一时间存在一个buffer
@@ -322,6 +334,18 @@ return {
     opts = {}
 }
 ```
+
+### 添加括号/引号/标签
+在plugins下新建nvim-surround.lua.lua，写入
+```
+return {
+    'kylechui/nvim-surround',
+    event = 'VeryLazy',
+    opts = {}
+}
+```
+比如`ysiw 引号`可以将目标单词用引号包裹
+`ys2w 引号`可以将光标移动范围（2w）内用引号包裹
 
 ## 6. Buffer/Window/Tab
 ✔buffer：文件在内存当中的表示
@@ -543,6 +567,16 @@ require("lazy").setup({})
     opts = {}
 }
 </code></pre>
+<h3>添加括号/引号/标签</h3>
+<p>在plugins下新建nvim-surround.lua.lua，写入</p>
+<pre class="notranslate"><code class="notranslate">return {
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+    opts = {}
+}
+</code></pre>
+<p>比如<code class="notranslate">ysiw 引号</code>可以将目标单词用引号包裹<br>
+<code class="notranslate">ys2w 引号</code>可以将光标移动范围（2w）内用引号包裹</p>
 <h2>6. Buffer/Window/Tab</h2>
 <p>✔buffer：文件在内存当中的表示<br>
 ✔window：显示buffer的视窗，一个窗口同一时间存在一个buffer<br>
