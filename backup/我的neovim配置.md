@@ -218,8 +218,29 @@ mason提供了`Mason`命令打开面板
 执行`:Mason`，会自动下载可安装工具列表的索引文件
 如果出现报错无法下载，执行
 `cd ~/.local/share/nvim/mason/registries/github/mason-org/mason-registry/`
-检查是否有 registry.json 文件，如果没有，说明下载完全不成功：
+检查是否有 registry.json 文件，如果没有，说明下载完全不成功，我们可以手动克隆注册表：
 `git clone https://github.com/mason-org/mason-registry.git .`
 如果只有 registry.json，可以手动压缩它：
 `zip registry.json.zip registry.json`
 然后重启nvim，执行`:Mason`
+然后再在mason.lua里继续写入
+```
+return {
+    "mason-org/mason.nvim",
+    event = "VeryLazy",
+    dependencies = {
+        "neovim/nvim-lspconfig",
+        "williamboman/mason-lspconfig.nvim",
+    },
+    opts = {},
+    config = function (_, opts)
+        require("mason").setup(opts)
+
+        require("mason-lspconfig").setup({
+            ensure_installed = {
+                "lua_ls",
+            }
+        })
+    end,
+}
+```
