@@ -379,3 +379,5 @@ vim.opt.hlsearch = false
 blink 默认支持 VsCode 格式的 snippet，可以参照其官方文档https://code.visualstudio.com/docs/editor/userdefinedsnippets
 默认情况下，blink 会在 neovim 的配置路径下的 snippets/ 文件夹下寻找 snippet，如果要给 markdown 写 snippet 就把文件放在 markdown.json 文件中，以此类推
 `mkdir ~/.config/nvim/snippets`
+
+### 格式化工具
