@@ -199,3 +199,27 @@ return {
 因此bufferline.lua中有一行`lazy = false`用于禁用懒加载，使其可以在nvim启动时就启用bufferline插件
 
 ## 7. LSP
+使用Mason安装语言服务器
+依赖以下组件
+✔git
+✔curl
+✔unzip
+✔tar
+✔gzip
+在plugins下新建mason.lua，写入
+```
+return {
+    "williamboman/mason.nvim",
+    event = "VeryLazy",
+    opts = {}
+}
+```
+mason提供了`Mason`命令打开面板
+执行`:Mason`，会自动下载可安装工具列表的索引文件
+如果出现报错无法下载，执行
+`cd ~/.local/share/nvim/mason/registries/github/mason-org/mason-registry/`
+检查是否有 registry.json 文件，如果没有，说明下载完全不成功：
+`git clone https://github.com/mason-org/mason-registry.git .`
+如果只有 registry.json，可以手动压缩它：
+`zip registry.json.zip registry.json`
+然后重启nvim，执行`:Mason`
