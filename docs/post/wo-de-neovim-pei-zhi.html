@@ -140,7 +140,19 @@ return {
 }
 ```
 
-## 5. Buffer/Window/Tab
+## 5. 优化编辑体验
+### 自动补全括号/引号
+在plugins下新建nvim-autopairs.lua，写入
+```
+return {
+    'windwp/nvim-autopairs',
+    opts = {}
+}
+```
+
+
+
+## 6. Buffer/Window/Tab
 ✔buffer：文件在内存当中的表示
 ✔window：显示buffer的视窗，一个窗口同一时间存在一个buffer
 ✔tab page：window的集合，一个neovim session可以有多个window
@@ -168,7 +180,8 @@ return {
 ✔cmd：在某个命令被执行的时候加载插件
 ✔ft：当前buffer为特定文件类型的时候加载插件
 ✔keys：当触发快捷键时加载插件，如果快捷键不存在则创建快捷键
-因此bufferline.lua中有一行`lazy = false`用于禁用懒加载，使其可以在nvim启动时就启用bufferline插件。">
+因此bufferline.lua中有一行`lazy = false`用于禁用懒加载，使其可以在nvim启动时就启用bufferline插件
+。">
 <meta property="og:title" content="我的neovim配置">
 <meta property="og:description" content="## Vim的一些基础配置
 ### 1. 行数
@@ -300,7 +313,19 @@ return {
 }
 ```
 
-## 5. Buffer/Window/Tab
+## 5. 优化编辑体验
+### 自动补全括号/引号
+在plugins下新建nvim-autopairs.lua，写入
+```
+return {
+    'windwp/nvim-autopairs',
+    opts = {}
+}
+```
+
+
+
+## 6. Buffer/Window/Tab
 ✔buffer：文件在内存当中的表示
 ✔window：显示buffer的视窗，一个窗口同一时间存在一个buffer
 ✔tab page：window的集合，一个neovim session可以有多个window
@@ -328,7 +353,8 @@ return {
 ✔cmd：在某个命令被执行的时候加载插件
 ✔ft：当前buffer为特定文件类型的时候加载插件
 ✔keys：当触发快捷键时加载插件，如果快捷键不存在则创建快捷键
-因此bufferline.lua中有一行`lazy = false`用于禁用懒加载，使其可以在nvim启动时就启用bufferline插件。">
+因此bufferline.lua中有一行`lazy = false`用于禁用懒加载，使其可以在nvim启动时就启用bufferline插件
+。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -510,7 +536,15 @@ require("lazy").setup({})
     end
 }
 </code></pre>
-<h2>5. Buffer/Window/Tab</h2>
+<h2>5. 优化编辑体验</h2>
+<h3>自动补全括号/引号</h3>
+<p>在plugins下新建nvim-autopairs.lua，写入</p>
+<pre class="notranslate"><code class="notranslate">return {
+    "windwp/nvim-autopairs",
+    opts = {}
+}
+</code></pre>
+<h2>6. Buffer/Window/Tab</h2>
 <p>✔buffer：文件在内存当中的表示<br>
 ✔window：显示buffer的视窗，一个窗口同一时间存在一个buffer<br>
 ✔tab page：window的集合，一个neovim session可以有多个window<br>
