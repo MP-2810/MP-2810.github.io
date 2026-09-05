@@ -60,6 +60,8 @@ vim.opt.shiftwidth = 0  #新建行时按tab会读取shiftwidth并写入对应的
 ```
 vim.keymap.set({ "n", "i" }, "<C-z>", "<Cmd>undo<CR>", { silent = true })
 vim.keymap.set( "i", "<C-r>", "<Cmd>redo<CR>", {silent = true })
+
+vim.g.mapleader = " "
 ```
 
 ## 4. 插件
@@ -127,6 +129,31 @@ return {
 ```
 
 ## 5. Buffer/Window/Tab
-buffer：文件在内存当中的表示
-window：显示buffer的视窗，一个窗口同一时间存在一个buffer
-tab page：window的集合，一个neovim session可以有多个window
+✔buffer：文件在内存当中的表示
+✔window：显示buffer的视窗，一个窗口同一时间存在一个buffer
+✔tab page：window的集合，一个neovim session可以有多个window
+在plugins下新建bufferline.lua，写入
+```
+return {
+    "akinsho/bufferline.nvim",
+    dependencies = {
+        "nvim-tree/nvim-web-devicons"
+    },
+    opts = {},
+    keys = {
+        { "<leader>bb", ":BufferLineCyclePrev<CR>", silent = true },
+        { "<leader>bn", ":BufferLineCycleNext<CR>", silent = true },
+        { "<leader>bp", ":BufferLinePick<CR>", silent = true },
+        { "<leader>bd", ":bdelete<CR>", silent = true},
+    },
+    lazy = false
+}
+```
+###  懒加载插件
+在插件数多时提前加载全部插件会影响启动速度
+因此懒加载提供了只在某些契机下才启用某插件的功能
+✔event：在某个事件触发的时候加载插件
+✔cmd：在某个命令被执行的时候加载插件
+✔ft：当前buffer为特定文件类型的时候加载插件
+✔keys：当触发快捷键时加载插件，如果快捷键不存在则创建快捷键
+因此bufferline.lua中有一行`lazy = false`用于禁用懒加载，使其可以在nvim启动时就启用bufferline插件

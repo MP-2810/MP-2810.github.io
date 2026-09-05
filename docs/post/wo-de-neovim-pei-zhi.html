@@ -72,6 +72,8 @@ vim.opt.shiftwidth = 0  #新建行时按tab会读取shiftwidth并写入对应的
 ```
 vim.keymap.set({ 'n', 'i' }, '<C-z>', '<Cmd>undo<CR>', { silent = true })
 vim.keymap.set( 'i', '<C-r>', '<Cmd>redo<CR>', {silent = true })
+
+vim.g.mapleader = ' '
 ```
 
 ## 4. 插件
@@ -139,9 +141,34 @@ return {
 ```
 
 ## 5. Buffer/Window/Tab
-buffer：文件在内存当中的表示
-window：显示buffer的视窗，一个窗口同一时间存在一个buffer
-tab page：window的集合，一个neovim session可以有多个window。">
+✔buffer：文件在内存当中的表示
+✔window：显示buffer的视窗，一个窗口同一时间存在一个buffer
+✔tab page：window的集合，一个neovim session可以有多个window
+在plugins下新建bufferline.lua，写入
+```
+return {
+    'akinsho/bufferline.nvim',
+    dependencies = {
+        'nvim-tree/nvim-web-devicons'
+    },
+    opts = {},
+    keys = {
+        { '<leader>bb', ':BufferLineCyclePrev<CR>', silent = true },
+        { '<leader>bn', ':BufferLineCycleNext<CR>', silent = true },
+        { '<leader>bp', ':BufferLinePick<CR>', silent = true },
+        { '<leader>bd', ':bdelete<CR>', silent = true},
+    },
+    lazy = false
+}
+```
+###  懒加载插件
+在插件数多时提前加载全部插件会影响启动速度
+因此懒加载提供了只在某些契机下才启用某插件的功能
+✔event：在某个事件触发的时候加载插件
+✔cmd：在某个命令被执行的时候加载插件
+✔ft：当前buffer为特定文件类型的时候加载插件
+✔keys：当触发快捷键时加载插件，如果快捷键不存在则创建快捷键
+因此bufferline.lua中有一行`lazy = false`用于禁用懒加载，使其可以在nvim启动时就启用bufferline插件。">
 <meta property="og:title" content="我的neovim配置">
 <meta property="og:description" content="## Vim的一些基础配置
 ### 1. 行数
@@ -205,6 +232,8 @@ vim.opt.shiftwidth = 0  #新建行时按tab会读取shiftwidth并写入对应的
 ```
 vim.keymap.set({ 'n', 'i' }, '<C-z>', '<Cmd>undo<CR>', { silent = true })
 vim.keymap.set( 'i', '<C-r>', '<Cmd>redo<CR>', {silent = true })
+
+vim.g.mapleader = ' '
 ```
 
 ## 4. 插件
@@ -272,9 +301,34 @@ return {
 ```
 
 ## 5. Buffer/Window/Tab
-buffer：文件在内存当中的表示
-window：显示buffer的视窗，一个窗口同一时间存在一个buffer
-tab page：window的集合，一个neovim session可以有多个window。">
+✔buffer：文件在内存当中的表示
+✔window：显示buffer的视窗，一个窗口同一时间存在一个buffer
+✔tab page：window的集合，一个neovim session可以有多个window
+在plugins下新建bufferline.lua，写入
+```
+return {
+    'akinsho/bufferline.nvim',
+    dependencies = {
+        'nvim-tree/nvim-web-devicons'
+    },
+    opts = {},
+    keys = {
+        { '<leader>bb', ':BufferLineCyclePrev<CR>', silent = true },
+        { '<leader>bn', ':BufferLineCycleNext<CR>', silent = true },
+        { '<leader>bp', ':BufferLinePick<CR>', silent = true },
+        { '<leader>bd', ':bdelete<CR>', silent = true},
+    },
+    lazy = false
+}
+```
+###  懒加载插件
+在插件数多时提前加载全部插件会影响启动速度
+因此懒加载提供了只在某些契机下才启用某插件的功能
+✔event：在某个事件触发的时候加载插件
+✔cmd：在某个命令被执行的时候加载插件
+✔ft：当前buffer为特定文件类型的时候加载插件
+✔keys：当触发快捷键时加载插件，如果快捷键不存在则创建快捷键
+因此bufferline.lua中有一行`lazy = false`用于禁用懒加载，使其可以在nvim启动时就启用bufferline插件。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -395,6 +449,8 @@ vim.opt.shiftwidth = 0  <span class="pl-c"><span class="pl-c">#</span>新建行�
 <p>撤销ctrl+z和取消撤销的快捷键</p>
 <pre class="notranslate"><code class="notranslate">vim.keymap.set({ "n", "i" }, "&lt;C-z&gt;", "&lt;Cmd&gt;undo&lt;CR&gt;", { silent = true })
 vim.keymap.set( "i", "&lt;C-r&gt;", "&lt;Cmd&gt;redo&lt;CR&gt;", {silent = true })
+
+vim.g.mapleader = " "
 </code></pre>
 <h2>4. 插件</h2>
 <h3>安装lazy插件管理器</h3>
@@ -455,9 +511,33 @@ require("lazy").setup({})
 }
 </code></pre>
 <h2>5. Buffer/Window/Tab</h2>
-<p>buffer：文件在内存当中的表示<br>
-window：显示buffer的视窗，一个窗口同一时间存在一个buffer<br>
-tab page：window的集合，一个neovim session可以有多个window</p></div>
+<p>✔buffer：文件在内存当中的表示<br>
+✔window：显示buffer的视窗，一个窗口同一时间存在一个buffer<br>
+✔tab page：window的集合，一个neovim session可以有多个window<br>
+在plugins下新建bufferline.lua，写入</p>
+<pre class="notranslate"><code class="notranslate">return {
+    "akinsho/bufferline.nvim",
+    dependencies = {
+        "nvim-tree/nvim-web-devicons"
+    },
+    opts = {},
+    keys = {
+        { "&lt;leader&gt;bb", ":BufferLineCyclePrev&lt;CR&gt;", silent = true },
+        { "&lt;leader&gt;bn", ":BufferLineCycleNext&lt;CR&gt;", silent = true },
+        { "&lt;leader&gt;bp", ":BufferLinePick&lt;CR&gt;", silent = true },
+        { "&lt;leader&gt;bd", ":bdelete&lt;CR&gt;", silent = true},
+    },
+    lazy = false
+}
+</code></pre>
+<h3>懒加载插件</h3>
+<p>在插件数多时提前加载全部插件会影响启动速度<br>
+因此懒加载提供了只在某些契机下才启用某插件的功能<br>
+✔event：在某个事件触发的时候加载插件<br>
+✔cmd：在某个命令被执行的时候加载插件<br>
+✔ft：当前buffer为特定文件类型的时候加载插件<br>
+✔keys：当触发快捷键时加载插件，如果快捷键不存在则创建快捷键<br>
+因此bufferline.lua中有一行<code class="notranslate">lazy = false</code>用于禁用懒加载，使其可以在nvim启动时就启用bufferline插件</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
