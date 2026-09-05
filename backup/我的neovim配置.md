@@ -111,3 +111,17 @@ return {
 然后重启nvim,等待lazy自动clone
 如果出现无法克隆的情况，查看我的博客`配置SSH使用`配置SSH
 完成后输入`:colorscheme tokyonight`即可启用主题
+可以编辑tokyonight.lua来实现自动启用主题
+改写为
+```
+return {
+    "folke/tokyonight.nvim",
+    opts = {
+        style = "moon"
+    },
+    config = function (_, opts)
+        require("tokyonight").setup(opts)
+        vim.cmd("colorscheme tokyonight")
+    end
+}
+```

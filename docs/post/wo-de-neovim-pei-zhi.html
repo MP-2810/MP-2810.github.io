@@ -122,7 +122,21 @@ return {
 ```
 然后重启nvim,等待lazy自动clone
 如果出现无法克隆的情况，查看我的博客`配置SSH使用`配置SSH
-完成后输入`:colorscheme tokyonight`即可启用主题。">
+完成后输入`:colorscheme tokyonight`即可启用主题
+可以编辑tokyonight.lua来实现自动启用主题
+改写为
+```
+return {
+    'folke/tokyonight.nvim',
+    opts = {
+        style = 'moon'
+    },
+    config = function (_, opts)
+        require('tokyonight').setup(opts)
+        vim.cmd('colorscheme tokyonight')
+    end
+}
+```。">
 <meta property="og:title" content="我的neovim配置">
 <meta property="og:description" content="## Vim的一些基础配置
 ### 1. 行数
@@ -236,7 +250,21 @@ return {
 ```
 然后重启nvim,等待lazy自动clone
 如果出现无法克隆的情况，查看我的博客`配置SSH使用`配置SSH
-完成后输入`:colorscheme tokyonight`即可启用主题。">
+完成后输入`:colorscheme tokyonight`即可启用主题
+可以编辑tokyonight.lua来实现自动启用主题
+改写为
+```
+return {
+    'folke/tokyonight.nvim',
+    opts = {
+        style = 'moon'
+    },
+    config = function (_, opts)
+        require('tokyonight').setup(opts)
+        vim.cmd('colorscheme tokyonight')
+    end
+}
+```。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -402,7 +430,20 @@ require("lazy").setup({})
 </code></pre>
 <p>然后重启nvim,等待lazy自动clone<br>
 如果出现无法克隆的情况，查看我的博客<code class="notranslate">配置SSH使用</code>配置SSH<br>
-完成后输入<code class="notranslate">:colorscheme tokyonight</code>即可启用主题</p></div>
+完成后输入<code class="notranslate">:colorscheme tokyonight</code>即可启用主题<br>
+可以编辑tokyonight.lua来实现自动启用主题<br>
+改写为</p>
+<pre class="notranslate"><code class="notranslate">return {
+    "folke/tokyonight.nvim",
+    opts = {
+        style = "moon"
+    },
+    config = function (_, opts)
+        require("tokyonight").setup(opts)
+        vim.cmd("colorscheme tokyonight")
+    end
+}
+</code></pre></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
