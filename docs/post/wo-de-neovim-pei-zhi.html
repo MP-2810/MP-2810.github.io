@@ -328,7 +328,61 @@ return {
     lazy = false
 }
 ```
-。">
+### 补全
+在plugins下新建blink.lua，写入
+```
+return {
+    'saghen/blink.cmp',
+    version = '*',
+    dependencies = {
+        'rafamadriz/friendly-snippets'
+    },
+
+    event = 'VeryLazy',
+    opts = {
+        completion = {
+            documentation = {
+                auto_show = true,
+            },
+        },
+        keymap = {
+            preset = 'super-tab',
+        },
+        sources = {
+            default = { 'path', 'snippets', 'buffer', 'lsp' },
+        },
+        cmdline = {
+            sources = function()
+                local cmd_type = vim.fn.getcmdtype()
+                if cmd_type == '/' or cmd_type == '?' then
+                    return { 'buffer' }
+                end
+                if cmd_type == ':' then
+                    return { 'cmdline' }
+                end
+                return {}
+            end,
+            keymap = {
+                preset = 'super-tab',
+            },
+            completion = {
+                menu = {
+                    auto_show = true,
+                },
+            },
+        },
+    },
+}
+```
+再修改basic.lua，追加写入
+```
+-- 如果查找的内容中不存在大写，则大小写不敏感
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- 不要在查找之后继续高亮匹配结果
+vim.opt.hlsearch = false
+```。">
 <meta property="og:title" content="我的neovim配置">
 <meta property="og:description" content="## Vim的一些基础配置
 ### 1. 行数
@@ -648,7 +702,61 @@ return {
     lazy = false
 }
 ```
-。">
+### 补全
+在plugins下新建blink.lua，写入
+```
+return {
+    'saghen/blink.cmp',
+    version = '*',
+    dependencies = {
+        'rafamadriz/friendly-snippets'
+    },
+
+    event = 'VeryLazy',
+    opts = {
+        completion = {
+            documentation = {
+                auto_show = true,
+            },
+        },
+        keymap = {
+            preset = 'super-tab',
+        },
+        sources = {
+            default = { 'path', 'snippets', 'buffer', 'lsp' },
+        },
+        cmdline = {
+            sources = function()
+                local cmd_type = vim.fn.getcmdtype()
+                if cmd_type == '/' or cmd_type == '?' then
+                    return { 'buffer' }
+                end
+                if cmd_type == ':' then
+                    return { 'cmdline' }
+                end
+                return {}
+            end,
+            keymap = {
+                preset = 'super-tab',
+            },
+            completion = {
+                menu = {
+                    auto_show = true,
+                },
+            },
+        },
+    },
+}
+```
+再修改basic.lua，追加写入
+```
+-- 如果查找的内容中不存在大写，则大小写不敏感
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- 不要在查找之后继续高亮匹配结果
+vim.opt.hlsearch = false
+```。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -1006,6 +1114,59 @@ require("lazy").setup({})
 
     lazy = false
 }
+</code></pre>
+<h3>补全</h3>
+<p>在plugins下新建blink.lua，写入</p>
+<pre class="notranslate"><code class="notranslate">return {
+    "saghen/blink.cmp",
+    version = '*',
+    dependencies = {
+        "rafamadriz/friendly-snippets"
+    },
+
+    event = "VeryLazy",
+    opts = {
+        completion = {
+            documentation = {
+                auto_show = true,
+            },
+        },
+        keymap = {
+            preset = "super-tab",
+        },
+        sources = {
+            default = { "path", "snippets", "buffer", "lsp" },
+        },
+        cmdline = {
+            sources = function()
+                local cmd_type = vim.fn.getcmdtype()
+                if cmd_type == "/" or cmd_type == "?" then
+                    return { "buffer" }
+                end
+                if cmd_type == ":" then
+                    return { "cmdline" }
+                end
+                return {}
+            end,
+            keymap = {
+                preset = "super-tab",
+            },
+            completion = {
+                menu = {
+                    auto_show = true,
+                },
+            },
+        },
+    },
+}
+</code></pre>
+<p>再修改basic.lua，追加写入</p>
+<pre class="notranslate"><code class="notranslate">-- 如果查找的内容中不存在大写，则大小写不敏感
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- 不要在查找之后继续高亮匹配结果
+vim.opt.hlsearch = false
 </code></pre></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
