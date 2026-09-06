@@ -595,7 +595,19 @@ return {
 ```
 完成后就可以通过`:GrugFar`命令进行替换和查找
 在此之前需要去keymap.lua里新增快捷键：
-`vim.g.maplocalleader = ','`。">
+`vim.g.maplocalleader = ','`
+
+## 9. 高阶使用技巧
+### 寄存器
+可以了解一下，不细讲
+### 剪切板互通
+编辑basic.lua：
+`vim.opt.clipboard = 'unnamedplus'`
+### 宏操作
+Normal mode 下按下 q<register>（例如 qa）开始录制一个宏
+结束录制的时候按下 q 即可
+按下 @<register>（例如 @a）调用宏，也可以前面加上重复次数，如 10@a
+在 normal mode 下，在数字上按下 Ctrl + a 可以让数字加一，按下 Ctrl + x 可以减一。">
 <meta property="og:title" content="我的neovim配置">
 <meta property="og:description" content="## Vim的一些基础配置
 ### 1. 行数
@@ -1182,7 +1194,19 @@ return {
 ```
 完成后就可以通过`:GrugFar`命令进行替换和查找
 在此之前需要去keymap.lua里新增快捷键：
-`vim.g.maplocalleader = ','`。">
+`vim.g.maplocalleader = ','`
+
+## 9. 高阶使用技巧
+### 寄存器
+可以了解一下，不细讲
+### 剪切板互通
+编辑basic.lua：
+`vim.opt.clipboard = 'unnamedplus'`
+### 宏操作
+Normal mode 下按下 q<register>（例如 qa）开始录制一个宏
+结束录制的时候按下 q 即可
+按下 @<register>（例如 @a）调用宏，也可以前面加上重复次数，如 10@a
+在 normal mode 下，在数字上按下 Ctrl + a 可以让数字加一，按下 Ctrl + x 可以减一。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -1790,7 +1814,18 @@ telescope的配置比较复杂，也不需要理解，可以直接照抄</p>
 </code></pre>
 <p>完成后就可以通过<code class="notranslate">:GrugFar</code>命令进行替换和查找<br>
 在此之前需要去keymap.lua里新增快捷键：<br>
-<code class="notranslate">vim.g.maplocalleader = ","</code></p></div>
+<code class="notranslate">vim.g.maplocalleader = ","</code></p>
+<h2>9. 高阶使用技巧</h2>
+<h3>寄存器</h3>
+<p>可以了解一下，不细讲</p>
+<h3>剪切板互通</h3>
+<p>编辑basic.lua：<br>
+<code class="notranslate">vim.opt.clipboard = "unnamedplus"</code></p>
+<h3>宏操作</h3>
+<p>Normal mode 下按下 q（例如 qa）开始录制一个宏<br>
+结束录制的时候按下 q 即可<br>
+按下 @（例如 <a class="user-mention notranslate" data-hovercard-type="user" data-hovercard-url="/users/A/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/A">@A</a>）调用宏，也可以前面加上重复次数，如 10@a<br>
+在 normal mode 下，在数字上按下 Ctrl + a 可以让数字加一，按下 Ctrl + x 可以减一</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

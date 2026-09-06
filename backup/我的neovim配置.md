@@ -584,3 +584,15 @@ return {
 完成后就可以通过`:GrugFar`命令进行替换和查找
 在此之前需要去keymap.lua里新增快捷键：
 `vim.g.maplocalleader = ","`
+
+## 9. 高阶使用技巧
+### 寄存器
+可以了解一下，不细讲
+### 剪切板互通
+编辑basic.lua：
+`vim.opt.clipboard = "unnamedplus"`
+### 宏操作
+Normal mode 下按下 q<register>（例如 qa）开始录制一个宏
+结束录制的时候按下 q 即可
+按下 @<register>（例如 @a）调用宏，也可以前面加上重复次数，如 10@a
+在 normal mode 下，在数字上按下 Ctrl + a 可以让数字加一，按下 Ctrl + x 可以减一
