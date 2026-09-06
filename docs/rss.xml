@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 06 Sep 2026 03:52:19 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>配置SSH使用</title><link>https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</link><description>### 没有配置SSH的情况下，git克隆时可能会出现失败的情况
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sun, 06 Sep 2026 04:01:05 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>配置SSH使用</title><link>https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</link><description>### 没有配置SSH的情况下，git克隆时可能会出现失败的情况
 ### 1. 检查是否有 SSH 密钥
 `ls ~/.ssh/id_*`
 
@@ -624,14 +624,51 @@ return {
 }
 ```
 
-### telescope
+### 查找器
+*telescope*
+比如说你想要在当前的工作路径下搜索某段文字，或者从 git commit 历史中搜索某个条目，都可以使用这个插件完成
+在安装这个插件前，我们需要安装 `ripgrep`和 `cmake`
+telescope的配置比较复杂，也不需要理解，可以直接照抄
+```
+return {
+    'nvim-telescope/telescope.nvim',
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        {
+            'nvim-telescope/telescope-fzf-native.nvim', -- 模糊搜索插件
+            build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release &amp;&amp; '
+                .. 'cmake --build build --config Release &amp;&amp; '
+                .. 'cmake --install build --prefix build',
+        },
+    },
+    cmd = 'Telescope',
+    opts = {
+        extensions = {
+            fzf = {
+                fuzzy = true,
+                override_generic_sorter = true,
+                override_file_sorter = true,
+                case_mode = 'smart_case',
+            },
+        },
+    },
+    config = function(_, opts)
+        local telescope = require 'telescope'
+        telescope.setup(opts)
+        telescope.load_extension('fzf')
+    end,
+}
+```
 
-
-
-
-
-
-### grug-far。</description><guid isPermaLink="true">https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html</guid><pubDate>Thu, 20 Aug 2026 06:11:04 +0000</pubDate></item><item><title>qq无法正常使用fcitx5中文输入法</title><link>https://MP-2810.github.io/post/qq-wu-fa-zheng-chang-shi-yong-fcitx5-zhong-wen-shu-ru-fa.html</link><description>## linuxqq无法正常使用中文输入法的问题
+### 全局替换
+*grug-far*
+```
+return {
+    'MagicDuck/grug-far.nvim',
+    cmd = 'GrugFar',
+    opts = {},
+}
+```。</description><guid isPermaLink="true">https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html</guid><pubDate>Thu, 20 Aug 2026 06:11:04 +0000</pubDate></item><item><title>qq无法正常使用fcitx5中文输入法</title><link>https://MP-2810.github.io/post/qq-wu-fa-zheng-chang-shi-yong-fcitx5-zhong-wen-shu-ru-fa.html</link><description>## linuxqq无法正常使用中文输入法的问题
 正常安装了fcitx5，并且在其他地方如终端、浏览器等地方都可以正常使用，但qq却出现了无法切换输入法、设置为中文输入法也无法输出中文拼音拼写的情况
 - 此前先安装过KDE,在KDE中qq可以正常使用中文输入法
 

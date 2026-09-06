@@ -536,11 +536,48 @@ return {
 }
 ```
 
-### telescope
+### 查找器
+*telescope*
+比如说你想要在当前的工作路径下搜索某段文字，或者从 git commit 历史中搜索某个条目，都可以使用这个插件完成
+在安装这个插件前，我们需要安装 `ripgrep`和 `cmake`
+telescope的配置比较复杂，也不需要理解，可以直接照抄
+```
+return {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        {
+            "nvim-telescope/telescope-fzf-native.nvim", -- 模糊搜索插件
+            build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && "
+                .. "cmake --build build --config Release && "
+                .. "cmake --install build --prefix build",
+        },
+    },
+    cmd = "Telescope",
+    opts = {
+        extensions = {
+            fzf = {
+                fuzzy = true,
+                override_generic_sorter = true,
+                override_file_sorter = true,
+                case_mode = "smart_case",
+            },
+        },
+    },
+    config = function(_, opts)
+        local telescope = require "telescope"
+        telescope.setup(opts)
+        telescope.load_extension("fzf")
+    end,
+}
+```
 
-
-
-
-
-
-### grug-far
+### 全局替换
+*grug-far*
+```
+return {
+    "MagicDuck/grug-far.nvim",
+    cmd = "GrugFar",
+    opts = {},
+}
+```
