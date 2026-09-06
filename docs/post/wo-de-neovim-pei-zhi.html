@@ -478,10 +478,83 @@ return {
     },
 }
 ```
-### nvim-tree
-### lualine
-### indent-blankline
+### 文件树
+*nvim-tree*
+```
+return {
+    'nvim-tree/nvim-tree.lua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+        actions = {
+            open_file = {
+                quit_on_open = true,
+            },
+        },
+    },
+    keys = {
+        { '<leader>nt', ':NvimTreeToggle<CR>' },
+    },
+}
+```
+nvim-tree 默认为我们配置好了很多快捷键，例如：
+✔ a：新建文件
+✔ d：删除文件
+✔ y：复制文件
+✔ p：粘贴
+✔ x：剪切文件
+✔ r：重命名
+✔ Enter：打开文件
+
+### 状态栏
+*lualine*
+```
+return {
+    'nvim-lualine/lualine.nvim',
+    dependencies = {
+        'nvim-tree/nvim-web-devicons',
+    },
+    event = 'VeryLazy',
+    opts = {
+        options = {
+            theme = 'auto',
+            component_separators = { left = '', right = '' },
+            section_separators = { left = '', right = '' },
+        },
+        extensions = { 'nvim-tree' },
+        sections = {
+            lualine_b = { 'branch', 'diff' },
+            lualine_x = {
+                'filesize',
+                'encoding',
+                'filetype',
+            },
+        },
+    },
+}
+```
+lualine的设计是状态栏左右各三栏，分别命名为了ABC和XYZ
+lualine自带显示模式的功能，因此在basic.lua里禁用默认的模式显示：
+`vim.opt.showmode = false`
+
+
+### 层级竖线
+*indent-blankline*
+```
+return {
+    'lukas-reineke/indent-blankline.nvim',
+    event = 'VeryLazy',
+    main = 'ibl',
+    opts = {},
+}
+```
+
 ### telescope
+
+
+
+
+
+
 ### grug-far。">
 <meta property="og:title" content="我的neovim配置">
 <meta property="og:description" content="## Vim的一些基础配置
@@ -952,10 +1025,83 @@ return {
     },
 }
 ```
-### nvim-tree
-### lualine
-### indent-blankline
+### 文件树
+*nvim-tree*
+```
+return {
+    'nvim-tree/nvim-tree.lua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+        actions = {
+            open_file = {
+                quit_on_open = true,
+            },
+        },
+    },
+    keys = {
+        { '<leader>nt', ':NvimTreeToggle<CR>' },
+    },
+}
+```
+nvim-tree 默认为我们配置好了很多快捷键，例如：
+✔ a：新建文件
+✔ d：删除文件
+✔ y：复制文件
+✔ p：粘贴
+✔ x：剪切文件
+✔ r：重命名
+✔ Enter：打开文件
+
+### 状态栏
+*lualine*
+```
+return {
+    'nvim-lualine/lualine.nvim',
+    dependencies = {
+        'nvim-tree/nvim-web-devicons',
+    },
+    event = 'VeryLazy',
+    opts = {
+        options = {
+            theme = 'auto',
+            component_separators = { left = '', right = '' },
+            section_separators = { left = '', right = '' },
+        },
+        extensions = { 'nvim-tree' },
+        sections = {
+            lualine_b = { 'branch', 'diff' },
+            lualine_x = {
+                'filesize',
+                'encoding',
+                'filetype',
+            },
+        },
+    },
+}
+```
+lualine的设计是状态栏左右各三栏，分别命名为了ABC和XYZ
+lualine自带显示模式的功能，因此在basic.lua里禁用默认的模式显示：
+`vim.opt.showmode = false`
+
+
+### 层级竖线
+*indent-blankline*
+```
+return {
+    'lukas-reineke/indent-blankline.nvim',
+    event = 'VeryLazy',
+    main = 'ibl',
+    opts = {},
+}
+```
+
 ### telescope
+
+
+
+
+
+
 ### grug-far。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/wo-de-neovim-pei-zhi.html">
@@ -1457,9 +1603,69 @@ blink 默认支持 VsCode 格式的 snippet，可以参照其官方文档<a href
     },
 }
 </code></pre>
-<h3>nvim-tree</h3>
-<h3>lualine</h3>
-<h3>indent-blankline</h3>
+<h3>文件树</h3>
+<p><em>nvim-tree</em></p>
+<pre class="notranslate"><code class="notranslate">return {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+        actions = {
+            open_file = {
+                quit_on_open = true,
+            },
+        },
+    },
+    keys = {
+        { "&lt;leader&gt;nt", ":NvimTreeToggle&lt;CR&gt;" },
+    },
+}
+</code></pre>
+<p>nvim-tree 默认为我们配置好了很多快捷键，例如：<br>
+✔ a：新建文件<br>
+✔ d：删除文件<br>
+✔ y：复制文件<br>
+✔ p：粘贴<br>
+✔ x：剪切文件<br>
+✔ r：重命名<br>
+✔ Enter：打开文件</p>
+<h3>状态栏</h3>
+<p><em>lualine</em></p>
+<pre class="notranslate"><code class="notranslate">return {
+    "nvim-lualine/lualine.nvim",
+    dependencies = {
+        "nvim-tree/nvim-web-devicons",
+    },
+    event = "VeryLazy",
+    opts = {
+        options = {
+            theme = "auto",
+            component_separators = { left = "", right = "" },
+            section_separators = { left = "", right = "" },
+        },
+        extensions = { "nvim-tree" },
+        sections = {
+            lualine_b = { "branch", "diff" },
+            lualine_x = {
+                "filesize",
+                "encoding",
+                "filetype",
+            },
+        },
+    },
+}
+</code></pre>
+<p>lualine的设计是状态栏左右各三栏，分别命名为了ABC和XYZ<br>
+lualine自带显示模式的功能，因此在basic.lua里禁用默认的模式显示：<br>
+<code class="notranslate">vim.opt.showmode = false</code></p>
+<h3>层级竖线</h3>
+<p><em>indent-blankline</em></p>
+<pre class="notranslate"><code class="notranslate">return {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "VeryLazy",
+    main = "ibl",
+    opts = {},
+}
+</code></pre>
 <h3>telescope</h3>
 <h3>grug-far</h3></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>

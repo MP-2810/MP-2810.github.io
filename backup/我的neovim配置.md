@@ -466,8 +466,81 @@ return {
     },
 }
 ```
-### nvim-tree
-### lualine
-### indent-blankline
+### 文件树
+*nvim-tree*
+```
+return {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+        actions = {
+            open_file = {
+                quit_on_open = true,
+            },
+        },
+    },
+    keys = {
+        { "<leader>nt", ":NvimTreeToggle<CR>" },
+    },
+}
+```
+nvim-tree 默认为我们配置好了很多快捷键，例如：
+✔ a：新建文件
+✔ d：删除文件
+✔ y：复制文件
+✔ p：粘贴
+✔ x：剪切文件
+✔ r：重命名
+✔ Enter：打开文件
+
+### 状态栏
+*lualine*
+```
+return {
+    "nvim-lualine/lualine.nvim",
+    dependencies = {
+        "nvim-tree/nvim-web-devicons",
+    },
+    event = "VeryLazy",
+    opts = {
+        options = {
+            theme = "auto",
+            component_separators = { left = "", right = "" },
+            section_separators = { left = "", right = "" },
+        },
+        extensions = { "nvim-tree" },
+        sections = {
+            lualine_b = { "branch", "diff" },
+            lualine_x = {
+                "filesize",
+                "encoding",
+                "filetype",
+            },
+        },
+    },
+}
+```
+lualine的设计是状态栏左右各三栏，分别命名为了ABC和XYZ
+lualine自带显示模式的功能，因此在basic.lua里禁用默认的模式显示：
+`vim.opt.showmode = false`
+
+
+### 层级竖线
+*indent-blankline*
+```
+return {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "VeryLazy",
+    main = "ibl",
+    opts = {},
+}
+```
+
 ### telescope
+
+
+
+
+
+
 ### grug-far
