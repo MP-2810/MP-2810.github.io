@@ -581,3 +581,6 @@ return {
     opts = {},
 }
 ```
+完成后就可以通过`:GrugFar`命令进行替换和查找
+在此之前需要去keymap.lua里新增快捷键：
+`vim.g.maplocalleader = ","`
