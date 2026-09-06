@@ -596,3 +596,4 @@ Normal mode 下按下 q<register>（例如 qa）开始录制一个宏
 结束录制的时候按下 q 即可
 按下 @<register>（例如 @a）调用宏，也可以前面加上重复次数，如 10@a
 在 normal mode 下，在数字上按下 Ctrl + a 可以让数字加一，按下 Ctrl + x 可以减一
+### autocmd
