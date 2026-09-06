@@ -591,6 +591,7 @@ return {
 ### 剪切板互通
 编辑basic.lua：
 `vim.opt.clipboard = "unnamedplus"`
+- 实测启用后nvim内将无法将内容粘贴到外部例如浏览器中
 ### 宏操作
 Normal mode 下按下 q<register>（例如 qa）开始录制一个宏
 结束录制的时候按下 q 即可

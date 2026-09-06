@@ -603,6 +603,7 @@ return {
 ### 剪切板互通
 编辑basic.lua：
 `vim.opt.clipboard = 'unnamedplus'`
+- 实测启用后nvim内将无法将内容粘贴到外部例如浏览器中
 ### 宏操作
 Normal mode 下按下 q<register>（例如 qa）开始录制一个宏
 结束录制的时候按下 q 即可
@@ -1203,6 +1204,7 @@ return {
 ### 剪切板互通
 编辑basic.lua：
 `vim.opt.clipboard = 'unnamedplus'`
+- 实测启用后nvim内将无法将内容粘贴到外部例如浏览器中
 ### 宏操作
 Normal mode 下按下 q<register>（例如 qa）开始录制一个宏
 结束录制的时候按下 q 即可
@@ -1823,6 +1825,9 @@ telescope的配置比较复杂，也不需要理解，可以直接照抄</p>
 <h3>剪切板互通</h3>
 <p>编辑basic.lua：<br>
 <code class="notranslate">vim.opt.clipboard = "unnamedplus"</code></p>
+<ul>
+<li>实测启用后nvim内将无法将内容粘贴到外部例如浏览器中</li>
+</ul>
 <h3>宏操作</h3>
 <p>Normal mode 下按下 q（例如 qa）开始录制一个宏<br>
 结束录制的时候按下 q 即可<br>
