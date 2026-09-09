@@ -419,8 +419,8 @@ return {
 }
 ```
 顺便设置了快捷键`<leader>lf`一键格式化
-安装`clang-format`的话，需要在`~/`下新建`.clang-format`文件
-写入以下配置来修改clang-format的配置使和nvim一致
+#### 安装`clang-format`的话
+需要在`~/`下新建`.clang-format`文件，写入以下配置来修改clang-format的配置使和nvim一致
 ```
 BasedOnStyle: LLVM
 
@@ -430,6 +430,8 @@ UseTab: Never
 
 ColumnLimit: 100
 ```
+#### 安装pyright和ruff来支持python的话
+在none-ls.lua中不需要在sources中添加`null_ls.builtins.formatting.ruff,`
 
 ### 使用lspsaga增强lsp体验
 新建lspsaga.lua
