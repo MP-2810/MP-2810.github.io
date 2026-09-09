@@ -419,6 +419,17 @@ return {
 }
 ```
 顺便设置了快捷键`<leader>lf`一键格式化
+安装`clang-format`的话，需要在`~/`下新建`.clang-format`文件
+写入以下配置来修改clang-format的配置使和nvim一致
+```
+BasedOnStyle: LLVM
+
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+ColumnLimit: 100
+```
 
 ### 使用lspsaga增强lsp体验
 新建lspsaga.lua
