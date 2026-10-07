@@ -31,6 +31,20 @@ hl.bind(mainMod .. "F", hl.dsp.window.fullscreen_state({
 将`command`参数中`agreety --cmd /bin/sh`的`sh`换成`start-hyprland`即可实现进入账户时hyprland的自动启动
 - 更高级的登录美化功能暂待发掘
 
+## **hyprland开机自启**
+实际上不需要greetd，修改fish的配置文件即可：
+```
+nvim ~/.config/fish/config.fish
+```
+添加如下内容：
+```
+if status is-login
+    if string match -q '/dev/tty*' (tty)
+        start-hyprland
+    end
+end
+```
+
 ## **深色模式**
 编辑· ~/.config/hypr/hyprland.lua·，在文件末尾附近加入以下内容：
 ```

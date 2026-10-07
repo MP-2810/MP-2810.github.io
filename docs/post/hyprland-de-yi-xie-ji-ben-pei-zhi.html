@@ -43,6 +43,20 @@ hl.bind(mainMod .. 'F', hl.dsp.window.fullscreen_state({
 将`command`参数中`agreety --cmd /bin/sh`的`sh`换成`start-hyprland`即可实现进入账户时hyprland的自动启动
 - 更高级的登录美化功能暂待发掘
 
+## **hyprland开机自启**
+实际上不需要greetd，修改fish的配置文件即可：
+```
+nvim ~/.config/fish/config.fish
+```
+添加如下内容：
+```
+if status is-login
+    if string match -q '/dev/tty*' (tty)
+        start-hyprland
+    end
+end
+```
+
 ## **深色模式**
 编辑· ~/.config/hypr/hyprland.lua·，在文件末尾附近加入以下内容：
 ```
@@ -91,6 +105,20 @@ hl.bind(mainMod .. 'F', hl.dsp.window.fullscreen_state({
 将`user`中的参数改为自己的用户名
 将`command`参数中`agreety --cmd /bin/sh`的`sh`换成`start-hyprland`即可实现进入账户时hyprland的自动启动
 - 更高级的登录美化功能暂待发掘
+
+## **hyprland开机自启**
+实际上不需要greetd，修改fish的配置文件即可：
+```
+nvim ~/.config/fish/config.fish
+```
+添加如下内容：
+```
+if status is-login
+    if string match -q '/dev/tty*' (tty)
+        start-hyprland
+    end
+end
+```
 
 ## **深色模式**
 编辑· ~/.config/hypr/hyprland.lua·，在文件末尾附近加入以下内容：
@@ -205,6 +233,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <ul>
 <li>更高级的登录美化功能暂待发掘</li>
 </ul>
+<h2><strong>hyprland开机自启</strong></h2>
+<p>实际上不需要greetd，修改fish的配置文件即可：</p>
+<pre class="notranslate"><code class="notranslate">nvim ~/.config/fish/config.fish
+</code></pre>
+<p>添加如下内容：</p>
+<pre class="notranslate"><code class="notranslate">if status is-login
+    if string match -q '/dev/tty*' (tty)
+        start-hyprland
+    end
+end
+</code></pre>
 <h2><strong>深色模式</strong></h2>
 <p>编辑· ~/.config/hypr/hyprland.lua·，在文件末尾附近加入以下内容：</p>
 <pre class="notranslate"><code class="notranslate">-- 设置 GTK 应用偏好深色主题（对 GTK3 生效）
