@@ -1,5 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Wed, 07 Oct 2026 13:52:28 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>配置SSH使用</title><link>https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</link><description>### 没有配置SSH的情况下，git克隆时可能会出现失败的情况
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Wed, 07 Oct 2026 14:19:52 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>Linux QQ 中文输入异常</title><link>https://MP-2810.github.io/post/Linux%20QQ%20-zhong-wen-shu-ru-yi-chang.html</link><description>### 由AI负责整理
+# Linux QQ 中文输入异常
+
+## 1. 现象
+
+在 Arch Linux + Hyprland（Wayland）环境下使用 Fcitx5 中文输入法时：
+
+* Firefox、Kitty 等程序输入正常；
+* Linux QQ 输入中文时，偶尔会有拼音字母直接进入输入框；
+* 输入速度越快，出现概率越高；
+* Fcitx5 候选框在 QQ 中会出现闪烁或输入状态异常。</description><guid isPermaLink="true">https://MP-2810.github.io/post/Linux%20QQ%20-zhong-wen-shu-ru-yi-chang.html</guid><pubDate>Wed, 07 Oct 2026 14:19:23 +0000</pubDate></item><item><title>配置SSH使用</title><link>https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</link><description>### 没有配置SSH的情况下，git克隆时可能会出现失败的情况
 ### 1. 检查是否有 SSH 密钥
 `ls ~/.ssh/id_*`
 
