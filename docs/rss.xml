@@ -1,15 +1,53 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Wed, 07 Oct 2026 14:19:52 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>Linux QQ 中文输入异常</title><link>https://MP-2810.github.io/post/Linux%20QQ%20-zhong-wen-shu-ru-yi-chang.html</link><description>### 由AI负责整理
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Wed, 07 Oct 2026 14:27:12 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>Linux QQ 中文输入异常</title><link>https://MP-2810.github.io/post/Linux%20QQ%20-zhong-wen-shu-ru-yi-chang.html</link><description>### 由AI负责整理
 # Linux QQ 中文输入异常
 
 ## 1. 现象
-
 在 Arch Linux + Hyprland（Wayland）环境下使用 Fcitx5 中文输入法时：
 
 * Firefox、Kitty 等程序输入正常；
 * Linux QQ 输入中文时，偶尔会有拼音字母直接进入输入框；
 * 输入速度越快，出现概率越高；
-* Fcitx5 候选框在 QQ 中会出现闪烁或输入状态异常。</description><guid isPermaLink="true">https://MP-2810.github.io/post/Linux%20QQ%20-zhong-wen-shu-ru-yi-chang.html</guid><pubDate>Wed, 07 Oct 2026 14:19:23 +0000</pubDate></item><item><title>配置SSH使用</title><link>https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</link><description>### 没有配置SSH的情况下，git克隆时可能会出现失败的情况
+* Fcitx5 候选框在 QQ 中会出现闪烁或输入状态异常
+
+因此问题只存在于 Linux QQ，并非 Fcitx5 的全局配置问题
+
+## 2. 原因
+Linux QQ 当前使用 Wayland IME：
+
+```text
+--enable-wayland-ime
+--wayland-text-input-version=3
+```
+
+其 Wayland 输入法处理方式与 Fcitx5 存在兼容性问题，导致 QQ 在接收 Fcitx5 输入事件时出现异常
+
+通过为 QQ 单独设置：
+```text
+QT_IM_MODULE=fcitx
+GTK_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+```
+
+可以让 QQ 使用兼容 Fcitx5 的输入法路径，从而解决中文输入异常
+
+由于 Firefox、Kitty 等程序本身输入正常，因此不应该将这些变量设置为全局环境变量，而应该只针对 QQ 设置
+
+## 3. 解决方法
+
+### 3.1 确认 QQ 的启动参数
+
+查看 QQ 进程：
+```bash
+ps -ef | grep '[q]q'
+```
+
+可以看到类似：
+```text
+/opt/QQ/qq --enable-wayland-ime --wayland-text-input-version=3
+```
+
+说明 QQ 启用了 Wayland IME。</description><guid isPermaLink="true">https://MP-2810.github.io/post/Linux%20QQ%20-zhong-wen-shu-ru-yi-chang.html</guid><pubDate>Wed, 07 Oct 2026 14:19:23 +0000</pubDate></item><item><title>配置SSH使用</title><link>https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</link><description>### 没有配置SSH的情况下，git克隆时可能会出现失败的情况
 ### 1. 检查是否有 SSH 密钥
 `ls ~/.ssh/id_*`
 

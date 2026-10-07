@@ -14,25 +14,101 @@
 # Linux QQ 中文输入异常
 
 ## 1. 现象
-
 在 Arch Linux + Hyprland（Wayland）环境下使用 Fcitx5 中文输入法时：
 
 * Firefox、Kitty 等程序输入正常；
 * Linux QQ 输入中文时，偶尔会有拼音字母直接进入输入框；
 * 输入速度越快，出现概率越高；
-* Fcitx5 候选框在 QQ 中会出现闪烁或输入状态异常。">
+* Fcitx5 候选框在 QQ 中会出现闪烁或输入状态异常
+
+因此问题只存在于 Linux QQ，并非 Fcitx5 的全局配置问题
+
+## 2. 原因
+Linux QQ 当前使用 Wayland IME：
+
+```text
+--enable-wayland-ime
+--wayland-text-input-version=3
+```
+
+其 Wayland 输入法处理方式与 Fcitx5 存在兼容性问题，导致 QQ 在接收 Fcitx5 输入事件时出现异常
+
+通过为 QQ 单独设置：
+```text
+QT_IM_MODULE=fcitx
+GTK_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+```
+
+可以让 QQ 使用兼容 Fcitx5 的输入法路径，从而解决中文输入异常
+
+由于 Firefox、Kitty 等程序本身输入正常，因此不应该将这些变量设置为全局环境变量，而应该只针对 QQ 设置
+
+## 3. 解决方法
+
+### 3.1 确认 QQ 的启动参数
+
+查看 QQ 进程：
+```bash
+ps -ef | grep '[q]q'
+```
+
+可以看到类似：
+```text
+/opt/QQ/qq --enable-wayland-ime --wayland-text-input-version=3
+```
+
+说明 QQ 启用了 Wayland IME。">
 <meta property="og:title" content="Linux QQ 中文输入异常">
 <meta property="og:description" content="### 由AI负责整理
 # Linux QQ 中文输入异常
 
 ## 1. 现象
-
 在 Arch Linux + Hyprland（Wayland）环境下使用 Fcitx5 中文输入法时：
 
 * Firefox、Kitty 等程序输入正常；
 * Linux QQ 输入中文时，偶尔会有拼音字母直接进入输入框；
 * 输入速度越快，出现概率越高；
-* Fcitx5 候选框在 QQ 中会出现闪烁或输入状态异常。">
+* Fcitx5 候选框在 QQ 中会出现闪烁或输入状态异常
+
+因此问题只存在于 Linux QQ，并非 Fcitx5 的全局配置问题
+
+## 2. 原因
+Linux QQ 当前使用 Wayland IME：
+
+```text
+--enable-wayland-ime
+--wayland-text-input-version=3
+```
+
+其 Wayland 输入法处理方式与 Fcitx5 存在兼容性问题，导致 QQ 在接收 Fcitx5 输入事件时出现异常
+
+通过为 QQ 单独设置：
+```text
+QT_IM_MODULE=fcitx
+GTK_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+```
+
+可以让 QQ 使用兼容 Fcitx5 的输入法路径，从而解决中文输入异常
+
+由于 Firefox、Kitty 等程序本身输入正常，因此不应该将这些变量设置为全局环境变量，而应该只针对 QQ 设置
+
+## 3. 解决方法
+
+### 3.1 确认 QQ 的启动参数
+
+查看 QQ 进程：
+```bash
+ps -ef | grep '[q]q'
+```
+
+可以看到类似：
+```text
+/opt/QQ/qq --enable-wayland-ime --wayland-text-input-version=3
+```
+
+说明 QQ 启用了 Wayland IME。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/Linux%20QQ%20-zhong-wen-shu-ru-yi-chang.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -111,24 +187,22 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>Firefox、Kitty 等程序输入正常；</li>
 <li>Linux QQ 输入中文时，偶尔会有拼音字母直接进入输入框；</li>
 <li>输入速度越快，出现概率越高；</li>
-<li>Fcitx5 候选框在 QQ 中会出现闪烁或输入状态异常。</li>
+<li>Fcitx5 候选框在 QQ 中会出现闪烁或输入状态异常</li>
 </ul>
-<p>因此问题只存在于 Linux QQ，并非 Fcitx5 的全局配置问题。</p>
-<hr>
+<p>因此问题只存在于 Linux QQ，并非 Fcitx5 的全局配置问题</p>
 <h2>2. 原因</h2>
 <p>Linux QQ 当前使用 Wayland IME：</p>
 <pre lang="text" class="notranslate"><code class="notranslate">--enable-wayland-ime
 --wayland-text-input-version=3
 </code></pre>
-<p>其 Wayland 输入法处理方式与 Fcitx5 存在兼容性问题，导致 QQ 在接收 Fcitx5 输入事件时出现异常。</p>
+<p>其 Wayland 输入法处理方式与 Fcitx5 存在兼容性问题，导致 QQ 在接收 Fcitx5 输入事件时出现异常</p>
 <p>通过为 QQ 单独设置：</p>
 <pre lang="text" class="notranslate"><code class="notranslate">QT_IM_MODULE=fcitx
 GTK_IM_MODULE=fcitx
 XMODIFIERS=@im=fcitx
 </code></pre>
-<p>可以让 QQ 使用兼容 Fcitx5 的输入法路径，从而解决中文输入异常。</p>
-<p>由于 Firefox、Kitty 等程序本身输入正常，因此不应该将这些变量设置为全局环境变量，而应该只针对 QQ 设置。</p>
-<hr>
+<p>可以让 QQ 使用兼容 Fcitx5 的输入法路径，从而解决中文输入异常</p>
+<p>由于 Firefox、Kitty 等程序本身输入正常，因此不应该将这些变量设置为全局环境变量，而应该只针对 QQ 设置</p>
 <h2>3. 解决方法</h2>
 <h3>3.1 确认 QQ 的启动参数</h3>
 <p>查看 QQ 进程：</p>
@@ -137,7 +211,6 @@ XMODIFIERS=@im=fcitx
 <pre lang="text" class="notranslate"><code class="notranslate">/opt/QQ/qq --enable-wayland-ime --wayland-text-input-version=3
 </code></pre>
 <p>说明 QQ 启用了 Wayland IME。</p>
-<hr>
 <h3>3.2 确认 Desktop Entry</h3>
 <p>搜索 QQ 的 <code class="notranslate">.desktop</code> 文件：</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">grep -Ril <span class="pl-s"><span class="pl-pds">"</span>linuxqq\|/opt/QQ/qq<span class="pl-pds">"</span></span> \
@@ -149,16 +222,15 @@ XMODIFIERS=@im=fcitx
 <p>不要直接修改：</p>
 <pre lang="text" class="notranslate"><code class="notranslate">/usr/share/applications/qq.desktop
 </code></pre>
-<p>这样可以避免软件更新覆盖自己的配置。</p>
-<hr>
+<p>这样可以避免软件更新覆盖自己的配置</p>
 <h3>3.3 修改 QQ 的启动命令</h3>
 <p>编辑：</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">nano <span class="pl-k">~</span>/.local/share/applications/qq.desktop</pre></div>
-<p>将原来的：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">nvim <span class="pl-k">~</span>/.local/share/applications/qq.desktop</pre></div>
+<p>将原来的<code class="notranslate">exec</code>一行：</p>
 <div class="highlight highlight-source-ini"><pre class="notranslate"><span class="pl-k">Exec</span>=linuxqq %U --enable-wayland-ime --<span class="pl-k">wayland-text-input-version</span>=3</pre></div>
 <p>修改为：</p>
 <div class="highlight highlight-source-ini"><pre class="notranslate"><span class="pl-k">Exec</span>=env <span class="pl-k">QT_IM_MODULE</span>=fcitx <span class="pl-k">GTK_IM_MODULE</span>=fcitx <span class="pl-k">XMODIFIERS</span>=@<span class="pl-k">im</span>=fcitx linuxqq %U</pre></div>
-<p>完整配置：</p>
+<p>我的完整配置如下：</p>
 <div class="highlight highlight-source-ini"><pre class="notranslate"><span class="pl-en">[Desktop Entry]</span>
 <span class="pl-k">Name</span>=QQ
 <span class="pl-k">Exec</span>=env <span class="pl-k">QT_IM_MODULE</span>=fcitx <span class="pl-k">GTK_IM_MODULE</span>=fcitx <span class="pl-k">XMODIFIERS</span>=@<span class="pl-k">im</span>=fcitx linuxqq %U
@@ -168,18 +240,16 @@ XMODIFIERS=@im=fcitx
 <span class="pl-k">StartupWMClass</span>=QQ
 <span class="pl-k">Categories</span>=Network<span class="pl-c"><span class="pl-c">;</span></span>
 <span class="pl-k">Comment</span>=QQ</pre></div>
-<hr>
 <h3>3.4 重启 QQ</h3>
 <p>完全退出 QQ：</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">pkill qq</pre></div>
-<p>然后重新通过 Fuzzel 或其他应用启动器启动 QQ。</p>
+<p>然后重新通过 Fuzzel 或其他应用启动器启动 QQ</p>
 <p>之后 Linux QQ 会单独使用：</p>
 <pre lang="text" class="notranslate"><code class="notranslate">QT_IM_MODULE=fcitx
 GTK_IM_MODULE=fcitx
 XMODIFIERS=@im=fcitx
 </code></pre>
-<p>而 Firefox、Kitty 等其他程序不会受到影响。</p>
-<hr>
+<p>而 Firefox、Kitty 等其他程序不会受到影响</p>
 <h2>4. 最终结果</h2>
 <p>最终配置关系：</p>
 <pre lang="text" class="notranslate"><code class="notranslate">Fcitx5
