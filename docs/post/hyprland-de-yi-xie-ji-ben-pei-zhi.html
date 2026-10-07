@@ -41,7 +41,16 @@ hl.bind(mainMod .. 'F', hl.dsp.window.fullscreen_state({
 `sudo vim /etc/greetd/config.toml`
 将`user`中的参数改为自己的用户名
 将`command`参数中`agreety --cmd /bin/sh`的`sh`换成`start-hyprland`即可实现进入账户时hyprland的自动启动
-- 更高级的登录美化功能暂待发掘。">
+- 更高级的登录美化功能暂待发掘
+
+## **深色模式**
+编辑· ~/.config/hypr/hyprland.lua·，在文件末尾附近加入以下内容：
+···
+-- 设置 GTK 应用偏好深色主题（对 GTK3 生效）
+hl.exec_cmd('gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'')
+-- 告诉系统偏好深色模式（对 GTK4 及部分新应用生效）
+hl.exec_cmd('gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'')
+···。">
 <meta property="og:title" content="hyprland的一些基本配置">
 <meta property="og:description" content="## **窗口透明度**
 `hyprland.lua`中搜索`gaps_in`找到对应的配置模块，其中参数可以调节窗口圆角、透明度和模糊指数等参数
@@ -74,7 +83,16 @@ hl.bind(mainMod .. 'F', hl.dsp.window.fullscreen_state({
 `sudo vim /etc/greetd/config.toml`
 将`user`中的参数改为自己的用户名
 将`command`参数中`agreety --cmd /bin/sh`的`sh`换成`start-hyprland`即可实现进入账户时hyprland的自动启动
-- 更高级的登录美化功能暂待发掘。">
+- 更高级的登录美化功能暂待发掘
+
+## **深色模式**
+编辑· ~/.config/hypr/hyprland.lua·，在文件末尾附近加入以下内容：
+···
+-- 设置 GTK 应用偏好深色主题（对 GTK3 生效）
+hl.exec_cmd('gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'')
+-- 告诉系统偏好深色模式（对 GTK4 及部分新应用生效）
+hl.exec_cmd('gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'')
+···。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/hyprland-de-yi-xie-ji-ben-pei-zhi.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -172,7 +190,15 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 将<code class="notranslate">command</code>参数中<code class="notranslate">agreety --cmd /bin/sh</code>的<code class="notranslate">sh</code>换成<code class="notranslate">start-hyprland</code>即可实现进入账户时hyprland的自动启动</p>
 <ul>
 <li>更高级的登录美化功能暂待发掘</li>
-</ul></div>
+</ul>
+<h2><strong>深色模式</strong></h2>
+<p>编辑· ~/.config/hypr/hyprland.lua·，在文件末尾附近加入以下内容：<br>
+···<br>
+-- 设置 GTK 应用偏好深色主题（对 GTK3 生效）<br>
+hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'")<br>
+-- 告诉系统偏好深色模式（对 GTK4 及部分新应用生效）<br>
+hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")<br>
+···</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

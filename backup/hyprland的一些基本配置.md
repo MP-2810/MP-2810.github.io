@@ -30,3 +30,12 @@ hl.bind(mainMod .. "F", hl.dsp.window.fullscreen_state({
 将`user`中的参数改为自己的用户名
 将`command`参数中`agreety --cmd /bin/sh`的`sh`换成`start-hyprland`即可实现进入账户时hyprland的自动启动
 - 更高级的登录美化功能暂待发掘
+
+## **深色模式**
+编辑· ~/.config/hypr/hyprland.lua·，在文件末尾附近加入以下内容：
+···
+-- 设置 GTK 应用偏好深色主题（对 GTK3 生效）
+hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'")
+-- 告诉系统偏好深色模式（对 GTK4 及部分新应用生效）
+hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
+···
