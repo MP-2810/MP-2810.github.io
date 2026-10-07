@@ -10,3 +10,7 @@ hl.env("GTK_IM_MODULE", "fcitx")
 -- hl.env("QT_IM_MODULE", "fcitx")
 hl.env("XMODIFIERS", "@im=fcitx")
 ```
+
+### 20261007
+#### plus:
+在fcitx5配置界面，进入附加组件模块，将输入法的预编辑模式关掉即可，前面的都不奏效

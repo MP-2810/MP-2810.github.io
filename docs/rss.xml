@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Thu, 10 Sep 2026 18:47:59 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>配置SSH使用</title><link>https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</link><description>### 没有配置SSH的情况下，git克隆时可能会出现失败的情况
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Wed, 07 Oct 2026 10:11:54 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>配置SSH使用</title><link>https://MP-2810.github.io/post/pei-zhi-SSH-shi-yong.html</link><description>### 没有配置SSH的情况下，git克隆时可能会出现失败的情况
 ### 1. 检查是否有 SSH 密钥
 `ls ~/.ssh/id_*`
 
@@ -686,7 +686,11 @@ Normal mode 下按下 q&lt;register&gt;（例如 qa）开始录制一个宏
 hl.env('GTK_IM_MODULE', 'fcitx')
 -- hl.env('QT_IM_MODULE', 'fcitx')
 hl.env('XMODIFIERS', '@im=fcitx')
-```。</description><guid isPermaLink="true">https://MP-2810.github.io/post/qq-wu-fa-zheng-chang-shi-yong-fcitx5-zhong-wen-shu-ru-fa.html</guid><pubDate>Wed, 19 Aug 2026 03:24:57 +0000</pubDate></item><item><title>hyprland的一些基本配置</title><link>https://MP-2810.github.io/post/hyprland-de-yi-xie-ji-ben-pei-zhi.html</link><description>## **窗口透明度**
+```
+
+### 20261007
+#### plus:
+在fcitx5配置界面，进入附加组件模块，将输入法的预编辑模式关掉即可，前面的都不奏效。</description><guid isPermaLink="true">https://MP-2810.github.io/post/qq-wu-fa-zheng-chang-shi-yong-fcitx5-zhong-wen-shu-ru-fa.html</guid><pubDate>Wed, 19 Aug 2026 03:24:57 +0000</pubDate></item><item><title>hyprland的一些基本配置</title><link>https://MP-2810.github.io/post/hyprland-de-yi-xie-ji-ben-pei-zhi.html</link><description>## **窗口透明度**
 `hyprland.lua`中搜索`gaps_in`找到对应的配置模块，其中参数可以调节窗口圆角、透明度和模糊指数等参数
 不建议设置全局透明度，因为会导致正常画面也会被透明化例如浏览器放视频时的视频画面
 搜索`window_rule`来到文件最底层，可以新添窗口规则设置指定窗口透明化
