@@ -45,12 +45,19 @@ hl.bind(mainMod .. 'F', hl.dsp.window.fullscreen_state({
 
 ## **深色模式**
 编辑· ~/.config/hypr/hyprland.lua·，在文件末尾附近加入以下内容：
-···
+```
 -- 设置 GTK 应用偏好深色主题（对 GTK3 生效）
 hl.exec_cmd('gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'')
 -- 告诉系统偏好深色模式（对 GTK4 及部分新应用生效）
 hl.exec_cmd('gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'')
-···。">
+```
+
+## **VLC**
+因为Arch将VLC部分解码器拆成了单独的包，所以除了安装VLC本体以外，还需要安装一些特定的包才能播放某些格式的视频文件
+可以直接一次性安装全部包，解决问题：
+```
+sudo pacman -S vlc-plugins-all
+```。">
 <meta property="og:title" content="hyprland的一些基本配置">
 <meta property="og:description" content="## **窗口透明度**
 `hyprland.lua`中搜索`gaps_in`找到对应的配置模块，其中参数可以调节窗口圆角、透明度和模糊指数等参数
@@ -87,12 +94,19 @@ hl.bind(mainMod .. 'F', hl.dsp.window.fullscreen_state({
 
 ## **深色模式**
 编辑· ~/.config/hypr/hyprland.lua·，在文件末尾附近加入以下内容：
-···
+```
 -- 设置 GTK 应用偏好深色主题（对 GTK3 生效）
 hl.exec_cmd('gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'')
 -- 告诉系统偏好深色模式（对 GTK4 及部分新应用生效）
 hl.exec_cmd('gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'')
-···。">
+```
+
+## **VLC**
+因为Arch将VLC部分解码器拆成了单独的包，所以除了安装VLC本体以外，还需要安装一些特定的包才能播放某些格式的视频文件
+可以直接一次性安装全部包，解决问题：
+```
+sudo pacman -S vlc-plugins-all
+```。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://MP-2810.github.io/post/hyprland-de-yi-xie-ji-ben-pei-zhi.html">
 <meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
@@ -192,13 +206,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>更高级的登录美化功能暂待发掘</li>
 </ul>
 <h2><strong>深色模式</strong></h2>
-<p>编辑· ~/.config/hypr/hyprland.lua·，在文件末尾附近加入以下内容：<br>
-···<br>
--- 设置 GTK 应用偏好深色主题（对 GTK3 生效）<br>
-hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'")<br>
--- 告诉系统偏好深色模式（对 GTK4 及部分新应用生效）<br>
-hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")<br>
-···</p></div>
+<p>编辑· ~/.config/hypr/hyprland.lua·，在文件末尾附近加入以下内容：</p>
+<pre class="notranslate"><code class="notranslate">-- 设置 GTK 应用偏好深色主题（对 GTK3 生效）
+hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'")
+-- 告诉系统偏好深色模式（对 GTK4 及部分新应用生效）
+hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
+</code></pre>
+<h2><strong>VLC</strong></h2>
+<p>因为Arch将VLC部分解码器拆成了单独的包，所以除了安装VLC本体以外，还需要安装一些特定的包才能播放某些格式的视频文件<br>
+可以直接一次性安装全部包，解决问题：</p>
+<pre class="notranslate"><code class="notranslate">sudo pacman -S vlc-plugins-all
+</code></pre></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
