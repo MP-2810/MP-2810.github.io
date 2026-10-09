@@ -1,12 +1,12 @@
 1. **shell：** fish
 2. **terminal：** kitty
 3. **显示服务器协议：** wayland + xwayland （考虑wayback中）
-4. **登录守护程序：** greetd
-5. **图形库：** gtk3 gtk4 qt5 qt6（暂定）
+4. **登录守护程序：** greetd（修改fish的配置文件即可，并不需要greetd）
+5. **图形库：** gtk3 gtk4 qt5 qt6（Hyprland好像不需要QT？）
 6. **身份验证守护进程：** hyprpolkitagent
 7. **应用程序启动器：** fuzzel
 8. **系统信息获取工具：** fastfetch
-9. **文本编辑器：** vim（后续会换成neovim）
+9. **文本编辑器：** vim & neovim
 10. **锁屏组件：** hyprlock
 11. **状态栏（面板）：** 未定，暂用waybar
 12. **输入法：** fcitx5
