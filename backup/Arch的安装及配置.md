@@ -86,7 +86,8 @@ pacstrap /mnt networkmanager vim sudo intel-ucode
 amd用户就用`amd-ucode`，想用终端联网就装`iwd`(**iwd可能需要配dhcpcd使用**）
 ### 自动挂载文件系统
 输入以下命令生成fstab文件以使系统自动完成系统文件挂载
-```genfstab -U /mnt > /mnt/etc/fstab
+```
+genfstab -U /mnt > /mnt/etc/fstab
 ```
 
 ## chrange root

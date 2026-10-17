@@ -98,7 +98,8 @@ pacstrap /mnt networkmanager vim sudo intel-ucode
 amd用户就用`amd-ucode`，想用终端联网就装`iwd`(**iwd可能需要配dhcpcd使用**）
 ### 自动挂载文件系统
 输入以下命令生成fstab文件以使系统自动完成系统文件挂载
-```genfstab -U /mnt > /mnt/etc/fstab
+```
+genfstab -U /mnt > /mnt/etc/fstab
 ```
 
 ## chrange root
@@ -434,7 +435,8 @@ pacstrap /mnt networkmanager vim sudo intel-ucode
 amd用户就用`amd-ucode`，想用终端联网就装`iwd`(**iwd可能需要配dhcpcd使用**）
 ### 自动挂载文件系统
 输入以下命令生成fstab文件以使系统自动完成系统文件挂载
-```genfstab -U /mnt > /mnt/etc/fstab
+```
+genfstab -U /mnt > /mnt/etc/fstab
 ```
 
 ## chrange root
@@ -824,7 +826,8 @@ mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home</pre></
 <p>amd用户就用<code class="notranslate">amd-ucode</code>，想用终端联网就装<code class="notranslate">iwd</code>(<strong>iwd可能需要配dhcpcd使用</strong>）</p>
 <h3>自动挂载文件系统</h3>
 <p>输入以下命令生成fstab文件以使系统自动完成系统文件挂载</p>
-<pre lang="genfstab" data-meta="-U /mnt &gt; /mnt/etc/fstab" class="notranslate"><code class="notranslate"></code></pre>
+<pre class="notranslate"><code class="notranslate">genfstab -U /mnt &gt; /mnt/etc/fstab
+</code></pre>
 <h2>chrange root</h2>
 <p>###进入arch-chroot</p>
 <pre class="notranslate"><code class="notranslate">arch-chroot /mnt
