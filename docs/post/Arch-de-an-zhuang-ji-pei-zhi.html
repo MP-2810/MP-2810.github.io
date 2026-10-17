@@ -83,10 +83,12 @@ pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs
 ```
 - 也可以安装linux-zen性能特调内核（本人使用该内核进入系统会出现死机现象，原因暂未查明，目前猜测可能是未安装显卡驱动引起的驱动冲突导致的）plus:安装显卡驱动后可以通过zen内核进入系统，但无法识别到外接显示器，只能使用笔记本内置屏幕，原因暂未查明
 
-```pacstrap -K /mnt base base-devel linux-zen linux-firmware btrfs-progs
+```
+pacstrap -K /mnt base base-devel linux-zen linux-firmware btrfs-progs
 ```
 如果是marvell网卡则需要额外安装marvell固件包
-```pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs linux-firmware-marvell
+```
+pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs linux-firmware-marvell
 ```
 ### 安装基本功能性软件
 安装联网工具，文本编辑器，权限管理器，CPU优化、修复工具
@@ -417,10 +419,12 @@ pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs
 ```
 - 也可以安装linux-zen性能特调内核（本人使用该内核进入系统会出现死机现象，原因暂未查明，目前猜测可能是未安装显卡驱动引起的驱动冲突导致的）plus:安装显卡驱动后可以通过zen内核进入系统，但无法识别到外接显示器，只能使用笔记本内置屏幕，原因暂未查明
 
-```pacstrap -K /mnt base base-devel linux-zen linux-firmware btrfs-progs
+```
+pacstrap -K /mnt base base-devel linux-zen linux-firmware btrfs-progs
 ```
 如果是marvell网卡则需要额外安装marvell固件包
-```pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs linux-firmware-marvell
+```
+pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs linux-firmware-marvell
 ```
 ### 安装基本功能性软件
 安装联网工具，文本编辑器，权限管理器，CPU优化、修复工具
@@ -808,9 +812,11 @@ mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home</pre></
 <ul>
 <li>也可以安装linux-zen性能特调内核（本人使用该内核进入系统会出现死机现象，原因暂未查明，目前猜测可能是未安装显卡驱动引起的驱动冲突导致的）plus:安装显卡驱动后可以通过zen内核进入系统，但无法识别到外接显示器，只能使用笔记本内置屏幕，原因暂未查明</li>
 </ul>
-<pre lang="pacstrap" data-meta="-K /mnt base base-devel linux-zen linux-firmware btrfs-progs" class="notranslate"><code class="notranslate"></code></pre>
+<pre class="notranslate"><code class="notranslate">pacstrap -K /mnt base base-devel linux-zen linux-firmware btrfs-progs
+</code></pre>
 <p>如果是marvell网卡则需要额外安装marvell固件包</p>
-<pre lang="pacstrap" data-meta="-K /mnt base base-devel linux linux-firmware btrfs-progs linux-firmware-marvell" class="notranslate"><code class="notranslate"></code></pre>
+<pre class="notranslate"><code class="notranslate">pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs linux-firmware-marvell
+</code></pre>
 <h3>安装基本功能性软件</h3>
 <p>安装联网工具，文本编辑器，权限管理器，CPU优化、修复工具</p>
 <pre class="notranslate"><code class="notranslate">pacstrap /mnt networkmanager vim sudo intel-ucode
