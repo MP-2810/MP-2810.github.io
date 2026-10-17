@@ -15,9 +15,13 @@ exit  #退出iwctl
 使用`timedatectl`确认是否开启了NTP并同步到了UTC
 可使用`timedatectl set-ntp true`手动开启NTP
 接下来配置镜像源：
-`reflector -a  12 -c cn -f 10 --sort rate --v --save /etc/pacman.d/mirrorlist`
+```
+reflector -a  12 -c cn -f 10 --sort rate --v --save /etc/pacman.d/mirrorlist
+```
 更新数据库并安装密钥：
-`pacman -Sy archlinux-keyring`
+```
+pacman -Sy archlinux-keyring
+```
 可安装yazi方便浏览文件
 
 ## 硬盘分区
@@ -55,41 +59,60 @@ mount --mkdir -t btrfs -o subvol=/@home,compress=zstd /dev/LFP /mnt/home
 - 其中使用了compress=zstd来使用zstd压缩算法来进行透明压缩，可以有益于硬盘，等级默认是3,可以使用`zstd=数字`来指定等级（1-15）
 
 ### 挂载ESP
-`mount --mkdir /dev/ESP /mnt/efi`
+```
+mount --mkdir /dev/ESP /mnt/efi
+```
 
 ## 安装系统
 ### 安装系统文件
 使用如下命令安装系统
-`pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs`
+```
+pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs
+```
 - 也可以安装linux-zen性能特调内核（本人使用该内核进入系统会出现死机现象，原因暂未查明，目前猜测可能是未安装显卡驱动引起的驱动冲突导致的）plus:安装显卡驱动后可以通过zen内核进入系统，但无法识别到外接显示器，只能使用笔记本内置屏幕，原因暂未查明
 
-`pacstrap -K /mnt base base-devel linux-zen linux-firmware btrfs-progs`
+```pacstrap -K /mnt base base-devel linux-zen linux-firmware btrfs-progs
+```
 如果是marvell网卡则需要额外安装marvell固件包
-`pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs linux-firmware-marvell`
+```pacstrap -K /mnt base base-devel linux linux-firmware btrfs-progs linux-firmware-marvell
+```
 ### 安装基本功能性软件
 安装联网工具，文本编辑器，权限管理器，CPU优化、修复工具
-`pacstrap /mnt networkmanager vim sudo intel-ucode`
+```
+pacstrap /mnt networkmanager vim sudo intel-ucode
+```
 amd用户就用`amd-ucode`，想用终端联网就装`iwd`(**iwd可能需要配dhcpcd使用**）
 ### 自动挂载文件系统
 输入以下命令生成fstab文件以使系统自动完成系统文件挂载
-`genfstab -U /mnt > /mnt/etc/fstab`
+```genfstab -U /mnt > /mnt/etc/fstab
+```
 
 ## chrange root
 ###进入arch-chroot
-`arch-chroot /mnt`
+```
+arch-chroot /mnt
+```
 ### 设置时区
 ```bash
 timedatectl set-timezone Asia/Shanghai
 --systohc  #在/etc下生成了adjtime文件用来调整时间误差
 ```
 ### 设置本地化
-`vim /etc/locale.gen`
+```
+vim /etc/locale.gen
+```
 取消`en_US.UTF-8 UTF-8`和`zh_CN.UTF-8 UTF-8`两行的注释
 生成本地化文件：
-`locale-gen`
+```
+locale-gen
+```
 设置本地化：
-`vim /etc/locale.conf`
-`vim .config/locale.conf`
+```
+vim /etc/locale.conf
+```
+```
+vim .config/locale.conf
+```
 都写入`LANG=en_US.UTF-8`，用来设置全局本地使用英文，避免在使用root登陆tty时终端文字变成方块以致无法识别
 设置所有新建用户使用语言
 ```bash
@@ -98,9 +121,13 @@ vim /etc/skel/.config/locale.conf
 ```
 写入`LANG=zh_CN.UTF-8`
 ### 主机
-`vim/etc/hostname`
+```
+vim/etc/hostname
+```
 写入自己想要的主机名字
-`passwd root`
+```
+passwd root
+```
 设置root用户密码
 ### 引导加载程序和双系统
 ```bash
@@ -110,10 +137,14 @@ ln -s /efi/grub /boot/grub  #在grub的默认位置创造链接指向/efi/grub�
 grub-mkconfig -o /boot/grub/grub.cfg  **#生成grub配置文件，每次手动编辑过grub都要手动生成一次以让修改生效**
 ```
 - 双系统
-`pacman -S os-prober exfat-utils`
+```
+pacman -S os-prober exfat-utils
+```
 os-prober用来搜索其他系统，exfat-utils能找到Windows的EFI分区
 (也可以通过挂载Windows的EFI分区的方式来找到Windows)
-`vim /etc/default/grub`
+```
+vim /etc/default/grub
+```
 取消`GRUB_DISABLE_OS_PROBER=false`的注释以允许grub生成配置文件时使用os-prober搜索其他系统
 取消`GRUB_SAVEDEFAULT=true`的注释以允许grub获得启动项记忆功能
 将`GRUB_DEFAULT=0`修改为`GRUB_DEFAULT=saved`
@@ -130,8 +161,11 @@ vim /etc/systemd/zram/zram-generator.conf
 zram-size=ram
 compression-algorithm = zstd
 ```
-`vim /etc/default/grub`
-在`GRUB_CMDLINE_LINUX_DEFAULT`参数里加上`zswap.enabled=0`
+```
+vim /etc/default/grub
+```
+在`GRUB_CMDLINE_LINUX_DEFAULT`参数里加上`zswap.enabled=0
+```
 
 ### 进入系统
 `reboot`重启，通过grub进入Arch
@@ -160,7 +194,9 @@ visudo
 ```
 取消`%wheel ALL=(ALL:ALL) ALL`行的注释
 ### 开启32位源
-`vim /etc/pacman.conf`
+```
+vim /etc/pacman.conf
+```
 取消
 ```bash
 [multilib]
@@ -175,10 +211,14 @@ Server = https://mirrors.hit.edu.cn/archlinuxcn/$arch
 Server = https://repo.huaweicloud.com/archlinuxcn/$arch
 ```
 然后运行该命令同步数据并安装Archlinuxcn的密钥
-`pacman -Sy archlinuxcn-keyring`
+```
+pacman -Sy archlinuxcn-keyring
+```
 ### 下载AUR助手
 有`yay`和`paru`两种供选择
-`pacman -S yay paru`
+```
+pacman -S yay paru
+```
 - 某些扩展较多的软件可以用flatpak安装，通常比AUR上的更好用
 ```
 sudo pacman -S flatpak
@@ -197,6 +237,13 @@ chsh -s /usr/bin/fish
 ```
 `fish`和`bash`都存放在`/usr/bin/`目录下
 重启以生效
+
+记得修改fish的PATH，否则安装某些程序会路径出错：
+```
+fish_add_path ~/.local/bin
+```
+例如看到 export PATH=...、.bashrc、.zshrc 之类的提示时
+又例如按照官方文档安装claude code的时候，如果没修改，会发现安装成功了但`~/.local/bin/`目录下没有claude
 
 ## 快照（snapshot）
 ```bash
@@ -217,12 +264,18 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ## 代理翻墙
 - 这一步位于安装桌面环境后操作
 使用AUR安装v2rayN的Linux GUI工具：
-`yay -S v2rayn-bin`
+```
+yay -S v2rayn-bin
+```
 也可以下载zip包自己编译运行：
-`yay -S v2rayn`
+```
+yay -S v2rayn
+```
 运行需要依赖.NET运行时环境，运行出错请确保安装了`dotnet-runtime`和`dotnet-sdk`
 - 创建链接
-`sudo ln -s /opt/v2rayn-bin/v2rayN /usr/local/bin/v2rayN`
+```
+sudo ln -s /opt/v2rayn-bin/v2rayN /usr/local/bin/v2rayN
+```
 使得可以在终端直接输入`v2rayN`以启动v2rayN
 
 ## 安装英伟达显卡驱动
@@ -234,16 +287,24 @@ pacman -S nvidia-open-dkms
 pacman -S nvidia-utils lib32-nvidia-utils nvidia-settings  #库、工具集和英伟达服务器设置
 ```
 - 安装过程中遭遇了一个叫nouveau的驱动占用了显卡，导致新安装的显卡驱动无法生效，需要将nouveau驱动禁用：
-`sudo vim /etc/modprobe.d/blacklist.conf`
+```
+sudo vim /etc/modprobe.d/blacklist.conf
+```
 写入`blacklist nouveau`将nouveau拉入黑名单
 然后输入：
-`sudo mkinitcpio -P`
+```
+sudo mkinitcpio -P
+```
 重新生成所有已安装内核的初始内存盘
 然后重启系统，输入：
-`lsmod | grep nouveau`
+```
+lsmod | grep nouveau
+```
 没有内容输出及代表nouveau已被禁用
 再输入：
-`nvidia-smi`
+```
+nvidia-smi
+```
 输入信息显示显卡正在工作的信息即完成
 
 ## 视频编解码的驱动安装
@@ -253,9 +314,13 @@ pacman -S nvidia-utils lib32-nvidia-utils nvidia-settings  #库、工具集和�
 **为了让Firefox使用N卡编解码，按照`nvidia-vaapi-driver`仓库的教程进行设置**
 
 ## 音视频服务和蓝牙
-`sudo pacman -S sof-firmware alsa-ucm-conf alsa-firmware`
+```
+sudo pacman -S sof-firmware alsa-ucm-conf alsa-firmware
+```
 **pipewire和蓝牙**
-`sudo pacman -S pipewire wireplumber pipewire-pulse pipewire-alsa pipewire-jack bluez blueman`
+```
+sudo pacman -S pipewire wireplumber pipewire-pulse pipewire-alsa pipewire-jack bluez blueman
+```
 **启用服务**
 ```
 systemctl --user enable pipewire wireplumber pipewire-pulse
