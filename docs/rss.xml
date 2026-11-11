@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Sat, 17 Oct 2026 17:36:54 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>Linux QQ 中文输入异常</title><link>https://MP-2810.github.io/post/Linux%20QQ%20-zhong-wen-shu-ru-yi-chang.html</link><description>### 由AI负责整理
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>MP-2810的博客</title><link>https://MP-2810.github.io</link><description>一个普通的计算机爱好者，记录自己的见闻成长</description><copyright>MP-2810的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://MP-2810.github.io</link></image><lastBuildDate>Wed, 11 Nov 2026 14:24:45 +0000</lastBuildDate><managingEditor>MP-2810的博客</managingEditor><ttl>60</ttl><webMaster>MP-2810的博客</webMaster><item><title>Linux QQ 中文输入异常</title><link>https://MP-2810.github.io/post/Linux%20QQ%20-zhong-wen-shu-ru-yi-chang.html</link><description>### 由AI负责整理
 # Linux QQ 中文输入异常
 
 ## 1. 现象
@@ -821,7 +821,7 @@ sudo pacman -S vlc-plugins-all
 20. **U盘及其他硬盘检测工具：** gvfs-smb
 21. **压缩解压缩软件：** file-roller
 22. **右键菜单解压缩功能：** thunar-archive-plugin
-23. **壁纸引擎及其GUI：** swww + waypaper
+23. **壁纸引擎及其GUI：** swww + waypaper | papyrus
 24. **音乐播放工具：** go-musicfox
 25. **多显示器管理工具：** nwg-displays
 26. **屏幕光标工具：** libxcursor(默认) + hyprcursor

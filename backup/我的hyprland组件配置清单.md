@@ -20,7 +20,7 @@
 20. **U盘及其他硬盘检测工具：** gvfs-smb
 21. **压缩解压缩软件：** file-roller
 22. **右键菜单解压缩功能：** thunar-archive-plugin
-23. **壁纸引擎及其GUI：** swww + waypaper
+23. **壁纸引擎及其GUI：** swww + waypaper | papyrus
 24. **音乐播放工具：** go-musicfox
 25. **多显示器管理工具：** nwg-displays
 26. **屏幕光标工具：** libxcursor(默认) + hyprcursor
